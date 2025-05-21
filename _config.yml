@@ -11,6 +11,7 @@ minima:
     - navigation/blog.md
     - navigation/search.md
     - navigation/about.md
+    - projects/project1.md
     - README4YML.md
   skin: dark
   social_links:
