@@ -1,7 +1,7 @@
 ---
-title: Quiz on PII and Accounts Lesson
+title: Quiz on Github Workflow Lesson
 search_exclude: true
-permalink: /piiquiz/
+permalink: /githubquiz_1/
 ---
 
 <html lang="en">
@@ -87,54 +87,44 @@ permalink: /piiquiz/
   <script>
     const questions = [
       {
-        q: "Which of the following is the best example of Highly Confidential Information?",
+        q: "You want to contribute a bug fix to a repository you do not have direct access to. What is the most appropriate GitHub workflow to follow?",
         options: [
-          "Your high school name",
-          "Your full birth date",
-          "Your Wi-Fi password",
-          "Your city of residence"
+          "Clone the repository, make changes on main, and push directly",
+          "Fork the repository, edit on main, and request a merge via PR",
+          "Fork the repository, create a feature branch, make changes, and submit a pull request",
+          "Request write access and push directly to the upstream repository"
         ],
         answer: 2
       },
       {
-        q: "Why is it recommended to use different email accounts for different purposes?",
+        q: "In a team project using the Scrum Master + Contributors model, who is responsible for merging new code into the main repository?",
         options: [
-          "To make it easier to remember passwords",
-          "To separate types of information and reduce risk if one account is compromised",
-          "Because email providers require it",
-          "To avoid receiving any spam"
+          "Each contributor, after testing their feature",
+          "The person who writes the most code",
+          "All team members equally",
+          "The Scrum Master, after reviewing submitted pull requests"
         ],
-        answer: 1
+        answer: 3
       },
       {
-        q: "Which of these is NOT a good security practice?",
+        q: "Which of the following actions is least aligned with GitHub best practices for collaborative development?",
         options: [
-          "Enabling multi-factor authentication",
-          "Using the same password for all accounts",
-          "Regularly updating your software",
-          "Using a password manager"
+          "Committing directly to main to speed up delivery",
+          "Creating a feature/payment-gateway branch before starting a new feature",
+          "Writing commit messages like 'Fix auth redirect logic'",
+          "Pulling the latest changes from main before pushing your branch"
         ],
-        answer: 1
+        answer: 0
       },
       {
-        q: "If you receive an unexpected email asking for your login credentials, what should you do?",
+        q: "Why might a student choose to clone the pages repository rather than fork it?",
         options: [
-          "Reply with your credentials to be helpful",
-          "Click any links to see where they go",
-          "Ignore or report the email as phishing",
-          "Forward it to your friends"
+          "They want to contribute to the class curriculum",
+          "They want to deploy it using GitHub Pages",
+          "They want to explore or run the code locally without making contributions",
+          "They need to take ownership of the repository and manage pull requests"
         ],
         answer: 2
-      },
-      {
-        q: "Which of the following is considered Sensitive (but not Highly Confidential) Information?",
-        options: [
-          "Your favorite food",
-          "Your street address",
-          "Your GitHub profile picture",
-          "Your public portfolio link"
-        ],
-        answer: 1
       }
     ];
 
