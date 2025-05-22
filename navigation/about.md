@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+nav: true
 ---
 
 This is a page all about me

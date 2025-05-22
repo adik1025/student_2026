@@ -7,11 +7,6 @@ baseurl: "/student_20266"
 future: true
 remote_theme: jekyll/minima
 minima:
-  nav_pages:
-    - navigation/blog.md
-    - navigation/search.md
-    - navigation/about.md
-    - README4YML.md
   skin: dark
   social_links:
     - { platform: github, user_url: "https://github.com/nighthawkcoders"}
