@@ -1,8 +1,8 @@
-<nav class="flex gap-4 py-2">
-  {% assign nav_pages = site.pages | where_exp:"page", "page.nav == true and page.path and page.path contains 'venv' == false" %}
-  {% for item in nav_pages %}
-    <a href="{{ item.url | relative_url }}" class="text-blue-600 hover:underline">
-      {{ item.title }}
+<nav class="mb-6 border-b pb-3 flex flex-wrap gap-4 text-sm text-blue-600">
+  {% assign nav_pages = site.pages | where_exp: "p", "p.nav == true" %}
+  {% for page in nav_pages %}
+    <a href="{{ page.url | relative_url }}" class="hover:underline">
+      {{ page.title | escape }}
     </a>
   {% endfor %}
 </nav>
