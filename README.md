@@ -1,3 +1,42 @@
+## Table of Contents for README.md
+
+1. Introduction  
+2. Student Requirements  
+3. History  
+   3.1 License  
+   3.2 Key Features  
+   3.3 Contributions  
+4. GitHub Pages Setup  
+   4.1 Activate GitHub Pages Actions  
+   4.2 Update `_config.yml`  
+   4.3 Set Repository Name in Makefile  
+   4.4 Tool Requirements  
+   4.5 Development Environment Setup  
+       4.5.1 Clone Repo  
+       4.5.2 Windows WSL and Ubuntu Users  
+       4.5.3 macOS Users  
+       4.5.4 Kasm Cloud Desktop Users  
+5. Run Server on Localhost  
+   5.1 Bundle Install  
+   5.2 Start the Server  
+   5.3 Load Web Application into the Browser  
+   5.4 Regeneration of Web Application  
+   5.5 Other `make` Commands  
+       5.5.1 Stop the Preview Server  
+       5.5.2 Clean the Local Web Application Environment  
+       5.5.3 Observe Build Errors  
+6. Development Support  
+   6.1 File Naming in `_posts` and `_notebooks`  
+   6.2 Tags  
+   6.3 Search  
+   6.4 Navigation Bar  
+   6.5 Blog Page  
+   6.6 SASS Support  
+   6.7 Includes  
+   6.8 Layouts  
+   6.9 Metadata
+
+
 # Introduction
 
 Nighthawk Pages is a project designed to support students in their Computer Science and Software Engineering education. It offers a wide range of resources including tech talks, code examples, and educational blogs.
