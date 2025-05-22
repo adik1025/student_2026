@@ -1,8 +1,9 @@
 ---
 layout: base
-title: Student Home 
+title: Home 
 description: Home Page
 hide: true
+nav: false
 ---
 
 # Welcome to My Portfolio
