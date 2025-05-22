@@ -1,7 +1,7 @@
 ---
-title: Quiz on PII and Accounts Lesson
+title: Quiz on Github Pages Lesson
 search_exclude: true
-permalink: /piiquiz/
+permalink: /githubquiz_2/
 ---
 
 <html lang="en">
@@ -87,57 +87,57 @@ permalink: /piiquiz/
   <script>
     const questions = [
       {
-        q: "Which of the following is the best example of Highly Confidential Information?",
+        q: "What is the primary use of GitHub Pages?",
         options: [
-          "Your high school name",
-          "Your full birth date",
-          "Your Wi-Fi password",
-          "Your city of residence"
+          "Hosting full-stack web applications",
+          "Running JavaScript servers in the cloud",
+          "Hosting static websites directly from a GitHub repository",
+          "Managing GitHub repositories with extra memory"
         ],
         answer: 2
       },
       {
-        q: "Why is it recommended to use different email accounts for different purposes?",
+        q: "What makes the browser version of VSCode especially useful for students?",
         options: [
-          "To make it easier to remember passwords",
-          "To separate types of information and reduce risk if one account is compromised",
-          "Because email providers require it",
-          "To avoid receiving any spam"
+          "It automatically publishes your website",
+          "It allows editing code directly in the browser without installing anything",
+          "It adds hosting to your GitHub Pages project",
+          "It only works with Node.js projects"
         ],
         answer: 1
       },
       {
-        q: "Which of these is NOT a good security practice?",
+        q: "Which of the following is a required step to publish your site with GitHub Pages?",
         options: [
-          "Enabling multi-factor authentication",
-          "Using the same password for all accounts",
-          "Regularly updating your software",
-          "Using a password manager"
-        ],
-        answer: 1
-      },
-      {
-        q: "If you receive an unexpected email asking for your login credentials, what should you do?",
-        options: [
-          "Reply with your credentials to be helpful",
-          "Click any links to see where they go",
-          "Ignore or report the email as phishing",
-          "Forward it to your friends"
+          "Installing VSCode extensions",
+          "Using a fork of the original repository",
+          "Enabling GitHub Pages in the repository’s Settings tab",
+          "Switching your repository to private mode"
         ],
         answer: 2
       },
       {
-        q: "Which of the following is considered Sensitive (but not Highly Confidential) Information?",
+        q: "When using the browser version of VSCode, what is the correct format for opening your repo?",
         options: [
-          "Your favorite food",
-          "Your street address",
-          "Your GitHub profile picture",
-          "Your public portfolio link"
+          "github.dev/username/repo",
+          "vscode.github.io/username/repo",
+          "github.vscode.com/repo-name",
+          "vscode.dev/github/your_username/your_repository"
+        ],
+        answer: 3
+      },
+      {
+        q: "After enabling GitHub Pages, where will your site be available?",
+        options: [
+          "github.com/pages/your_site",
+          "your_github_username.github.io/your_repository_name/",
+          "vscode.dev/your_site",
+          "localhost:3000"
         ],
         answer: 1
       }
     ];
-
+    
     const quizContainer = document.getElementById("quiz");
     const submitBtn = document.getElementById("submitBtn");
     const retryBtn = document.getElementById("retryBtn");
