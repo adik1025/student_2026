@@ -51,7 +51,7 @@ permalink: /leaderboard/
         .player span {
             font-size: 14px;
         }
-        .player .wins {
+        .player .points {
             font-size: 18px;
             font-weight: bold;
         }
@@ -97,7 +97,7 @@ permalink: /leaderboard/
                 <tr>
                     <th>Rank</th>
                     <th>User</th>
-                    <th>Wins</th>
+                    <th>Points</th>
                 </tr>
             </thead>
             <tbody id="scoreResult">
@@ -109,16 +109,16 @@ permalink: /leaderboard/
   <script>
         // Static array of player data
         const players = [
-            { name: "User 1", wins: 15 },
-            { name: "User 2", wins: 12 },
-            { name: "User 3", wins: 10 },
-            { name: "User 4", wins: 9 },
-            { name: "User 5", wins: 8 },
-            { name: "User 6", wins: 7 },
-            { name: "User 7", wins: 6 },
-            { name: "User 8", wins: 5 },
-            { name: "User 9", wins: 4 },
-            { name: "User 10", wins: 3 }
+            { name: "User 1", points: 15 },
+            { name: "User 2", points: 12 },
+            { name: "User 3", points: 10 },
+            { name: "User 4", points: 9 },
+            { name: "User 5", points: 8 },
+            { name: "User 6", points: 7 },
+            { name: "User 7", points: 6 },
+            { name: "User 8", points: 5 },
+            { name: "User 9", points: 4 },
+            { name: "User 10", points: 3 }
         ];
         function updateLeaderboard() {
             const leaderboard = document.getElementById('leaderboard');
@@ -131,7 +131,7 @@ permalink: /leaderboard/
                 div.classList.add('player');
                 div.innerHTML = `
                     <div class="star">★</div>
-                    <span class="wins">${player.wins} Wins</span>
+                    <span class="points">${player.points} points</span>
                     <div class="name">${player.name}</div>
                 `;
                 leaderboard.appendChild(div);
@@ -142,7 +142,7 @@ permalink: /leaderboard/
                 tr.innerHTML = `
                     <td>${index + 4}</td>
                     <td>${player.name}</td>
-                    <td>${player.wins}</td>
+                    <td>${player.points}</td>
                 `;
                 runnersUpTable.appendChild(tr);
             });
@@ -171,13 +171,13 @@ permalink: /leaderboard/
                         const tr = document.createElement("tr");
                         const rank = document.createElement("td");
                         const player = document.createElement("td");
-                        const wins = document.createElement("td");
+                        const points = document.createElement("td");
                         rank.innerHTML = row.rank;
                         player.innerHTML = row.player;
-                        wins.innerHTML = row.wins;
+                        points.innerHTML = row.points;
                         tr.appendChild(rank);
                         tr.appendChild(player);
-                        tr.appendChild(wins);
+                        tr.appendChild(points);
                         scoreResultContainer.appendChild(tr);
                     }
                 });
@@ -209,13 +209,13 @@ permalink: /leaderboard/
             const tr = document.createElement("tr");
             const rank = document.createElement("td");
             const player = document.createElement("td");
-            const wins = document.createElement("td");
+            const points = document.createElement("td");
             rank.innerHTML = row.rank;
             player.innerHTML = row.player;
-            wins.innerHTML = row.wins;
+            points.innerHTML = row.points;
             tr.appendChild(rank);
             tr.appendChild(player);
-            tr.appendChild(wins);
+            tr.appendChild(points);
             scoreResultContainer.appendChild(tr);
           }
         } else {
