@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,68 +7,66 @@
 
   {% seo %}
 
-  <!-- Tailwind CSS (CDN) -->
+  <!-- Tailwind CSS CDN -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-  <!-- Minimal theme fallback CSS -->
-  <link rel="stylesheet" href="{{ " /assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  <!-- Optional fallback stylesheet -->
+  <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
 
   {% include head-custom.html %}
 </head>
 
 <body class="bg-white text-gray-900 font-sans">
-  {% include navigation.html %}
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <!-- HEADER -->
-    <header class="mb-8">
-      <h1 class="text-4xl font-bold mb-2">
-        <a href="{{ " /" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a>
-      </h1>
-      
-      {% if site.logo %}
-      <img src="{{ site.logo | relative_url }}" alt="Logo" class="mb-4" />
-      {% endif %}
+  <div class="min-h-screen flex flex-col md:flex-row max-w-screen-xl mx-auto px-4 py-8">
 
-      <p class="text-lg text-gray-700">{{ site.description | default: site.github.project_tagline }}</p>
+    <!-- SIDEBAR -->
+    <aside class="md:w-1/4 mb-8 md:mb-0 md:pr-8 border-r">
+      <div>
+        <h1 class="text-3xl font-bold text-blue-700 mb-1">
+          <a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a>
+        </h1>
 
-      {% if site.github.is_project_page %}
-      <p class="text-sm mt-1">
-        <a href="{{ site.github.repository_url }}" class="text-blue-600 hover:underline">
-          View the Project on GitHub <small>{{ site.github.repository_nwo }}</small>
-        </a>
-      </p>
-      {% endif %}
-    </header>
+        <p class="text-gray-600 text-base mb-2">{{ site.description | default: site.github.project_tagline }}</p>
 
-    <!-- NAVIGATION -->
-    <nav class="mb-6 border-b pb-3 flex flex-wrap gap-4 text-sm text-blue-600">
-      {% assign nav_pages = site.minima.nav_pages | default: site.pages %}
-      {% for path in site.minima.nav_pages %}
-      {% assign nav_page = site.pages | where: "path", path | first %}
-      {% if nav_page %}
-      <a href="{{ nav_page.url | relative_url }}" class="hover:underline">
-        {{ nav_page.title | escape }}
-      </a>
-      {% endif %}
-      {% endfor %}
-    </nav>
+        {% if site.github.is_project_page %}
+        <p class="text-sm mb-4">
+          <a href="{{ site.github.repository_url }}" class="text-blue-600 hover:underline">
+            View the Project on GitHub<br><small>{{ site.github.repository_nwo }}</small>
+          </a>
+        </p>
+        {% endif %}
+
+        <!-- NAVIGATION -->
+        <nav class="mb-6 mt-4 border-b pb-3 flex flex-col gap-2 text-sm text-blue-600">
+          {% assign nav_pages = site.pages | where_exp: "page", "page.nav == true" %}
+          {% for nav_page in nav_pages %}
+            <a href="{{ nav_page.url | relative_url }}" class="hover:underline">{{ nav_page.title | escape }}</a>
+          {% endfor %}
+        </nav>
+
+        <!-- FOOTER -->
+        <footer class="text-sm text-gray-500 border-t pt-4">
+          {% if site.github.is_project_page %}
+          <p>This project is maintained by 
+            <a href="{{ site.github.owner_url }}" class="text-blue-600 hover:underline">
+              {{ site.github.owner_name }}
+            </a>
+          </p>
+          {% endif %}
+          <p><small>Hosted on GitHub Pages — Theme by 
+            <a href="https://github.com/orderedlist" class="underline">orderedlist</a></small>
+          </p>
+        </footer>
+      </div>
+    </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="prose">
+    <main class="md:w-3/4 prose max-w-none pl-8">      
       {{ content }}
     </main>
 
-    <!-- FOOTER -->
-    <footer class="mt-10 text-sm text-gray-500 border-t pt-4">
-      {% if site.github.is_project_page %}
-      <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
-      {% endif %}
-      <p><small>Hosted on GitHub Pages — Theme by <a href="https://github.com/orderedlist"
-            class="underline">orderedlist</a></small></p>
-    </footer>
   </div>
 
-  <script src="{{ " /assets/js/scale.fix.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
 </body>
-
 </html>
