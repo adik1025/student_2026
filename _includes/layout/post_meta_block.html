@@ -1,0 +1,43 @@
+<div class="post-meta-block">
+
+    {%- assign show_reading_time = include.show_reading_time | default: page.reading_time | default: true -%}
+    {%- if show_reading_time != false -%}
+      {% assign word_count = content | strip_html | number_of_words %}
+      {% assign minutes = word_count | divided_by:180 %}
+      {% assign seconds = word_count | modulo:180 | times:60 | divided_by:180 %}
+  
+      <span class="read-time" title="Estimated read time">
+        {% if minutes < 1 %}
+          < 1 min read
+        {% else %}
+          {{ minutes }} min{% if seconds > 15 %} +{% endif %} read
+        {% endif %}
+      </span>
+      <br>
+    {%- endif -%}
+  
+    {%- assign show_toc = include.show_toc | default: page.toc | default: true -%}
+    {%- if show_toc != false and include.html -%}
+      {% include layout/toc.html
+          html=include.html
+          sanitize=true
+          class="inline_toc"
+          h_min=2
+          h_max=3
+      %}
+    {%- endif -%}
+  
+    {%- assign show_comments = include.comments | default: page.comments | default: true -%}
+    {%- if show_comments != false -%}
+      <!-- Comments powered by Utterances -->
+      <script src="https://utteranc.es/client.js"
+              repo="{{ site.github_username }}/{{ site.github_repo | default: site.baseurl | remove: '/' }}"
+              issue-term="title"
+              label="blogpost-comment"
+              theme="github-light"
+              crossorigin="anonymous"
+              async>
+      </script>
+    {%- endif -%}
+  
+  </div>
