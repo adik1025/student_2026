@@ -59,50 +59,47 @@ li {
 <div class="container" id="leaderboard-box" style="border: 2px solid #333; border-radius: 10px; padding: 16px; background-color: #f9f9f9;">
   <ul id="leaderboard-list"></ul>
 </div>
-
 <script type="module">
-import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
-
+const pythonURI = "http://127.0.0.1:8887";
+const fetchOptions = {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'default',
+    credentials: 'include',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Origin': 'client'
+    },
+};//import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
 async function fetchLeaderboard() {
     try {
-        const response = await fetch(`${pythonURI}/api/leaderboard`, {
+       const response = await fetch(`${pythonURI}/api/leaderboard`, {
             ...fetchOptions,
             method: 'GET'
         });
-
         if (!response.ok) {
-            console.error('Response not OK:', response.status, response.statusText);
-            throw new Error('Failed to fetch leaderboard');
+            throw new Error(`Failed to fetch leaderboard: ${response.status}`);
         }
-
         const data = await response.json();
-        console.log('Received data:', data);
-
+        console.log('Leaderboard data:', data);
         const leaderboardList = document.getElementById('leaderboard-list');
-        leaderboardList.innerHTML = '';
-
-        if (!Array.isArray(data)) {
-            throw new Error('Data is not an array');
+        leaderboardList.innerHTML = '';  // Clear previous content
+        if (!Array.isArray(data) || data.length === 0) {
+            leaderboardList.innerHTML = '<li>No leaderboard data available.</li>';
+            return;
         }
-
-        data.sort((a, b) => parseInt(b.score) - parseInt(a.score));
-
+        // Just display the data in order received (no sorting)
         data.forEach((player, index) => {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <span><strong>#${index + 1}</strong> ${player.player_name}</span>
-                <span>${player.score}</span>
-            `;
+            listItem.innerHTML = `<strong>#${index + 1}</strong> ${player.player_name} — ${player.score}`;
             leaderboardList.appendChild(listItem);
         });
-
     } catch (error) {
-        console.error('Error loading leaderboard:', error?.message || error);
+        console.error('Error loading leaderboard:', error.message || error);
         const leaderboardList = document.getElementById('leaderboard-list');
         leaderboardList.innerHTML = '<li style="color:red;">Failed to load leaderboard data. See console for details.</li>';
     }
 }
-
 window.onload = fetchLeaderboard;
-</script>
 
+</script>
