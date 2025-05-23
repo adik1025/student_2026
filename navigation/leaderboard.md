@@ -37,7 +37,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e0e7ff;
+    background-color:rgb(29, 59, 157);
     margin-bottom: 12px;
     padding: 14px 20px;
     border-radius: 8px;
@@ -56,7 +56,7 @@ li {
 
 <h2>Leaderboard</h2>
 
-<div class="container" id="leaderboard-box" style="border: 2px solid #333; border-radius: 10px; padding: 16px; background-color: #f9f9f9;">
+<div class="container" id="leaderboard-box" style="border: 2px solid #333; border-radius: 10px; padding: 16px; background-color:rgb(67, 23, 23);">
   <ul id="leaderboard-list"></ul>
 </div>
 <script type="module">
