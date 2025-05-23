@@ -7,159 +7,275 @@ permalink: /checklist/
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Course Checklist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checklist Feature</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #1A252F;
-      color: #fff;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #f0f4f8;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0a64a0;
+      margin-bottom: 1.5rem;
+    }
+    .page-section {
+      background: #fff;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+    .page-section h2 {
+      border-bottom: 2px solid #0a64a0;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      color: #0a64a0;
+    }
+    ul.checklist {
+      list-style: none;
+      padding-left: 0;
       margin: 0;
     }
-    h1, h2 {
-      text-align: center;
-      color: cyan;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #28cee8;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 800px;
-      background-color: #1A252F;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      width: 100%;
-    }
-    li {
-      background-color: #263544;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 5px;
+    ul.checklist li {
+      margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      border: 1px solid #28cee8;
     }
-    .complete {
-      text-decoration: line-through;
-      color: #aaa;
-    }
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    ul.checklist li label {
+      cursor: pointer;
       flex-grow: 1;
+      user-select: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #333;
+      transition: color 0.3s;
     }
-    .confetti-message {
+    ul.checklist li input[type="checkbox"] {
+      margin-right: 1rem;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    ul.checklist li input[type="checkbox"]:checked + label {
+      color: #0a64a0;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+    #message {
+      margin-top: 1rem;
       text-align: center;
-      font-size: 24px;
-      color: lime;
-      margin-top: 20px;
+      font-weight: 600;
+      color: #0a64a0;
+    }
+    button#saveBtn {
+      background-color: #0a64a0;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 3px 7px rgb(0 100 160 / 0.4);
+      transition: background-color 0.3s;
+    }
+    button#saveBtn:hover {
+      background-color: #074a75;
     }
   </style>
 </head>
 <body>
-  <h1>Checklist</h1>
-  <p style="text-align:center;">Mark tasks as complete to celebrate progress!</p>
+  <h1>My Checklist Progress</h1>
 
-  <div class="container" id="checklist-container"></div>
-  <div id="confetti-message" class="confetti-message"></div>
+  <div id="checklistContainer"></div>
 
-  <script type="module">
-    import confetti from 'https://cdn.skypack.dev/canvas-confetti';
-    import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+  <button id="saveBtn">Save Progress</button>
+  <div id="message"></div>
 
-    const checklistContainer = document.getElementById('checklist-container');
-    const confettiMessage = document.getElementById('confetti-message');
+  <script>
+    const API_BASE = 'http://localhost:8887/api/checklist';
+    const user = 'student1'; // fixed user for now, can make dynamic later
 
-    async function fetchChecklistItems() {
-      try {
-        const response = await fetch(`${pythonURI}/api/checklist`, {
-          ...fetchOptions,
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' }
-        });
-        const data = await response.json();
-        renderChecklist(data);
-      } catch (error) {
-        console.error('Error fetching checklist:', error);
-      }
-    }
+    // Checklist items split by page, 4 items each (20 total)
+    const checklistItems = {
+      "Page 1: Privacy & PII": [
+        "Understand Personal Identifiable Information (PII)",
+        "Create accounts securely",
+        "Use strong passwords",
+        "Enable two-factor authentication"
+      ],
+      "Page 2: GitHub Workflow Guide": [
+        "Understand reference repositories",
+        "Learn owner and collaborator roles",
+        "Practice fork-branch-PR workflow",
+        "Review PRs and comments"
+      ],
+      "Page 3: Installation & Setup": [
+        "Set up VSCode Online",
+        "Use Linux terminal commands",
+        "Install git and configure",
+        "Set up package managers"
+      ],
+      "Page 4: OS and Developer Tools Setup": [
+        "Set up WSL on Windows",
+        "Configure macOS dev environment",
+        "Understand shell scripting basics",
+        "Install linter and formatter"
+      ],
+      "Page 5: GitHub ID & SDLC": [
+        "Configure git user info",
+        "Understand SDLC phases",
+        "Run local development server",
+        "Push changes to GitHub Pages"
+      ]
+    };
 
-    function renderChecklist(items) {
-      const pages = {};
-      checklistContainer.innerHTML = '';
+    // This will hold user's current progress status
+    let progress = {};
 
-      // Group by page
-      items.forEach(item => {
-        if (!pages[item.page]) pages[item.page] = [];
-        pages[item.page].push(item);
-      });
+    // Helper: Create checklist UI from progress object
+    function renderChecklist() {
+      const container = document.getElementById('checklistContainer');
+      container.innerHTML = ''; // Clear previous
 
-      Object.entries(pages).forEach(([page, tasks]) => {
-        const section = document.createElement('div');
-        section.innerHTML = `<h2>Page ${page}</h2>`;
-        const list = document.createElement('ul');
+      for (const [pageTitle, items] of Object.entries(checklistItems)) {
+        const section = document.createElement('section');
+        section.classList.add('page-section');
 
-        tasks.forEach(task => {
+        const title = document.createElement('h2');
+        title.textContent = pageTitle;
+        section.appendChild(title);
+
+        const ul = document.createElement('ul');
+        ul.classList.add('checklist');
+
+        items.forEach(item => {
           const li = document.createElement('li');
-          const label = document.createElement('label');
-          label.className = 'checkbox-label';
-
           const checkbox = document.createElement('input');
           checkbox.type = 'checkbox';
-          checkbox.checked = task.completed;
-          checkbox.addEventListener('change', () => updateCompletion(task.id, checkbox.checked));
+          checkbox.id = encodeURIComponent(item);
+          checkbox.checked = !!progress[item];
 
-          const span = document.createElement('span');
-          span.textContent = task.title;
-          if (task.completed) span.classList.add('complete');
+          checkbox.addEventListener('change', () => {
+            progress[item] = checkbox.checked;
+          });
 
-          label.appendChild(checkbox);
-          label.appendChild(span);
+          const label = document.createElement('label');
+          label.htmlFor = checkbox.id;
+          label.textContent = item;
+
+          li.appendChild(checkbox);
           li.appendChild(label);
-          list.appendChild(li);
+          ul.appendChild(li);
         });
 
-        section.appendChild(list);
-        checklistContainer.appendChild(section);
-      });
-
-      checkAllComplete(items);
+        section.appendChild(ul);
+        container.appendChild(section);
+      }
     }
 
-    async function updateCompletion(id, completed) {
+    // Fetch checklist for user (GET)
+    async function fetchChecklist() {
       try {
-        await fetch(`${pythonURI}/api/checklist/${id}`, {
-          ...fetchOptions,
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ completed })
+        const res = await fetch(`${API_BASE}?user=${encodeURIComponent(user)}`);
+        if (!res.ok) {
+          throw new Error(`GET failed with status ${res.status}`);
+        }
+        const data = await res.json();
+        return data.progress;
+      } catch (err) {
+        console.warn("Checklist GET failed:", err.message);
+        return null;
+      }
+    }
+
+    // Create checklist for user (POST)
+    async function createChecklist() {
+      try {
+        const res = await fetch(API_BASE, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({user, progress})
         });
-        fetchChecklistItems();
-      } catch (error) {
-        console.error('Error updating item:', error);
+        if (!res.ok) {
+          throw new Error(`POST failed with status ${res.status}`);
+        }
+        const data = await res.json();
+        return data.progress;
+      } catch (err) {
+        console.error("Checklist POST failed:", err.message);
+        return null;
       }
     }
 
-    function checkAllComplete(items) {
-      if (items.every(item => item.completed)) {
-        confetti();
-        confettiMessage.textContent = '🎉 All tasks complete! Great job! 🎉';
+    // Update checklist for user (PUT)
+    async function updateChecklist() {
+      try {
+        const res = await fetch(API_BASE, {
+          method: 'PUT',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({user, progress})
+        });
+        if (!res.ok) {
+          throw new Error(`PUT failed with status ${res.status}`);
+        }
+        const data = await res.json();
+        return data;
+      } catch (err) {
+        console.error("Checklist PUT failed:", err.message);
+        return null;
+      }
+    }
+
+    // Initialize: try fetching, create if missing
+    async function init() {
+      let fetchedProgress = await fetchChecklist();
+      if (!fetchedProgress) {
+        // initialize all items to false
+        progress = {};
+        for (const items of Object.values(checklistItems)) {
+          items.forEach(item => {
+            progress[item] = false;
+          });
+        }
+        console.log("Creating new checklist for user...");
+        const createdProgress = await createChecklist();
+        if (createdProgress) {
+          progress = createdProgress;
+        } else {
+          document.getElementById('message').textContent = "Error creating checklist.";
+          return;
+        }
       } else {
-        confettiMessage.textContent = '';
+        progress = fetchedProgress;
       }
+      renderChecklist();
     }
 
-    fetchChecklistItems();
+    // Save button event
+    document.getElementById('saveBtn').addEventListener('click', async () => {
+      const result = await updateChecklist();
+      const msgDiv = document.getElementById('message');
+      if (result) {
+        msgDiv.textContent = "Progress saved!";
+        setTimeout(() => msgDiv.textContent = '', 3000);
+      } else {
+        msgDiv.textContent = "Failed to save progress.";
+      }
+    });
+
+    window.onload = init;
   </script>
 </body>
 </html>
