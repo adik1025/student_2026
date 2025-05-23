@@ -202,13 +202,98 @@ permalink: /githubquiz_2/
     renderQuiz(); // initial render
   </script>
 
-</body>
-<div id="score-submission" class="mt-6 p-4 border rounded shadow">
-  <h3 class="text-lg font-semibold mb-2">Submit Your Score</h3>
-  <input type="text" id="username" placeholder="Your Name" class="border p-2 mb-2 w-full" />
-  <input type="number" id="score" placeholder="Your Score" class="border p-2 mb-2 w-full" />
-  <button onclick="submitScore()" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
-  <p id="submit-status" class="text-sm mt-2"></p>
+<!-- Input form -->
+<div class="score-input-box">
+  <h2>Submit Your Score</h2>
+  <input type="text" id="player-name" placeholder="Enter your name" />
+  <input type="number" id="player-score" placeholder="Enter your score" />
+  <button id="submit-score">Submit Score</button>
 </div>
 
-</html>
+<style>
+  .score-input-box {
+    width: 300px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9fafc;
+    border: 2px solid #4a90e2;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .score-input-box h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .score-input-box input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #ffffff;
+    transition: border 0.3s ease;
+  }
+
+  .score-input-box input:focus {
+    border-color: #4a90e2;
+    outline: none;
+  }
+
+  .score-input-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .score-input-box button:hover {
+    background-color: #357ABD;
+  }
+</style>
+
+<script type="module">
+  import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+  async function submitScore() {
+    const player_name = document.getElementById('player-name').value;
+    const score = parseInt(document.getElementById('player-score').value);
+
+    try {
+      const response = await fetch(`${pythonURI}/api/leaderboard`, {
+        ...fetchOptions,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ player_name, score })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add score: ' + response.statusText);
+      }
+
+      alert('Score added successfully!');
+      document.getElementById('player-name').value = '';
+      document.getElementById('player-score').value = '';
+
+      // Optionally, refresh leaderboard or score list
+      // fetchScores();
+    } catch (error) {
+      console.error('Error adding score:', error);
+      alert('Error adding score: ' + error.message);
+    }
+  }
+
+  document.getElementById('submit-score').addEventListener('click', submitScore);
+</script>
