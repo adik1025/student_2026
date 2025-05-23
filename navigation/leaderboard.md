@@ -60,17 +60,18 @@ li {
   <ul id="leaderboard-list"></ul>
 </div>
 <script type="module">
-const pythonURI = "http://127.0.0.1:8887";
-const fetchOptions = {
-    method: 'GET',
-    mode: 'cors',
-    cache: 'default',
-    credentials: 'include',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-Origin': 'client'
-    },
-};//import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+// const pythonURI = "http://127.0.0.1:8887";
+// const fetchOptions = {
+//     method: 'GET',
+//     mode: 'cors',
+//     cache: 'default',
+//     credentials: 'include',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'X-Origin': 'client'
+//     },
+// };
+import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
 async function fetchLeaderboard() {
     try {
        const response = await fetch(`${pythonURI}/api/leaderboard`, {
@@ -89,6 +90,7 @@ async function fetchLeaderboard() {
             return;
         }
         // Just display the data in order received (no sorting)
+        data.sort((a, b) => parseInt(b.score) - parseInt(a.score));
         data.forEach((player, index) => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `<strong>#${index + 1}</strong> ${player.player_name} — ${player.score}`;
