@@ -203,4 +203,12 @@ permalink: /githubquiz_2/
   </script>
 
 </body>
+<div id="score-submission" class="mt-6 p-4 border rounded shadow">
+  <h3 class="text-lg font-semibold mb-2">Submit Your Score</h3>
+  <input type="text" id="username" placeholder="Your Name" class="border p-2 mb-2 w-full" />
+  <input type="number" id="score" placeholder="Your Score" class="border p-2 mb-2 w-full" />
+  <button onclick="submitScore()" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+  <p id="submit-status" class="text-sm mt-2"></p>
+</div>
+
 </html>

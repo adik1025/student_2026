@@ -4,224 +4,105 @@ title: Leaderboard
 permalink: /leaderboard/
 ---
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tools Setup Quiz Leaderboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F4F4F4;
-            text-align: center;
-            padding: 20px;
-        }
-        .leaderboard {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 20px;
-            margin-top: 50px;
-        }
-        .leaderboard .player {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            text-align: center;
-            width: 80px;
-            background-color: #222;
-            color: white;
-            border-radius: 10px;
-            padding: 10px;
-            position: relative;
-        }
-        .leaderboard .player .star {
-            position: absolute;
-            top: -30px;
-            font-size: 24px;
-            color: gold;
-        }
-        .leaderboard .player:nth-child(2) .star {
-            color: silver;
-        }
-        .leaderboard .player:nth-child(3) .star {
-            color: #CD7F32; /* Bronze */
-        }
-        .player span {
-            font-size: 14px;
-        }
-        .player .points {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .player .name {
-            margin-top: 10px;
-        }
-        .leaderboard .player {
-            height: 150px; /* Default height for third place */
-        }
-        .leaderboard .player:nth-child(1) {
-            height: 200px; /* Height for first place */
-        }
-        .leaderboard .player:nth-child(2) {
-            height: 170px; /* Height for second place */
-        }
-        .runners-up {
-            margin-top: 50px;
-        }
-        table {
-            width: 80%;
-            margin: 0 auto;
-            border-collapse: collapse;
-            background-color: white;
-            text-align: left;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #222;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-    <h1>Tools Setup Quiz Leaderboard</h1>
-    <div class="leaderboard" id="leaderboard"></div>
-    <div class="runners-up">
-        <h2>Runners-Up</h2>
-        <table id="demo" class="table">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>User</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody id="scoreResult">
-                <!-- API data will be inserted here -->
-            </tbody>
-        </table>
-    </div>
 
-  <script>
-        // Static array of player data
-        const players = [
-            { name: "User 1", points: 15 },
-            { name: "User 2", points: 12 },
-            { name: "User 3", points: 10 },
-            { name: "User 4", points: 9 },
-            { name: "User 5", points: 8 },
-            { name: "User 6", points: 7 },
-            { name: "User 7", points: 6 },
-            { name: "User 8", points: 5 },
-            { name: "User 9", points: 4 },
-            { name: "User 10", points: 3 }
-        ];
-        function updateLeaderboard() {
-            const leaderboard = document.getElementById('leaderboard');
-            const runnersUpTable = document.getElementById('scoreResult');
-            leaderboard.innerHTML = ''; // Clear existing content
-            runnersUpTable.innerHTML = ''; // Clear existing table content
-            // Populate the top 3 leaderboard
-            players.slice(0, 3).forEach((player, index) => {
-                const div = document.createElement('div');
-                div.classList.add('player');
-                div.innerHTML = `
-                    <div class="star">★</div>
-                    <span class="points">${player.points} points</span>
-                    <div class="name">${player.name}</div>
-                `;
-                leaderboard.appendChild(div);
-            });
-            // Populate the runners-up table (4th to 10th place)
-            players.slice(3, 10).forEach((player, index) => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${index + 4}</td>
-                    <td>${player.name}</td>
-                    <td>${player.points}</td>
-                `;
-                runnersUpTable.appendChild(tr);
-            });
+<title>Leaderboard</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    background: #fff;
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+ul#leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e7ff;
+    margin-bottom: 12px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.rank {
+    font-weight: bold;
+    color: #4b0082;
+}
+.score {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2e2e2e;
+}
+</style>
+
+<h2>Leaderboard</h2>
+
+<div class="container" id="leaderboard-box" style="border: 2px solid #333; border-radius: 10px; padding: 16px; background-color: #f9f9f9;">
+  <ul id="leaderboard-list"></ul>
+</div>
+
+<script type="module">
+import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+
+async function fetchLeaderboard() {
+    try {
+        const response = await fetch(`${pythonURI}/api/leaderboard`, {
+            ...fetchOptions,
+            method: 'GET'
+        });
+
+        if (!response.ok) {
+            console.error('Response not OK:', response.status, response.statusText);
+            throw new Error('Failed to fetch leaderboard');
         }
-        // Fetch data from API and update the table
-        let scoreResultContainer = document.getElementById("scoreResult");
-        let scoreUrl = "http://127.0.0.1:4100/api/score";
-        let scoreOptions = {
-            method: 'GET',
-            mode: 'cors',
-            cache: 'default',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        fetch(scoreUrl, scoreOptions)
-            .then(response => {
-                if (response.status !== 200) {
-                    console.error(response.status);
-                    return;
-                }
-                response.json().then(data => {
-                    console.log(data);
-                    for (const row of data.score) {
-                        const tr = document.createElement("tr");
-                        const rank = document.createElement("td");
-                        const player = document.createElement("td");
-                        const points = document.createElement("td");
-                        rank.innerHTML = row.rank;
-                        player.innerHTML = row.player;
-                        points.innerHTML = row.points;
-                        tr.appendChild(rank);
-                        tr.appendChild(player);
-                        tr.appendChild(points);
-                        scoreResultContainer.appendChild(tr);
-                    }
-                });
-            });
-        // Initial update of the static leaderboard
-        updateLeaderboard();
-    </script>
-</body>
-</html>
-<button onclick="refreshLeaderboard()" style="margin-top: 20px; padding: 10px 20px; font-size: 16px; background-color: #222; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    Refresh Leaderboard
-</button>
-<script>
-  function refreshLeaderboard() {
-    // Clear existing table content
-    scoreResultContainer.innerHTML = '';
-    // Re-run the fetch to update the leaderboard
-    fetch(scoreUrl, scoreOptions)
-      .then(response => {
-        if (response.status !== 200) {
-          console.error("Failed request, status:", response.status);
-          return;
+
+        const data = await response.json();
+        console.log('Received data:', data);
+
+        const leaderboardList = document.getElementById('leaderboard-list');
+        leaderboardList.innerHTML = '';
+
+        if (!Array.isArray(data)) {
+            throw new Error('Data is not an array');
         }
-        return response.json();
-      })
-      .then(data => {
-        if (data && data.score) {
-          for (const row of data.score) {
-            const tr = document.createElement("tr");
-            const rank = document.createElement("td");
-            const player = document.createElement("td");
-            const points = document.createElement("td");
-            rank.innerHTML = row.rank;
-            player.innerHTML = row.player;
-            points.innerHTML = row.points;
-            tr.appendChild(rank);
-            tr.appendChild(player);
-            tr.appendChild(points);
-            scoreResultContainer.appendChild(tr);
-          }
-        } else {
-          console.error("Data does not contain 'score':", data);
-        }
-      })
-      .catch(error => console.error("Fetch error:", error));
-  }
+
+        data.sort((a, b) => parseInt(b.score) - parseInt(a.score));
+
+        data.forEach((player, index) => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <span><strong>#${index + 1}</strong> ${player.player_name}</span>
+                <span>${player.score}</span>
+            `;
+            leaderboardList.appendChild(listItem);
+        });
+
+    } catch (error) {
+        console.error('Error loading leaderboard:', error?.message || error);
+        const leaderboardList = document.getElementById('leaderboard-list');
+        leaderboardList.innerHTML = '<li style="color:red;">Failed to load leaderboard data. See console for details.</li>';
+    }
+}
+
+window.onload = fetchLeaderboard;
 </script>
+
