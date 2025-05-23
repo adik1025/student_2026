@@ -13,6 +13,7 @@ minima:
     - navigation/about.md
     - README4YML.md
     - navigation/leaderboard.md
+    - navigation/checklist.md
   skin: dark
   social_links:
     - { platform: github, user_url: "https://github.com/nighthawkcoders"}
