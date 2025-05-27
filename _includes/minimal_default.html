@@ -1,3 +1,4 @@
+@import "minimal";
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 <head>
@@ -7,29 +8,31 @@
 
   {% seo %}
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-  <!-- Optional fallback stylesheet -->
+  
+  <!-- Typography plugin -->
+  <!-- Your fallback stylesheet (if you still want custom styles) -->
   <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
 
   {% include head-custom.html %}
 </head>
 
-<body class="bg-white text-gray-900 font-sans">
-  <div class="min-h-screen flex flex-col md:flex-row max-w-screen-xl mx-auto px-4 py-8">
+<body class="bg-white text-gray-900 font-sans leading-relaxed">
+  <div class="min-h-screen flex flex-col lg:flex-row max-w-screen-xl mx-auto px-6 lg:px-12 py-10 gap-10">
 
     <!-- SIDEBAR -->
-    <aside class="md:w-1/4 mb-8 md:mb-0 md:pr-8 border-r">
-      <div>
-        <h1 class="text-3xl font-bold text-blue-700 mb-1">
+    <aside class="lg:w-[260px] border-r border-gray-300 pr-6 lg:pr-10">
+      <div class="sticky top-10">
+        <h1 class="text-3xl font-bold text-blue-700 mb-2">
           <a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a>
         </h1>
 
-        <p class="text-gray-600 text-base mb-2">{{ site.description | default: site.github.project_tagline }}</p>
+        <p class="text-gray-600 text-base mb-4">{{ site.description | default: site.github.project_tagline }}</p>
 
         {% if site.github.is_project_page %}
-        <p class="text-sm mb-4">
+        <p class="text-sm mb-6">
           <a href="{{ site.github.repository_url }}" class="text-blue-600 hover:underline">
             View the Project on GitHub<br><small>{{ site.github.repository_nwo }}</small>
           </a>
@@ -37,7 +40,7 @@
         {% endif %}
 
         <!-- NAVIGATION -->
-        <nav class="mb-6 mt-4 border-b pb-3 flex flex-col gap-2 text-sm text-blue-600">
+        <nav class="mb-10 border-b pb-4 flex flex-col gap-2 text-sm text-blue-600">
           {% assign nav_pages = site.pages | where_exp: "page", "page.nav == true" %}
           {% for nav_page in nav_pages %}
             <a href="{{ nav_page.url | relative_url }}" class="hover:underline">{{ nav_page.title | escape }}</a>
@@ -61,8 +64,10 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="md:w-3/4 prose max-w-none pl-8">      
-      {{ content }}
+    <main class="flex-1 px-4 md:px-8 lg:px-12">
+      <div class="markdown-body">
+        {{ content }}
+      </div>
     </main>
 
   </div>
