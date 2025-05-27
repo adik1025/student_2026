@@ -1,8 +1,0 @@
-<nav class="mb-6 border-b pb-3 flex flex-wrap gap-4 text-sm text-blue-600">
-  {% assign nav_pages = site.pages | where_exp: "p", "p.nav == true" %}
-  {% for page in nav_pages %}
-    <a href="{{ page.url | relative_url }}" class="hover:underline">
-      {{ page.title | escape }}
-    </a>
-  {% endfor %}
-</nav>
