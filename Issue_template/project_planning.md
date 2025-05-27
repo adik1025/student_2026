@@ -4,7 +4,7 @@ about: Plan upcoming project tasks and milestones
 title: "[PLANNING]"
 labels: planning
 assignees: ''
-
+nav: false
 ---
 
 **Project/Feature Name**

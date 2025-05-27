@@ -4,7 +4,7 @@ about: Checklist template to help track progress
 title: "[CHECKLIST]"
 labels: checklist
 assignees: ''
-
+nav: false
 ---
 
 ### Checklist

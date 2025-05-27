@@ -4,7 +4,7 @@ about: Reflect on what you learned and accomplished this week
 title: "[REFLECTION] Week of YYYY-MM-DD"
 labels: reflection
 assignees: ''
-
+nav: false
 ---
 
 **What did I accomplish this week?**
