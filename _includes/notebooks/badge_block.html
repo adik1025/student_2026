@@ -1,0 +1,21 @@
+{%- assign show_github = site.default_badges.github != false and page.hide_github_badge != true -%}
+{%- assign show_binder = site.default_badges.binder != false and page.hide_binder_badge != true -%}
+{%- assign show_colab = site.default_badges.colab != false and page.hide_colab_badge != true -%}
+{%- assign show_deepnote = site.default_badges.deepnote != false and page.hide_deepnote_badge != true -%}
+
+{%- if show_github or show_binder or show_colab or show_deepnote -%}
+  <div class="pb-5 d-flex flex-justify-center">
+    {%- if show_github -%}
+      {% include notebooks/badge.html platform="github" %}
+    {%- endif -%}
+    {%- if show_binder -%}
+      {% include notebooks/badge.html platform="binder" %}
+    {%- endif -%}
+    {%- if show_colab -%}
+      {% include notebooks/badge.html platform="colab" %}
+    {%- endif -%}
+    {%- if show_deepnote -%}
+      {% include notebooks/badge.html platform="deepnote" %}
+    {%- endif -%}
+  </div>
+{%- endif -%}

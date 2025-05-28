@@ -1,0 +1,24 @@
+{%- comment -%}
+  Usage:
+  {% include notebooks/badge.html platform="binder" %}
+  Valid values: binder, deepnote, github, colab
+{%- endcomment -%}
+
+{% assign p = include.platform %}
+{% if p == "binder" %}
+  <a href="https://mybinder.org/v2/gh/{{ site.github_username }}/{{ site.github_repo }}/{{ page.branch | default: 'master' }}?filepath={{ page.nb_path | url_encode }}">
+    <img src="{{ 'assets/badges/binder.svg' | relative_url }}" alt="Open in Binder">
+  </a>
+{% elsif p == "deepnote" %}
+  <a href="https://deepnote.com/launch?url=https://github.com/{{ site.github_username }}/{{ site.github_repo }}/blob/{{ page.branch | default: 'master' }}/{{ page.nb_path | cgi_escape }}">
+    <img src="{{ 'assets/badges/deepnote.svg' | relative_url }}" alt="Launch in Deepnote">
+  </a>
+{% elsif p == "github" %}
+  <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/tree/{{ page.branch | default: 'master' }}/{{ page.nb_path }}">
+    <img src="{{ 'assets/badges/github.svg' | relative_url }}" alt="View on GitHub">
+  </a>
+{% elsif p == "colab" %}
+  <a href="https://colab.research.google.com/github/{{ site.github_username }}/{{ site.github_repo }}/blob/{{ page.branch | default: 'master' }}/{{ page.nb_path }}">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
+  </a>
+{% endif %}

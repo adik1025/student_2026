@@ -1,16 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
-{% if site.remote_theme contains 'minima' %}
-  {%- include theme/minima/base.html -%}
-{% elsif site.remote_theme contains 'midnight' %}
-  {%- include theme/midnight/base.html -%}
-{% elsif site.remote_theme contains 'dinky' %}
-  {%- include theme/dinky/base.html -%}
-{% elsif site.remote_theme contains 'time-machine' %}
-  {%- include theme/time-machine/base.html -%}
-{% elsif site.remote_theme contains 'cayman' %}
-  {%- include theme/cayman/base.html -%}
+{% if site.remote_theme contains 'minimal@v0.2.0' %}
+  {% include minimal_default.html %}
+{% elsif site.remote_theme contains 'minima' %}
+  {% include minima_default.html %}
 {% endif %}
+
 </html>

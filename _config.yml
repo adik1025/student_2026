@@ -1,28 +1,23 @@
-title: Nighthawk Pages 
+title: Open Coding Society 
 description: "Class of 2026"
-owner_name: Kush Kharia
-github_username: ThePencilSharpener
-github_repo: "student_2026" 
-baseurl: "/student_2026"
+owner_name: Aditya Katre
+github_username: adik1025
+github_repo: "student_20266" 
+baseurl: "/student_20266"
 future: true
-remote_theme: jekyll/minima
+
+# remote_theme: jekyll/minima
+remote_theme: pages-themes/minimal@v0.2.0
+
 minima:
   nav_pages:
-    - navigation/blog.md
-    - navigation/search.md
     - navigation/about.md
-    - README4YML.md
-    - navigation/leaderboard.md
-    - navigation/checklist.md
+    - navigation/github-pages-readme.md
   skin: dark
   social_links:
-    - { platform: github, user_url: "https://github.com/nighthawkcoders"}
-    - { platform: x, user_url: "https://x.com/NighthawkCoding/" }
-    - { platform: youtube, user_url: "https://www.youtube.com/@nighthawkcodingsociety2868" } 
-# remote_theme: pages-themes/midnight@v0.2.0
-# remote_theme: pages-themes/cayman@v0.2.0
-# remote_theme: pages-themes/dinky@v0.2.0
-# remote_theme: pages-themes/minimal@v0.2.0
-# remote_theme: pages-themes/time-machine@v0.2.0
+    - { platform: github, user_url: "https://github.com/Open-Coding-Society"}
+    - { platform: x, user_url: "https://x.com/Open_Coding" }
+    - { platform: youtube, user_url: "https://www.youtube.com/@OpenCodingSociety" } 
+
 plugins:
   - jekyll-remote-theme
