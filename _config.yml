@@ -12,6 +12,8 @@ remote_theme: pages-themes/minimal@v0.2.0
 minima:
   nav_pages:
     - navigation/about.md
+    - navigation/leaderboard.md
+    - navigation/checklist.md
     - navigation/github-pages-readme.md
   skin: dark
   social_links:
