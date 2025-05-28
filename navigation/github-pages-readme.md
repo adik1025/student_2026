@@ -11,3 +11,7 @@ nav: true
  - Change `github_username` to your GitHub username (ex. jdoe123)
  - Change `github_repo` to the name of your repository (ex. jane_student)
  - Change `baseurl` to a slash and the name of your repository (ex. `/jane_student`)
+
+# h1
+## h2
+### h3
