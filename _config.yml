@@ -14,6 +14,7 @@ minima:
   nav_pages:
     - navigation/lessons.md
     - navigation/blog.md
+    - navigation/github-pages-readme.md
     - navigation/leaderboard.md
     - navigation/checklist.md
     - navigation/authentication/login.md
