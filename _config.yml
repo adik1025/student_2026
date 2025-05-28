@@ -21,7 +21,3 @@ minima:
 
 plugins:
   - jekyll-remote-theme
-
-sass:
-  sass_dir: _sass
-  style: compressed
