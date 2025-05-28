@@ -17,11 +17,14 @@ minima:
     - navigation/github-pages-readme.md
     - navigation/search.md
     - navigation/blog.md
+    - navigation/about.md
+    - navigation/github-pages-readme.md
     - navigation/leaderboard.md
     - navigation/checklist.md
     - navigation/resource.md
     - navigation/authentication/login.md
     - navigation/authentication/logout.md
+
 
 
   skin: dark
