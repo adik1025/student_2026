@@ -1,40 +1,41 @@
 ## Table of Contents for README.md
 
-1. Introduction  
-2. Student Requirements  
-3. History  
-   3.1 License  
-   3.2 Key Features  
-   3.3 Contributions  
-4. GitHub Pages Setup  
-   4.1 Activate GitHub Pages Actions  
-   4.2 Update `_config.yml`  
-   4.3 Set Repository Name in Makefile  
-   4.4 Tool Requirements  
-   4.5 Development Environment Setup  
-       4.5.1 Clone Repo  
-       4.5.2 Windows WSL and Ubuntu Users  
-       4.5.3 macOS Users  
-       4.5.4 Kasm Cloud Desktop Users  
-5. Run Server on Localhost  
-   5.1 Bundle Install  
-   5.2 Start the Server  
-   5.3 Load Web Application into the Browser  
-   5.4 Regeneration of Web Application  
-   5.5 Other `make` Commands  
-       5.5.1 Stop the Preview Server  
-       5.5.2 Clean the Local Web Application Environment  
-       5.5.3 Observe Build Errors  
-6. Development Support  
-   6.1 File Naming in `_posts` and `_notebooks`  
-   6.2 Tags  
-   6.3 Search  
-   6.4 Navigation Bar  
-   6.5 Blog Page  
-   6.6 SASS Support  
-   6.7 Includes  
-   6.8 Layouts  
-   6.9 Metadata
+1. [Introduction](#introduction)  
+2. [Student Requirements](#student-requirements)  
+3. [History](#history)  
+   3.1 [License](#license)  
+   3.2 [Key Features](#key-features)  
+   3.3 [Contributions](#contributions)  
+4. [GitHub Pages Setup](#github-pages-setup)  
+   4.1 [Activate GitHub Pages Actions](#activate-github-pages-actions)  
+   4.2 [Update `_config.yml`](#update-_configyml)  
+   4.3 [Set Repository Name in Makefile](#set-repository-name-in-makefile)  
+   4.4 [Tool Requirements](#tool-requirements)  
+   4.5 [Development Environment Setup](#development-environment-setup)  
+       4.5.1 [Clone Repo](#clone-repo)  
+       4.5.2 [Windows WSL and Ubuntu Users](#windows-wsl-and-ubuntu-users)  
+       4.5.3 [macOS Users](#macos-users)  
+       4.5.4 [Kasm Cloud Desktop Users](#kasm-cloud-desktop-users)  
+5. [Run Server on Localhost](#run-server-on-localhost)  
+   5.1 [Bundle Install](#bundle-install)  
+   5.2 [Start the Server](#start-the-server)  
+   5.3 [Load Web Application into the Browser](#load-web-application-into-the-browser)  
+   5.4 [Regeneration of Web Application](#regeneration-of-web-application)  
+   5.5 [Other `make` Commands](#other-make-commands)  
+       5.5.1 [Stop the Preview Server](#stop-the-preview-server)  
+       5.5.2 [Clean the Local Web Application Environment](#clean-the-local-web-application-environment)  
+       5.5.3 [Observe Build Errors](#observe-build-errors)  
+6. [Development Support](#development-support)  
+   6.1 [File Naming in `_posts` and `_notebooks`](#File-Names-in-_posts-_notebooks)  
+   6.2 [Tags](#tags)  
+   6.3 [Search](#search)  
+   6.4 [Navigation Bar](#navigation-bar)  
+   6.5 [Blog Page](#blog-page)  
+   6.6 [SASS Support](#sass-support)  
+   6.7 [Includes](#includes)  
+   6.8 [Layouts](#layouts)  
+   6.9 [Metadata](#metadata)
+
 
 
 # Introduction
@@ -97,6 +98,11 @@ The absolutes in setup up...
 github_repo: "student_2025" 
 baseurl: "/student_2025"
 ```
+
+- Change `owner_name` to your full name (ex. Jane Doe)
+- Change `github_username` to your GitHub username (ex. jdoe123)
+- Change `github_repo` to the name of your repository (ex. jane_student)
+- Change `baseurl` to a slash and the name of your repository (ex. `/jane_student`)
 
 **Set Repository Name in Makefile**: Adjust the `REPO_NAME` variable in your Makefile to match your GitHub repository's name. This action facilitates the automatic updating of posts and notebooks on your local development server, improving the development process.
 
