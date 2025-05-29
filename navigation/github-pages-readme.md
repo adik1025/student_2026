@@ -3,6 +3,7 @@ layout: base
 title: Readme
 description: Custom GitHub Pages Configuration Guide & Documentation
 permalink: /github/readme
+permalink: /readme/
 nav: true
 ---
 
