@@ -9,6 +9,15 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
+
+        {%- if page.title -%}
+          <h1 class="page-title">{{ page.title | escape }}</h1>
+        {%- endif -%}
+
+        {%- if page.description -%}
+          <p class="page-description"><em>{{ page.description | escape }}</em></p>
+        {%- endif -%}
+
         {{ content }}
       </div>
     </main>
