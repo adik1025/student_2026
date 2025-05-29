@@ -18,6 +18,8 @@ minima:
     - navigation/blog.md
     - navigation/about.md
     - navigation/github-pages-readme.md
+    - navigation/search.md
+    - navigation/blog.md
     - navigation/leaderboard.md
     - navigation/checklist.md
     - navigation/resource.md
