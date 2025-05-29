@@ -13,6 +13,8 @@ minima:
   nav_pages:
     - navigation/about.md
     - navigation/github-pages-readme.md
+    - navigation/search.md
+    - navigation/blog.md
     - navigation/leaderboard.md
     - navigation/checklist.md
 
