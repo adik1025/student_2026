@@ -44,3 +44,17 @@ Here are a few projects I've worked on that I'm proud of:
         <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VSCode">
     </a>
 </div>
+
+### Starter games
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/snake" style="text-decoration: none;">
+        <div style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+            Snake Game
+        </div>
+    </a>
+<a href="{{site.baseurl}}/rpg/dot3" style="text-decoration: none;">
+    <div style="background-color: #880088; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+        Turtle v0.3
+    </div>
+</a>
