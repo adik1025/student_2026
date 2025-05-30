@@ -1,6 +1,9 @@
 ---
-layout: base 
+layout: base
 ---
+
+{% include layout/post_meta_block.html html=content %}
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
@@ -9,7 +12,7 @@ layout: base
     {%- endif -%}
     
 
-    <p class="post-meta post-meta-title">
+    <p class="post-meta post-meta-title" class="inline-div">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         {{ page.date | date: date_format }}
@@ -54,8 +57,7 @@ layout: base
     {% endif -%}
   </header>
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {% include layout/post_meta_block.html html=content %}
+  <div class="post-content e-content" itemprop="articleBody" class="inline-div">
     {{ content }}
   </div>
 

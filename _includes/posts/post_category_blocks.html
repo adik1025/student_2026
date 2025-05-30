@@ -23,7 +23,7 @@
           {% if post.hide != true %}
           {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
           <!-- Post meta information with title and date -->
-          <p class="post-meta post-meta-title">
+          <p class="post-meta post-meta-title" class="inline-div">
             <a class="page-meta" href="{{ site.baseurl }}{{ post.url }}"> {{post.title}}</a>  • {{ post.date | date: date_format }}
           </p>
           {% endif %}
