@@ -1,7 +1,8 @@
 ---
-layout: base
+layout: post
 title: Readme
 description: Custom GitHub Pages Configuration Guide & Documentation
+authors: Adi Katre, Gyutae Kim
 permalink: /github/readme
 permalink: /readme/
 nav: true
@@ -13,7 +14,7 @@ nav: true
  - Change `github_username` to your GitHub username (ex. jdoe123)
  - Change `github_repo` to the name of your repository (ex. jane_student)
  - Change `baseurl` to a slash and the name of your repository (ex. `/jane_student`)\
- - Choose between (jekyll/minima)[https://jekyll.github.io/minima/] or (pages-themes/minimal@v0.2.0)[https://pages-themes.github.io/minimal/]
+ - Choose between [jekyll/minima](https://jekyll.github.io/minima/) or [pages-themes/minimal@v0.2.0](https://pages-themes.github.io/minimal/)
  - Change `remote_theme:` 
 
 #### Changing Navbar setup in GitHub Pages Theme

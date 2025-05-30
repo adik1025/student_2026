@@ -7,14 +7,8 @@ layout: base
     {%- if page.menu -%}
       {% include {{page.menu}} html=content %}
     {%- endif -%}
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    {%- if page.description -%}
-      {%- if site.html_escape.description -%}
-        <p class="page-description">{{ page.description | escape }}</p>
-      {%- else -%}
-        <p class="page-description">{{ page.description }}</p>
-      {%- endif -%}
-    {%- endif -%}
+    
+
     <p class="post-meta post-meta-title">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
@@ -30,8 +24,9 @@ layout: base
       {%- if page.author -%}
         • {% for author in page.author %}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-            {%- if forloop.last == false %}, {% endif -%}
+            <span class="p-author h-card" itemprop="name">{{ author }}</span>
+          </span>
+          {%- if forloop.last == false %}, {% endif -%}
         {% endfor %}
       {%- endif %}
     </p>
@@ -63,6 +58,15 @@ layout: base
     {% include layout/post_meta_block.html html=content %}
     {{ content }}
   </div>
+
+  <script src="https://utteranc.es/client.js"
+    repo="{{ site.github_username }}/{{ site.github_repo | default: site.baseurl | remove: '/' }}"
+    issue-term="title"
+    label="blogpost-comment"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+  </script>
 
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}

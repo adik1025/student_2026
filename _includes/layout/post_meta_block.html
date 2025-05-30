@@ -6,11 +6,13 @@
       {% assign minutes = word_count | divided_by:180 %}
       {% assign seconds = word_count | modulo:180 | times:60 | divided_by:180 %}
       <span class="read-time" title="Estimated read time">
-        {% if minutes < 1 %}
-          < 1 min read
-        {% else %}
-          {{ minutes }} min{% if seconds > 15 %} +{% endif %} read
-        {% endif %}
+        <em>
+          {% if minutes < 1 %}
+            < 1 min read
+          {% else %}
+            {{ minutes }} min{% if seconds > 15 %} +{% endif %} read
+          {% endif %}
+        </em>
       </span>
       <br>
     {%- endif -%}
@@ -83,14 +85,5 @@
     {%- assign show_comments = include.comments | default: page.comments | default: true -%}
     {%- if show_comments != false -%}
       <!-- Comments powered by Utterances -->
-      <script src="https://utteranc.es/client.js"
-              repo="{{ site.github_username }}/{{ site.github_repo | default: site.baseurl | remove: '/' }}"
-              issue-term="title"
-              label="blogpost-comment"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-      </script>
     {%- endif -%}
-  
-  </div>
+    </div>
