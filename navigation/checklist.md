@@ -110,18 +110,18 @@ permalink: /checklist/
     // Checklist items split by page, 4 items each (20 total)
     const checklistItems = {
       "Page 1: Privacy & PII": [
-        "Understand Personal Identifiable Information (PII)",
-        "Create accounts securely",
-        "Use strong passwords",
-        "Enable two-factor authentication"
+        "Create an email account, speperate for school, junk, and important info",
+        "Create GitHub account, not with school email",
+        "Create Slack account for class-only communication",
+        "Create Portfolio 2026 account"
       ],
-      "Page 2: GitHub Workflow Guide": [
+      "Page 2: GitHub Pages": [
         "Understand reference repositories",
         "Learn owner and collaborator roles",
         "Practice fork-branch-PR workflow",
         "Review PRs and comments"
       ],
-      "Page 3: Installation & Setup": [
+      "Page 3: GitHub Workflow Guide": [
         "Set up VSCode Online",
         "Use Linux terminal commands",
         "Install git and configure",
@@ -133,7 +133,7 @@ permalink: /checklist/
         "Understand shell scripting basics",
         "Install linter and formatter"
       ],
-      "Page 5: GitHub ID & SDLC": [
+      "Page 5: VS Code Setup": [
         "Configure git user info",
         "Understand SDLC phases",
         "Run local development server",
