@@ -10,7 +10,6 @@
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-  
   <!-- Typography plugin -->
   <!-- Your fallback stylesheet (if you still want custom styles) -->
   <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
@@ -25,7 +24,7 @@
 
     <!-- SIDEBAR -->
     <aside class="lg:w-[260px] border-r border-gray-300 pr-6 lg:pr-10">
-      <div >
+      <div>
         <h1 class="teclass="sticky top-10"xt-3xl font-bold text-blue-700 mb-2">
           <a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a>
         </h1>
@@ -66,6 +65,9 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-1 px-4 md:px-8 lg:px-12">
+      {% if page.author %}
+        <p class="post-author">Authored by: <em>{{ page.author }}</em></p>
+      {% endif %}
       <div class="markdown-body">
         {{ content }}
       </div>
