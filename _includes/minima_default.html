@@ -18,6 +18,10 @@
           <p class="page-description"><em>{{ page.description | escape }}</em></p>
         {%- endif -%}
         
+        {%- if page.author -%}
+          <p class="post-author">Authored by: <em>{{ page.author }}</em></p>
+        {%- endif -%}
+        
         {{ content }}
 
       </div>
