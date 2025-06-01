@@ -1,7 +1,7 @@
 ---
 toc: false
 comments: true
-layout: post
+layout: bootstrap
 title: Accounts
 description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
 dcategories: [DevOps]
@@ -85,9 +85,6 @@ In this course, you may share or work with PII. Let’s make sure it’s handled
     container.appendChild(list);
   });
 </script>
-
-
-
 </div>
 
 <div style="display: flex; align-items: flex-start; gap: 24px; margin-top: 12px;">
@@ -178,6 +175,84 @@ It is in the your interest that you establish and continually refine your PII (P
 ### Parting Advice:
 
 Be cautious with the information you share online. Protect your personal data by using separate email accounts, staying aware of security risks, and adapting your practices as the digital world evolves. Taking steps now helps safeguard your digital identity in the future.
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f6fa;
+      color: #222;
+      margin: 0;
+      padding: 24px;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .flashcard {
+      transition: all 0.5s ease;
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .flashcard.fade-out {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    h2 {
+      color: #2c2a5d;
+    }
+    .question {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .options button {
+      width: 100%;
+      background: #e6e8ff;
+      border-radius: 6px;
+      padding: 16px;
+      border: 1px solid #ccc;
+      color: #222;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-sizing: border-box;
+    }
+    .options button:hover {
+      background: #d1d5ff;
+      transform: scale(1.03);
+    }
+    .score {
+      font-size: 1.2em;
+      margin-top: 24px;
+      text-align: center;
+    }
+    .attempts-summary {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .attempts-summary p {
+      margin: 6px 0;
+    }
+    #nextBtn {
+      display: none;
+    }
+  </style>
+</head>
 
 <h3> Test your knowledge of Github Pages! <h3>
 
