@@ -104,6 +104,20 @@ baseurl: "/student_2025"
 - Change `github_repo` to the name of your repository (ex. jane_student)
 - Change `baseurl` to a slash and the name of your repository (ex. `/jane_student`)
 
+**GitHub Pages Setup using `_config.yml`**
+
+ - Change `owner_name` to your full name (ex. Jane Doe)
+ - Change `github_username` to your GitHub username (ex. jdoe123)
+ - Change `github_repo` to the name of your repository (ex. jane_student)
+ - Change `baseurl` to a slash and the name of your repository (ex. `/jane_student`)\
+ - Choose between [jekyll/minima](https://jekyll.github.io/minima/) or [pages-themes/minimal@v0.2.0](https://pages-themes.github.io/minimal/) by changing the value of `remote_theme`
+
+**Changing Navbar setup in GitHub Pages Theme**
+
+ 1. Change `remote_theme` to your desired value in `_config.yml` (ex. `remote_theme: jekyll/minima` or `remote_theme: pages-themes/minimal@v0.2.0`)
+ 2. If using jekyll/minima, add the relative path to your desired pages using `nav_pages: `.
+ 3. If using minimal, set `nav: true` in the front matter of the desired page (front matter is the YAML enclosed in "`---`" at the beginning of a file)
+
 **Set Repository Name in Makefile**: Adjust the `REPO_NAME` variable in your Makefile to match your GitHub repository's name. This action facilitates the automatic updating of posts and notebooks on your local development server, improving the development process.
 
 ```make
@@ -304,3 +318,4 @@ In the front matter, you can also define things like a title and description for
 - The type value will tell us which column this is going to appear under the time box supported pages.  The "ccc" stands for Code, Code, Code.
 
 - The courses will tell us which menu item it will be under, in this case, the `csa` menu, and the `week` tells it what row (week) it will appear under that menu.
+
