@@ -3,7 +3,7 @@ layout: post
 layout: post
 title: Readme
 description: Custom GitHub Pages Configuration Guide & Documentation
-author: Adi Katre, Gyutae Kim
+author: Adi Katre, Gyutae Kim, Ansh Kumar
 permalink: /readme/
 nav: true
 toc: true
