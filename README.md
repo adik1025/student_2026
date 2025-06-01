@@ -1,4 +1,4 @@
-## Table of Contents for README.md
+# Table of Contents for README.md
 
 1. [Introduction](#introduction)  
 2. [Student Requirements](#student-requirements)  
@@ -36,44 +36,31 @@
    6.8 [Layouts](#layouts)  
    6.9 [Metadata](#metadata)
 
+## Introduction
 
-
-# Introduction
-
-Open Coding Society is a project designed to support students in their Computer Science and Software Engineering education. It offers a wide range of resources including tech talks, code examples, and educational blogs.
-
-GitHub Pages can be customized by the blogger to support computer science learnings as the student works through the pathway of using Javascript, Python/Flask, Java/Spring.  
+The Open Coding Society community provides courses and projects to help students in Computer Science and Software Engineering. It offers resources like tech talks, code examples, and educational blogs. Students can customize their GitHub Pages to support their learning as they progress through courses using JavaScript, Python/Flask, and Java/Spring.  
 
 ## Student Requirements
 
-Del Norte HS students will be required to review their personal GitHub Pages at each midterm and final.  This review will contain a compilation of personal work performed within each significant grading period.
-
-In general, Students and Teachers are expected to use GitHub pages to build lessons, complete classroom hacks, perform work on JavaScript games, and serve as a frontend to full-stack applications.
-
-Exchange of information could be:
-
-1. sharing a file:  `wget "raw-link.ipynb"
-2. creating a template from this repository
-3. sharing a fork among team members
-4. etc.
+Students must maintain a blog throughout the course and review their GitHub Pages at each midterm and final, compiling their work for each grading period. Both students and teachers use GitHub Pages for lessons, coding exercises, JavaScript games, and as a frontend for full-stack apps. Information can be shared via files, templates, forks, and other collaborative methods.
 
 ---
 
 ## History
 
-This project is in its 3rd revision (aka 3.0).
+This project is now in its 4th major revision (4.0). It began as a fork of Fastpages, but has since evolved into an independent platform. The transition away from Fastpages was prompted by its deprecation and a shift in direction by its original authors toward Quarto, which no longer aligned with the needs of our community.
 
-The project was initially based on Fastpages. But this project has diverged from those roots into an independent entity.  The decision to separate from Fastpages was influenced by the deprecation of Fastpages by authors.  It is believed by our community that the authors of fastpages turned toward Quatro.  After that change of direction fastpages did not align with the Teacher's goals and student needs. The Open Coding Society project has more of a raw development blogging need.
+Open Coding Society GitHub Pages projects are intentionally designed to be more hands-on and technically rigorous, emphasizing raw development and blogging. The goal is to provide a platform that supports deep technical learning, rather than a lightweight or out-of-the-box solution.
 
 ### License
 
-The Apache license has its roots in Fastpages.  Thus, it carries its license forward.  However, most of the code is likely unrecognizable from those roots.
+This project continues to use the Apache license inherited from its Fastpages origins. While the licensing remains, the majority of the codebase has significantly diverged and evolved, reflecting the project's shift toward independent, technically rigorous development.
 
 ### Key Features
 
-- **Code Examples**: Provides practical coding examples in JavaScript, including a platformer game, and frontend code for user databases using Python and Java backends.
-- **Educational Blogs**: Offers instructional content on various topics such as developer tools setup, deployment on AWS, SQL databases, machine learning, and data structures. It utilizes Jupyter Notebooks for interactive lessons and coding challenges.
-- **Tools and Integrations**: Features GitHub actions for blog publishing, Utterances for blog commenting, local development support via Makefile and scripts, and styling with the Minima Theme and SASS. It also includes a new integration with GitHub Projects and Issues.
+- **Code Examples**: Practical coding examples in JavaScript (including an rpg and platformer game) and frontend code for user databases using Python and Java backends.
+- **Educational Blogs**: Instructional content on topics such as developer tools setup, AWS deployment, SQL databases, machine learning, and data structures. Includes interactive lessons and coding challenges using Jupyter Notebooks.
+- **Tools and Integrations**: GitHub Actions for blog publishing, Utterances for blog commenting, local development support via Makefile and scripts, styling with the Minima or Minimal Themes and SASS, and integration with GitHub Projects and Issues.
 
 ### Contributions
 
