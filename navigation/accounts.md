@@ -5,7 +5,7 @@ layout: post
 title: Accounts
 description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
 dcategories: [DevOps]
-permalink: /devops/tools/accounts
+permalink: /devops/tools/accounts-2026
 menu: nav/tools_setup.html
 toc: true
 comments: true
@@ -179,12 +179,135 @@ It is in the your interest that you establish and continually refine your PII (P
 
 Be cautious with the information you share online. Protect your personal data by using separate email accounts, staying aware of security risks, and adapting your practices as the digital world evolves. Taking steps now helps safeguard your digital identity in the future.
 
-<details style="border: 2px solid #006600; border-radius: 12px; padding: 10px; margin-bottom: 16px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.1rem;">
-  <summary style="font-weight: bold; cursor: pointer;"> 🧠 Test Your Knowledge</summary>
-  <div style="margin-top: 10px;">
-    <p>Ready to check your understanding?</p>
-    <a href="{{site.baseurl}}/piiquiz/" style="background-color: #006600; color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-      Take the Quiz
-    </a>
+<h3> Test your knowledge of Github Pages! <h3>
+
+  <div class="quiz-container">
+    <div id="flashcard" class="flashcard">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="score" id="score"></div>
+    <button id="nextBtn">Next</button>
   </div>
-</details>
+
+  <script>
+    const questions = [
+      {
+        q: "Which of the following is the best example of Highly Confidential Information?",
+        options: [
+          "Your high school name",
+          "Your full birth date",
+          "Your Wi-Fi password",
+          "Your city of residence"
+        ],
+        answer: 2
+      },
+      {
+        q: "Why is it recommended to use different email accounts for different purposes?",
+        options: [
+          "To make it easier to remember passwords",
+          "To separate types of information and reduce risk if one account is compromised",
+          "Because email providers require it",
+          "To avoid receiving any spam"
+        ],
+        answer: 1
+      },
+      {
+        q: "Which of these is NOT a good security practice?",
+        options: [
+          "Enabling multi-factor authentication",
+          "Using the same password for all accounts",
+          "Regularly updating your software",
+          "Using a password manager"
+        ],
+        answer: 1
+      },
+      {
+        q: "If you receive an unexpected email asking for your login credentials, what should you do?",
+        options: [
+          "Reply with your credentials to be helpful",
+          "Click any links to see where they go",
+          "Ignore or report the email as phishing",
+          "Forward it to your friends"
+        ],
+        answer: 2
+      },
+      {
+        q: "Which of the following is considered Sensitive (but not Highly Confidential) Information?",
+        options: [
+          "Your favorite food",
+          "Your street address",
+          "Your GitHub profile picture",
+          "Your public portfolio link"
+        ],
+        answer: 1
+      }
+    ];
+
+    let queue = [...questions];
+    let stats = new Array(questions.length).fill(0);
+    let currentIndex = 0;
+    let totalAttempts = 0;
+
+    const questionDiv = document.getElementById("question");
+    const optionsDiv = document.getElementById("options");
+    const scoreDiv = document.getElementById("score");
+    const flashcardDiv = document.getElementById("flashcard");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function renderFlashcard() {
+      flashcardDiv.classList.remove("fade-out");
+      const q = queue[0];
+      currentIndex = questions.indexOf(q);
+      stats[currentIndex]++;
+
+      questionDiv.textContent = q.q;
+      optionsDiv.innerHTML = "";
+      q.options.forEach((option, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.addEventListener("click", () => handleAnswer(i));
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(selected) {
+      const correct = queue[0].answer;
+      const wasCorrect = selected === correct;
+      totalAttempts++;
+
+      flashcardDiv.classList.add("fade-out");
+      setTimeout(() => {
+        if (!wasCorrect) queue.push(queue[0]);
+        queue.shift();
+
+        if (queue.length > 0) {
+          renderFlashcard();
+        } else {
+          showResults();
+        }
+      }, 500);
+    }
+
+    function showResults() {
+      questionDiv.style.display = "none";
+      optionsDiv.style.display = "none";
+      nextBtn.style.display = "none";
+      flashcardDiv.style.display = "none";
+
+      let resultHTML = `
+        <div style="background:#808080;padding:24px;border-radius:10px;">
+          <h2 style="color:#2c2a5d;">Quiz Complete!</h2>
+          <p style="font-size:1.1em;">You completed the flashcards in <strong>${totalAttempts}</strong> attempts.</p>
+          <div class="attempts-summary">
+      `;
+      questions.forEach((q, i) => {
+        resultHTML += `<p><strong>Q${i + 1}</strong> attempted <strong>${stats[i]}</strong> time(s)</p>`;
+      });
+      resultHTML += "</div></div>";
+
+      scoreDiv.innerHTML = resultHTML;
+    }
+
+    renderFlashcard();
+  </script>

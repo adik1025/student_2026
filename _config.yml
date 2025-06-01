@@ -16,6 +16,7 @@ minima:
     - navigation/checklist.md
     - navigation/authentication/login.md
     - navigation/authentication/logout.md
+    - navigation/accounts.md
 
   skin: dark
   social_links:
