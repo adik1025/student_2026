@@ -1,0 +1,394 @@
+
+    <title>AI Comprehension Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh; padding: 20px; display: flex; align-items: center; justify-content: center;
+        }
+        
+        .main-card {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(20px);
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); padding: 30px;
+            max-width: 600px; width: 100%; position: relative; overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        .main-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: rotate 6s linear infinite; z-index: -1;
+        }
+        
+        .header {
+            text-align: center; margin-bottom: 25px;
+            color: white; font-weight: 700; font-size: 1.8rem;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .brain-icon {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        .form-section {
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+            border-radius: 15px; padding: 20px; margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeIn 0.6s ease-out 0.2s both;
+        }
+        
+        .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;
+        }
+        
+        label { color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 8px; display: block; }
+        
+        select {
+            background: rgba(255,255,255,0.9); border: none; border-radius: 10px;
+            padding: 12px 15px; font-size: 1rem; color: #333;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        select:focus { outline: none; box-shadow: 0 0 0 3px rgba(78,205,196,0.5); transform: translateY(-2px); }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border: none;
+            border-radius: 12px; padding: 15px 30px; font-size: 1.1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease; width: 100%;
+            box-shadow: 0 8px 25px rgba(78,205,196,0.4);
+            position: relative; overflow: hidden;
+        }
+        
+        .generate-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(78,205,196,0.6); }
+        
+        .question-card {
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
+            border-radius: 18px; padding: 25px; margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            animation: slideUp 0.5s ease-out;
+            display: none;
+        }
+        
+        .question-text {
+            color: #2c3e50; font-size: 1.1rem; font-weight: 600; margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .option-label {
+            background: rgba(78,205,196,0.1); border: 2px solid rgba(78,205,196,0.3);
+            border-radius: 10px; padding: 12px 18px; margin-bottom: 10px;
+            cursor: pointer; transition: all 0.3s ease; color: #2c3e50; font-weight: 500;
+            position: relative; overflow: hidden;
+        }
+        
+        .option-label:hover { background: rgba(78,205,196,0.2); transform: translateX(5px); }
+        
+        input[type="radio"]:checked + .option-label {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white;
+            border-color: #44a08d; transform: scale(1.02);
+        }
+        
+        #studentAnswer {
+            background: rgba(255,255,255,0.9); border: 2px solid rgba(78,205,196,0.3);
+            border-radius: 10px; padding: 15px; width: 100%; font-size: 1rem;
+            color: #2c3e50; transition: all 0.3s ease;
+        }
+        
+        #studentAnswer:focus { outline: none; border-color: #4ecdc4; box-shadow: 0 0 0 3px rgba(78,205,196,0.3); }
+        
+        .action-buttons {
+            display: flex; gap: 15px; margin-top: 20px;
+        }
+        
+        .check-btn, .new-btn {
+            flex: 1; padding: 12px 20px; border: none; border-radius: 10px;
+            font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+        }
+        
+        .check-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white;
+            box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+        }
+        
+        .new-btn {
+            background: rgba(255,255,255,0.2); color: #2c3e50; border: 2px solid rgba(78,205,196,0.3);
+        }
+        
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,107,107,0.6); }
+        .new-btn:hover { background: rgba(78,205,196,0.1); transform: translateY(-2px); }
+        
+        #result {
+            margin-top: 20px; padding: 15px; border-radius: 12px; font-weight: 600;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .correct { background: rgba(46,204,113,0.2); color: #27ae60; border-left: 4px solid #27ae60; }
+        .incorrect { background: rgba(231,76,60,0.2); color: #e74c3c; border-left: 4px solid #e74c3c; }
+        .warning { background: rgba(241,196,15,0.2); color: #f39c12; border-left: 4px solid #f39c12; }
+        
+        input[type="radio"] { display: none; }
+        
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    </style>
+
+    <div class="main-card">
+        <div class="header">
+            <div class="brain-icon">🧠</div>
+            <span>AI Comprehension Checker</span>
+        </div>
+        
+        <div class="form-section">
+            <div class="form-row">
+                <div>
+                    <label for="questionType">Question Type</label>
+                    <select id="questionType">
+                        <option value="multiple">Multiple Choice</option>
+                        <option value="short">Short Answer</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="difficulty">Difficulty Level</label>
+                    <select id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            <button class="generate-btn" onclick="generateQuestion()">
+                <i class="fas fa-magic"></i> Generate Question
+            </button>
+        </div>
+        
+        <div id="question-card" class="question-card">
+            <div class="question-text" id="questionText"></div>
+            <div id="optionsContainer"></div>
+            <input type="text" id="studentAnswer" placeholder="Enter your answer..." style="display:none;">
+            <div class="action-buttons">
+                <button class="check-btn" onclick="checkAnswer()">
+                    <i class="fas fa-check"></i> Check Answer
+                </button>
+                <button class="new-btn" onclick="generateQuestion()">
+                    <i class="fas fa-refresh"></i> New Question
+                </button>
+            </div>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://api.groq.com/openai/v1/chat/completions";
+        const API_KEY = "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";
+        
+        let askedQuestions = [];
+        let currentQuestion = null;
+
+        function getLessonContent() {
+            const lessonElement = document.getElementById('lesson-content');
+            if (lessonElement) {
+                return lessonElement.innerText || lessonElement.textContent || '';
+            }
+            return "Functions in programming are reusable blocks of code that perform specific tasks. They help organize code and avoid repetition.";
+        }
+
+        async function sendToGroqAPI(userMessage, maxRetries = 3) {
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${API_KEY}`
+                        },
+                        body: JSON.stringify({
+                            model: "llama3-8b-8192",
+                            messages: [{ role: "user", content: userMessage }],
+                            temperature: 0.7
+                        })
+                    });
+                    
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+                    return data.choices[0].message.content;
+                } catch (error) {
+                    console.error(`Attempt ${attempt + 1} failed:`, error);
+                    if (attempt === maxRetries - 1) {
+                        return "Error: Unable to generate question. Please try again.";
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+            }
+        }
+
+        function extractJSON(text) {
+            text = text.trim();
+            let start = text.indexOf('{');
+            let end = text.lastIndexOf('}');
+            
+            if (start === -1 || end === -1) throw new Error('No JSON found');
+            
+            let jsonStr = text.substring(start, end + 1);
+            return JSON.parse(jsonStr);
+        }
+
+        async function generateQuestion() {
+            const type = document.getElementById("questionType").value;
+            const difficulty = document.getElementById("difficulty").value;
+            const lesson = getLessonContent();
+            
+            const questionPrompts = [
+                "practical application", "real-world scenario", "comparison with other concepts",
+                "cause and effect", "problem-solving", "creative thinking", "analysis",
+                "synthesis", "evaluation", "deeper understanding"
+            ];
+            
+            const randomPrompt = questionPrompts[Math.floor(Math.random() * questionPrompts.length)];
+            
+            let prompt = `Create a ${difficulty} ${type === 'multiple' ? 'multiple choice' : 'short answer'} question about this lesson content focusing on ${randomPrompt}:
+
+"${lesson}"
+
+Requirements:
+- Be creative and go beyond basic recall
+- Focus on understanding, not memorization
+- Make it engaging and thought-provoking
+- Avoid questions already asked: ${askedQuestions.join(', ')}
+
+Respond with ONLY valid JSON in this exact format:
+${type === 'multiple' ? 
+`{
+  "question": "Your question here",
+  "options": ["Option A", "Option B", "Option C", "Option D"],
+  "correct_index": 1,
+  "explanation": "Why this answer is correct"
+}` :
+`{
+  "question": "Your question here", 
+  "sample_answer": "A good example answer",
+  "explanation": "What makes a good answer"
+}`}`;
+
+            const response = await sendToGroqAPI(prompt);
+            
+            try {
+                const questionData = extractJSON(response);
+                
+                if (!questionData.question) throw new Error('Invalid question format');
+                
+                askedQuestions.push(questionData.question);
+                if (askedQuestions.length > 10) askedQuestions.shift();
+                
+                currentQuestion = questionData;
+                displayQuestion(questionData, type);
+                
+            } catch (error) {
+                console.error('Parse error:', error, response);
+                document.getElementById('result').innerHTML = 
+                    '<div class="warning">⚠️ Error generating question. Please try again.</div>';
+            }
+        }
+
+        function displayQuestion(questionData, type) {
+            document.getElementById("questionText").innerText = questionData.question;
+            const optionsContainer = document.getElementById("optionsContainer");
+            const studentAnswerInput = document.getElementById("studentAnswer");
+            const result = document.getElementById("result");
+            
+            optionsContainer.innerHTML = "";
+            result.innerHTML = "";
+            studentAnswerInput.value = "";
+            
+            if (type === "multiple" && questionData.options) {
+                studentAnswerInput.style.display = "none";
+                questionData.options.forEach((opt, i) => {
+                    const radioId = `option${i}`;
+                    const radioInput = document.createElement("input");
+                    radioInput.type = "radio";
+                    radioInput.id = radioId;
+                    radioInput.name = "mcq";
+                    radioInput.value = i.toString();
+                    
+                    const label = document.createElement("label");
+                    label.htmlFor = radioId; 
+                    label.className = "option-label";
+                    label.textContent = `${String.fromCharCode(65 + i)}. ${opt}`;
+                    
+                    optionsContainer.appendChild(radioInput);
+                    optionsContainer.appendChild(label);
+                });
+            } else {
+                studentAnswerInput.style.display = "block";
+            }
+            
+            document.getElementById("question-card").style.display = "block";
+        }
+
+        async function checkAnswer() {
+            const type = document.getElementById("questionType").value;
+            const result = document.getElementById("result");
+            
+            if (type === "multiple") {
+                const selected = document.querySelector('input[name="mcq"]:checked');
+                if (!selected) {
+                    result.innerHTML = '<div class="warning">⚠️ Please select an option.</div>';
+                    return;
+                }
+                
+                const selectedIndex = parseInt(selected.value);
+                const isCorrect = selectedIndex === currentQuestion.correct_index;
+                
+                if (isCorrect) {
+                    result.innerHTML = `<div class="correct">✅ Correct! ${currentQuestion.explanation}</div>`;
+                } else {
+                    const correctOption = currentQuestion.options[currentQuestion.correct_index];
+                    result.innerHTML = `<div class="incorrect">❌ Incorrect. The correct answer is: <strong>${correctOption}</strong><br>${currentQuestion.explanation}</div>`;
+                }
+            } else {
+                const userAnswer = document.getElementById("studentAnswer").value.trim();
+                if (!userAnswer) {
+                    result.innerHTML = '<div class="warning">⚠️ Please enter an answer.</div>';
+                    return;
+                }
+                
+                result.innerHTML = '<div class="warning">⏳ Checking your answer...</div>';
+                
+                const prompt = `Question: "${currentQuestion.question}"
+Student Answer: "${userAnswer}"
+Sample Good Answer: "${currentQuestion.sample_answer}"
+
+Is the student's answer acceptable? Consider if it demonstrates understanding of the concept, even if worded differently, and don't require too many specifications, if there are multiple ways to answer a question or multiple answer options, one decent explanation should be enough.
+
+Respond with ONLY valid JSON:
+{
+  "is_correct": true/false,
+  "feedback": "Your feedback message explaining why the answer is right/wrong and what could be improved"
+}`;
+                
+                const response = await sendToGroqAPI(prompt);
+                
+                try {
+                    const evaluation = extractJSON(response);
+                    
+                    if (evaluation.is_correct) {
+                        result.innerHTML = `<div class="correct">✅ Good answer! ${evaluation.feedback}</div>`;
+                    } else {
+                        result.innerHTML = `<div class="incorrect">❌ ${evaluation.feedback}<br><br><strong>Sample answer:</strong> ${currentQuestion.sample_answer}</div>`;
+                    }
+                } catch (error) {
+                    result.innerHTML = '<div class="warning">⚠️ Error checking answer. Please try again.</div>';
+                }
+            }
+        }
+    </script>
