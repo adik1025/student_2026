@@ -33,7 +33,6 @@ permalink: /githubquiz_2/
       color: #222;
     }
     .options label {
-      display: block;
       margin: 8px 0;
       cursor: pointer;
       background: #e6e8ff; /* changed for contrast */
@@ -229,7 +228,6 @@ permalink: /githubquiz_2/
   }
 
   .score-input-box input {
-    display: block;
     width: 100%;
     margin-bottom: 15px;
     padding: 10px;

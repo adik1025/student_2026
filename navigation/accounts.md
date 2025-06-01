@@ -9,6 +9,7 @@ permalink: /devops/tools/accounts
 menu: nav/tools_setup.html
 toc: true
 comments: true
+nav: true
 ---
 
 ## What Is PII?
