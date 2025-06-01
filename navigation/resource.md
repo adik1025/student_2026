@@ -3,6 +3,7 @@ layout: base
 title: Resource
 search_exclude: true
 permalink: /resource/
+nav: true
 ---
 
 ### Development Resources 

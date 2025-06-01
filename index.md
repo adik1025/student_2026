@@ -2,7 +2,7 @@
 layout: base
 title: Home 
 hide: true
-nav: false
+nav: true
 ---
 
 <div style="max-width: 800px; margin: auto; padding: 20px; font-family: sans-serif;">
