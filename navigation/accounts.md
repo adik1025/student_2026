@@ -5,6 +5,8 @@ description: This class will require you to make a Portfolio 2026 Web Site, a Gi
 permalink: /tools/accounts
 menu: nav/tools_setup.html
 toc: true
+comments: true
+nav: true
 ---
 
 ## What Is PII?
