@@ -4,12 +4,12 @@ title: Submit Final Score
 permalink: /finalscore
 ---
 
-<h2>Ready to Submit Your Score?</h2>
-<p>This will add your scores from both quizzes and send it to the backend.</p>
-<button onclick="sendCombinedScore()">Submit Final Score</button>
+<button id="submitScoreBtn">Submit Final Score</button>
 
 <script type="module">
 import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+
+document.getElementById("submitScoreBtn").addEventListener("click", sendCombinedScore);
 
 async function sendCombinedScore() {
     const quiz1 = parseInt(localStorage.getItem("quiz1Score") || "0");
@@ -32,7 +32,7 @@ async function sendCombinedScore() {
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                score: totalScore,
+                value: totalScore,
                 section_id: sectionId
             })
         });
@@ -43,14 +43,9 @@ async function sendCombinedScore() {
         }
 
         alert("Score submitted successfully!");
-        localStorage.removeItem("quiz1Score");
-        localStorage.removeItem("quiz2Score");
     } catch (error) {
         console.error("Failed to submit score:", error.message || error);
         alert("Failed to submit score: " + error.message);
     }
 }
-
-// Attach function to global scope or bind to button
-window.sendCombinedScore = sendCombinedScore;
 </script>

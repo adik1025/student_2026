@@ -46,12 +46,27 @@ export function login(options) {
                         const errorMsg = 'Login error: ' + response.status;
                         console.log(errorMsg);
                         document.getElementById(options.message).textContent = errorMsg;
-                        return;
+                        throw new Error(errorMsg);
+                        // return;
                 }
+                return response.json();
+
                 // Success!!!
                 // Redirect to the Database location
-                options.callback();
+                // options.callback();
         })
+
+        .then(data => {
+                if (data.token) {
+                localStorage.setItem('jwtToken', data.token);  // Save token here
+                } else {
+                console.warn('No token found in login response.');
+                }
+                if (typeof options.callback === "function") {
+                options.callback(data);
+                }
+        })
+
         .catch(error => {
                 // Handle network errors
                 console.log('Possible CORS or Service Down error: ' + error);
