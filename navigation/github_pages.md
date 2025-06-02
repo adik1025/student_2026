@@ -1,13 +1,11 @@
 ---
 layout: page
 title: GitHub Pages
-description: This page will teach you how to set up GitHub Pages on a browser version of VSCode
-permalink: /devops/tools/github_pages
+description: This page will teach you how to set up GitHub Pages on a browser version of Visual Studio Code (VSCode)
+permalink: /tools/github/pages
 menu: nav/tools_setup.html
 toc: true
 ---
-
-<h3>This page will teach you how to run GitHub Pages using the browser version of Visual Studio Code (VSCode)</h3>
 
 <details style="border: 2px solid #003366; border-radius: 12px; padding: 10px; margin-bottom: 16px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.1rem;">
   <summary style="font-weight: bold; cursor: pointer;"> What is GitHub Pages?</summary>
@@ -112,7 +110,7 @@ toc: true
       transform: translateX(-100%);
     }
     h2 {
-      color: #2c2a5d;
+      color: #ffffff;
     }
     .question {
       font-weight: bold;
@@ -156,11 +154,18 @@ toc: true
     #nextBtn {
       display: none;
     }
+    .points {
+      margin-top: 16px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: center;
+      color: #2c2a5d;
+    }
   </style>
 </head>
 <body>
 
-<h3> Test your knowledge of Github Pages! <h3>
+<h2> Test your knowledge of Github Pages! <h2>
 
   <div class="quiz-container">
     <div id="flashcard" class="flashcard">
@@ -169,6 +174,8 @@ toc: true
     </div>
     <div class="score" id="score"></div>
     <button id="nextBtn">Next</button>
+    <div class="points" id="pointsDisplay">Points: 100</div>
+    <button id="resetPointsBtn" style="margin-top: 10px;">Reset Points</button>
   </div>
 
   <script>
@@ -225,6 +232,8 @@ toc: true
       }
     ];
 
+    const QUIZ_ID = "github_pages";
+
     let queue = [...questions];
     let stats = new Array(questions.length).fill(0);
     let currentIndex = 0;
@@ -252,6 +261,51 @@ toc: true
       });
     }
 
+    // Global point tracking
+    const POINTS_KEY = 'global_quiz_points';
+    const pointsDisplay = document.getElementById("pointsDisplay");
+    const resetPointsBtn = document.getElementById("resetPointsBtn");
+
+    // Initialize or retrieve points
+    function initializePoints() {
+      if (!localStorage.getItem(POINTS_KEY)) {
+        localStorage.setItem(POINTS_KEY, '100');
+      }
+      updatePointsDisplay();
+    }
+
+    function getPoints() {
+      return parseInt(localStorage.getItem(POINTS_KEY) || '100', 10);
+    }
+
+    function setPoints(value) {
+      localStorage.setItem(POINTS_KEY, value.toString());
+      updatePointsDisplay();
+    }
+
+    function updatePointsDisplay() {
+      pointsDisplay.textContent = `Points: ${getPoints()}`;
+    }
+
+    resetPointsBtn.addEventListener("click", () => {
+      const quizzes = ["github_workflow", "github_pages", "accounts"];
+      const incomplete = quizzes.filter(q => localStorage.getItem(`quiz_done_${q}`) !== "true");
+
+      if (incomplete.length > 0) {
+        alert(`Please complete the following quiz(es) before resetting your points:\n- ${incomplete.join("\n- ")}`);
+        return;
+      }
+
+      // Reset points
+      setPoints(100);
+      alert("Points successfully reset to 100!");
+
+      // Reset completion status for all quizzes
+      quizzes.forEach(q => {
+        localStorage.setItem(`quiz_done_${q}`, "false");
+      });
+    });
+
     function handleAnswer(selected) {
       const correct = queue[0].answer;
       const wasCorrect = selected === correct;
@@ -276,10 +330,17 @@ toc: true
       nextBtn.style.display = "none";
       flashcardDiv.style.display = "none";
 
+      const incorrectAttempts = totalAttempts - questions.length;
+      const currentPoints = getPoints();
+      const newPoints = Math.max(0, currentPoints - incorrectAttempts);
+      setPoints(newPoints);
+
       let resultHTML = `
         <div style="background:#808080;padding:24px;border-radius:10px;">
           <h2 style="color:#2c2a5d;">Quiz Complete!</h2>
-          <p style="font-size:1.1em;">You completed the flashcards in <strong>${totalAttempts}</strong> attempts.</p>
+          <p style="font-size:1.1em;">You completed the flashcards in <strong>${totalAttempts}</strong> attempts.</ p>
+          <p style="font-size:1.1em;color:#2c2a5d;">You lost <strong>${incorrectAttempts}</strong> point(s).</p>
+          <p style="font-size:1.2em;color:#2c2a5d;"><strong>Current Points: ${newPoints}</strong></p>
           <div class="attempts-summary">
       `;
       questions.forEach((q, i) => {
@@ -288,7 +349,10 @@ toc: true
       resultHTML += "</div></div>";
 
       scoreDiv.innerHTML = resultHTML;
-    }
+      localStorage.setItem(`quiz_done_${QUIZ_ID}`, "true");
 
+    }
+    
+    initializePoints();
     renderFlashcard();
   </script>

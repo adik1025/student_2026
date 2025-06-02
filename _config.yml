@@ -11,6 +11,7 @@ remote_theme: jekyll/minima
 
 minima:
   nav_pages:
+    - navigation/lessons.md
     - navigation/blog.md
     - navigation/leaderboard.md
     - navigation/checklist.md

@@ -1,6 +1,6 @@
 ---
-layout: post
-title: Profile Settings
+layout: page
+title: Edit Your profile
 permalink: /profile
 menu: nav/home.html
 search_exclude: true
@@ -24,6 +24,7 @@ show_reading_time: false
      <br>
      <br>
      <label for="profilePicture" class="file-icon"> Upload Profile Picture <i class="fas fa-upload"></i> <!-- Replace this with your desired icon -->
+     <br>
      </label>
      <input type="file" id="profilePicture" accept="image/*" onchange="saveProfilePicture()">
      <div class="image-container" id="profileImageBox">
