@@ -41,7 +41,9 @@
 
 # Introduction
 
-The Open Coding Society community provides courses and projects to help students in Computer Science and Software Engineering. It offers resources like tech talks, code examples, and educational blogs. Students can customize their GitHub Pages to support their learning as they progress through courses using JavaScript, Python/Flask, and Java/Spring.  
+Open Coding Society is a project designed to support students in their Computer Science and Software Engineering education. It offers a wide range of resources including tech talks, code examples, and educational blogs.
+
+GitHub Pages can be customized by the blogger to support computer science learnings as the student works through the pathway of using Javascript, Python/Flask, Java/Spring.  
 
 ## Student Requirements
 
@@ -60,7 +62,7 @@ Exchange of information could be:
 
 ## History
 
-This project is now in its 4th major revision (4.0). It began as a fork of Fastpages, but has since evolved into an independent platform. The transition away from Fastpages was prompted by its deprecation and a shift in direction by its original authors toward Quarto, which no longer aligned with the needs of our community.
+This project is in its 3rd revision (aka 3.0).
 
 The project was initially based on Fastpages. But this project has diverged from those roots into an independent entity. The decision to separate from Fastpages was influenced by the deprecation of Fastpages by authors. It is believed by our community that the authors of Fastpages turned toward Quatro. After that change of direction, Fastpages did not align with the Teacher's goals and student needs. The Open Coding Society project has more of a raw development blogging need.
 
@@ -70,9 +72,9 @@ The Apache license has its roots in Fastpages. Thus, it carries its license forw
 
 ### Key Features
 
-- **Code Examples**: Practical coding examples in JavaScript (including an rpg and platformer game) and frontend code for user databases using Python and Java backends.
-- **Educational Blogs**: Instructional content on topics such as developer tools setup, AWS deployment, SQL databases, machine learning, and data structures. Includes interactive lessons and coding challenges using Jupyter Notebooks.
-- **Tools and Integrations**: GitHub Actions for blog publishing, Utterances for blog commenting, local development support via Makefile and scripts, styling with the Minima or Minimal Themes and SASS, and integration with GitHub Projects and Issues.
+- **Code Examples**: Provides practical coding examples in JavaScript, including a platformer game, and frontend code for user databases using Python and Java backends.
+- **Educational Blogs**: Offers instructional content on various topics such as developer tools setup, deployment on AWS, SQL databases, machine learning, and data structures. It utilizes Jupyter Notebooks for interactive lessons and coding challenges.
+- **Tools and Integrations**: Features GitHub actions for blog publishing, Utterances for blog commenting, local development support via Makefile and scripts, and styling with the Minima Theme and SASS. It also includes a new integration with GitHub Projects and Issues.
 
 ### Contributions
 
@@ -97,8 +99,13 @@ This step involves enabling GitHub Pages Actions for your project. By doing so, 
 You need to modify the `_config.yml` file to reflect your repository's name. This configuration is crucial because it ensures that your project's styling is correctly applied, making your deployed site look as intended rather than unstyled or broken.
 
 ```yaml
+<<<<<<< HEAD
 github_repo: "student_2026"
 baseurl: "/student_2026"
+=======
+github_repo: "student_2025"
+baseurl: "/student_2025"
+>>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
 ```
 
 ### Set Repository Name in Makefile
@@ -131,8 +138,13 @@ Quick start. A quick start below is a reminder, but is dependent on your knowled
 Run these commands to obtain the project, then locate into the project directory with the terminal, install an extensive set of tools, and make.
 
 ```bash
+<<<<<<< HEAD
 git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2026.git
 cd <repo-dir>/scripts # cd student_2026
+=======
+git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2025.git
+cd <repo-dir>/scripts # cd student_2025
+>>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
 ```
 
 #### Windows WSL and/or Ubuntu Users
@@ -177,7 +189,11 @@ Start the preview server in the terminal,
 The terminal output from `make` shows the server address. "Cmd" or "Ctl" click the http location to open the preview server in a browser. Example:
 
 ```text
+<<<<<<< HEAD
 http://0.0.0.0:4100/student_2026/
+=======
+http://0.0.0.0:4100/student_2025/
+>>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
 ```
 
 ### Regeneration of Web Application
@@ -340,6 +356,7 @@ Templates are located in:
 - **Pull Requests**: Pull requests must fill out the provided PR template before merging.
 
 This ensures all contributions follow a consistent standard.
+<<<<<<< HEAD
 
 ---
 
@@ -693,3 +710,7 @@ Here’s a quick reference when building a new lesson:
 * [ ] Deploy when everything is working
 
 With this layout system, you can build high-quality, interactive lessons that are modular, student-friendly, and easy to maintain. Whether you're teaching loops, functions, or arrays, these templates give you a powerful way to bring your content to life.
+=======
+
+---
+>>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
