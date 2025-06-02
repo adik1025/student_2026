@@ -254,7 +254,7 @@ Be cautious with the information you share online. Protect your personal data by
   </style>
 </head>
 
-<h3> Test your knowledge of Github Pages! <h3>
+<h3> Test your knowledge of Accounts! <h3>
 
   <div class="quiz-container">
     <div id="flashcard" class="flashcard">
@@ -374,8 +374,14 @@ Be cautious with the information you share online. Protect your personal data by
         <div style="background:#808080;padding:24px;border-radius:10px;">
           <h2 style="color:#2c2a5d;">Quiz Complete!</h2>
           <p style="font-size:1.1em;">You completed the flashcards in <strong>${totalAttempts}</strong> attempts.</p>
-          <div class="attempts-summary">
       `;
+
+      const score = Math.max(1000000 - totalAttempts * 10000, 0);
+      localStorage.setItem("quiz1Score", score); // Change to "quiz2Score" in your other quiz page
+
+      resultHTML += `<p style="font-size:1.2em;color:#ffffff;"><strong>Score:</strong> ${score}</p>`;
+
+      resultHTML += `<div class="attempts-summary">`;
       questions.forEach((q, i) => {
         resultHTML += `<p><strong>Q${i + 1}</strong> attempted <strong>${stats[i]}</strong> time(s)</p>`;
       });
@@ -383,6 +389,7 @@ Be cautious with the information you share online. Protect your personal data by
 
       scoreDiv.innerHTML = resultHTML;
     }
+
 
     renderFlashcard();
   </script>
