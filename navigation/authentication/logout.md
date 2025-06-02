@@ -7,26 +7,31 @@ search_exclude: true
 
 <script type="module">
     import { fetchOptions, pythonURI } from '{{site.baseurl}}/assets/js/api/config.js';
-    const URL = pythonURI + '/api/authenticate'; // Assuming pythonURI is defined elsewhere
-    const options = {
-        ...fetchOptions, // Assuming fetchOptions is defined elsewhere and includes necessary headers, etc.
-        method: 'DELETE',
-    };
-    console.log('Logout clicked');
+    const URL = pythonURI + '/api/authenticate';
 
-    fetch(URL, options)
-        .then(response => {
-            if (response.ok) {
-                window.location.href = "{{site.baseurl}}/login";
-                // Successfully called the logout endpoint, now redirect to the current page
-            } else {
-                // Handle response not ok (e.g., display an error message)
-                console.error('Logout failed:', response.statusText);
-            }
-        })
-        .catch(error => {
-            // Handle any errors that occurred during the fetch
-            console.error('Error during logout:', error);
-        });
+    // Check if user is logged in (example: check for Authorization header)
+    const isLoggedIn = fetchOptions.headers && fetchOptions.headers.Authorization;
 
+    if (!isLoggedIn) {
+        // Not logged in, redirect to login page
+        window.location.href = "{{site.baseurl}}/login";
+    } else {
+        const options = {
+            ...fetchOptions,
+            method: 'DELETE',
+        };
+        console.log('Logout clicked');
+
+        fetch(URL, options)
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "{{site.baseurl}}/login";
+                } else {
+                    console.error('Logout failed:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error during logout:', error);
+            });
+    }
 </script>
