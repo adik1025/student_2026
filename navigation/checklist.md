@@ -104,7 +104,7 @@ permalink: /checklist/
   <div id="message"></div>
 
   <script>
-    const API_BASE = 'http://localhost:8887/api/checklist';
+    const API_BASE = 'http://localhost:1234/api/checklist';
     const user = 'student1'; // fixed user for now, can make dynamic later
 
     // Checklist items split by page, 4 items each (20 total)
@@ -116,28 +116,28 @@ permalink: /checklist/
         "Create Portfolio 2026 account"
       ],
       "Page 2: GitHub Pages": [
-        "Understand reference repositories",
-        "Learn owner and collaborator roles",
-        "Practice fork-branch-PR workflow",
-        "Review PRs and comments"
+        "Create a new repository from the GitHub template",
+        "Open your repository in the browser",
+        "Commit your changes and publish your site by enabling GitHub Pages under Settings > Pages",
+        "Create a new branch, make a change, open a pull request, and merge it into the main branch"
       ],
       "Page 3: GitHub Workflow Guide": [
-        "Set up VSCode Online",
-        "Use Linux terminal commands",
-        "Install git and configure",
-        "Set up package managers"
+        "Create and publish a personal portfolio repository using GitHub Pages",
+        "Fork a class repository, make a feature branch, and submit a pull request",
+        "Collaborate on a team project using branches, GitHub issues, and PR reviews",
+        "Follow GitHub best practices by using meaningful commits"
       ],
       "Page 4: OS and Developer Tools Setup": [
-        "Set up WSL on Windows",
-        "Configure macOS dev environment",
-        "Understand shell scripting basics",
-        "Install linter and formatter"
+        "Use mkdir, cd, and git clone in terminal to set up project folders",
+        "Run your OS-specific activate.sh script to install tools",
+        "Restart terminal and verify tool versions: Ruby, Python, Bundler, Jupyter",
+        "On MacOS, fix Python/Jupyter paths using the correct ln -sF commands"
       ],
       "Page 5: VS Code Setup": [
-        "Configure git user info",
-        "Understand SDLC phases",
-        "Run local development server",
-        "Push changes to GitHub Pages"
+        "Set Git email and username with git config",
+        "Clone repo, activate virtual environment, and install packages",
+        "Use make commands to run and test the local server",
+        "Commit changes in VS Code and sync to GitHub Pages"
       ]
     };
 

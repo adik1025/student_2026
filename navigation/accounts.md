@@ -81,9 +81,6 @@ In this course, you may share or work with PII. Let’s make sure it’s handled
     container.appendChild(list);
   });
 </script>
-
-
-
 </div>
 
 <div style="display: flex; align-items: flex-start; gap: 24px; margin-top: 12px;">
@@ -153,10 +150,8 @@ It is in the your interest that you establish and continually refine your PII (P
 
 1. **Categorize Information**: 
    - **Public Information**: Information you are comfortable sharing publicly, such as your name and general interests.
-     <img src="{{site.baseurl}}/images/information.jpg" alt="Multi-Factor-Authentication" style="width:25%; min-width:120px; border-radius: 12px;"/>
 
    - **Sensitive Information**: Information that should be shared cautiously, such as your full birth date and phone number.
-        <img src="{{site.baseurl}}/images/something.png" alt="Multi-Factor-Authentication" style="width:50%; min-width:120px; border-radius: 24px;"/>
 
    - **Highly Confidential Information**: Information that should be kept strictly private, like social security number and internet access credentials.
         <br>
