@@ -116,6 +116,10 @@ show_reading_time: false
         login(options);
     }
 
+
+
+
+
     // Function to handle signup
     window.signup = function() {
     const signupButton = document.querySelector(".signup-card button");
