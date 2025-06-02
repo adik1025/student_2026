@@ -375,6 +375,8 @@ Be cautious with the information you share online. Protect your personal data by
 
       const score = Math.max(1000000 - totalAttempts * 10000, 0);
       localStorage.setItem("quiz1Score", score); // Change to "quiz2Score" in your other quiz page
+      const thing = localStorage.getItem("quiz1Score")
+      console.log(thing)
 
       resultHTML += `<p style="font-size:1.2em;color:#ffffff;"><strong>Score:</strong> ${score}</p>`;
 
