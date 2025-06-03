@@ -126,7 +126,7 @@ toc: true
   import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
 
   const POINTS_KEY = 'global_quiz_points';
-  const QUIZ_KEYS = ['quiz_done_github_workflow', 'quiz_done_github_pages', 'quiz_done_accounts'];
+  const QUIZ_KEYS = ['quiz_workflow_done', 'quiz_pages_done', 'quiz_accounts_done'];
   const pointsDisplay = document.getElementById("pointsDisplay");
   const saveResetBtn = document.getElementById("resetPointsBtn");
   const totalScore = parseInt(localStorage.getItem(POINTS_KEY) || '100', 10);
@@ -146,7 +146,7 @@ toc: true
   }
 
   async function saveAndReset() {
-    console.log("save and reset is being executed")
+
     const totalScore = parseInt(localStorage.getItem(POINTS_KEY) || '100');
     const sectionId = 1;
 
