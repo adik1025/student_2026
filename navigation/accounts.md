@@ -1,14 +1,10 @@
 ---
-toc: false
-comments: true
-layout: bootstrap
+layout: page
 title: Accounts
 description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
-dcategories: [DevOps]
-permalink: /devops/tools/accounts-2026
+permalink: /tools/accounts
 menu: nav/tools_setup.html
 toc: true
-comments: true
 ---
 
 ## What Is PII?
@@ -158,6 +154,8 @@ It is in the your interest that you establish and continually refine your PII (P
    - **Sensitive Information**: Information that should be shared cautiously, such as your full birth date and phone number.
 
    - **Highly Confidential Information**: Information that should be kept strictly private, like social security number and internet access credentials.
+        <br>
+        <img src="{{site.baseurl}}/images/confidential.jpeg" alt="Multi-Factor-Authentication" style="width:40%; min-width:120px; border-radius: 12px;"/>
 
 
 2. **Use Different Email Accounts**: 
@@ -204,7 +202,7 @@ Be cautious with the information you share online. Protect your personal data by
       transform: translateX(-100%);
     }
     h2 {
-      color: #2c2a5d;
+      color: #ffffff;
     }
     .question {
       font-weight: bold;
@@ -248,10 +246,18 @@ Be cautious with the information you share online. Protect your personal data by
     #nextBtn {
       display: none;
     }
+    .points {
+      margin-top: 16px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: center;
+      color: #2c2a5d;
+    }
   </style>
 </head>
+<body>
 
-<h3> Test your knowledge of Accounts! <h3>
+<h2> Test your knowledge of Github Pages! <h2>
 
   <div class="quiz-container">
     <div id="flashcard" class="flashcard">
@@ -260,6 +266,8 @@ Be cautious with the information you share online. Protect your personal data by
     </div>
     <div class="score" id="score"></div>
     <button id="nextBtn">Next</button>
+    <div class="points" id="pointsDisplay">Points: 100</div>
+    <button id="resetPointsBtn" style="margin-top: 10px;">Reset Points</button>
   </div>
 
   <script>
@@ -267,7 +275,7 @@ Be cautious with the information you share online. Protect your personal data by
       {
         q: "Which of the following is the best example of Highly Confidential Information?",
         options: [
-          "Your high school name",
+          "Your address",
           "Your full birth date",
           "Your Wi-Fi password",
           "Your city of residence"
@@ -300,14 +308,14 @@ Be cautious with the information you share online. Protect your personal data by
           "Reply with your credentials to be helpful",
           "Click any links to see where they go",
           "Ignore or report the email as phishing",
-          "Forward it to your friends"
+          "Report it to the proper authorities"
         ],
         answer: 2
       },
       {
         q: "Which of the following is considered Sensitive (but not Highly Confidential) Information?",
         options: [
-          "Your favorite food",
+          "Your birth year",
           "Your street address",
           "Your GitHub profile picture",
           "Your public portfolio link"
@@ -315,6 +323,8 @@ Be cautious with the information you share online. Protect your personal data by
         answer: 1
       }
     ];
+
+    const QUIZ_ID = "accounts";
 
     let queue = [...questions];
     let stats = new Array(questions.length).fill(0);
@@ -343,6 +353,51 @@ Be cautious with the information you share online. Protect your personal data by
       });
     }
 
+    // Global point tracking
+    const POINTS_KEY = 'global_quiz_points';
+    const pointsDisplay = document.getElementById("pointsDisplay");
+    const resetPointsBtn = document.getElementById("resetPointsBtn");
+
+    // Initialize or retrieve points
+    function initializePoints() {
+      if (!localStorage.getItem(POINTS_KEY)) {
+        localStorage.setItem(POINTS_KEY, '100');
+      }
+      updatePointsDisplay();
+    }
+
+    function getPoints() {
+      return parseInt(localStorage.getItem(POINTS_KEY) || '100', 10);
+    }
+
+    function setPoints(value) {
+      localStorage.setItem(POINTS_KEY, value.toString());
+      updatePointsDisplay();
+    }
+
+    function updatePointsDisplay() {
+      pointsDisplay.textContent = `Points: ${getPoints()}`;
+    }
+
+    resetPointsBtn.addEventListener("click", () => {
+      const quizzes = ["github_workflow", "github_pages", "accounts"];
+      const incomplete = quizzes.filter(q => localStorage.getItem(`quiz_done_${q}`) !== "true");
+
+      if (incomplete.length > 0) {
+        alert(`Please complete the following quiz(es) before resetting your points:\n- ${incomplete.join("\n- ")}`);
+        return;
+      }
+
+      // Reset points
+      setPoints(100);
+      alert("Points successfully reset to 100!");
+
+      // Reset completion status for all quizzes
+      quizzes.forEach(q => {
+        localStorage.setItem(`quiz_done_${q}`, "false");
+      });
+    });
+
     function handleAnswer(selected) {
       const correct = queue[0].answer;
       const wasCorrect = selected === correct;
@@ -367,28 +422,28 @@ Be cautious with the information you share online. Protect your personal data by
       nextBtn.style.display = "none";
       flashcardDiv.style.display = "none";
 
+      const incorrectAttempts = totalAttempts - questions.length;
+      const currentPoints = getPoints();
+      const newPoints = Math.max(0, currentPoints - incorrectAttempts);
+      setPoints(newPoints);
+
       let resultHTML = `
         <div style="background:#808080;padding:24px;border-radius:10px;">
           <h2 style="color:#2c2a5d;">Quiz Complete!</h2>
-          <p style="font-size:1.1em;">You completed the flashcards in <strong>${totalAttempts}</strong> attempts.</p>
+          <p style="font-size:1.1em;">You completed the flashcards in <strong>${totalAttempts}</strong> attempts.</ p>
+          <p style="font-size:1.1em;color:#2c2a5d;">You lost <strong>${incorrectAttempts}</strong> point(s).</p>
+          <p style="font-size:1.2em;color:#2c2a5d;"><strong>Current Points: ${newPoints}</strong></p>
+          <div class="attempts-summary">
       `;
-
-      const score = Math.max(1000000 - totalAttempts * 10000, 0);
-      localStorage.setItem("quiz1Score", score); // Change to "quiz2Score" in your other quiz page
-      const thing = localStorage.getItem("quiz1Score")
-      console.log(thing)
-
-      resultHTML += `<p style="font-size:1.2em;color:#ffffff;"><strong>Score:</strong> ${score}</p>`;
-
-      resultHTML += `<div class="attempts-summary">`;
       questions.forEach((q, i) => {
         resultHTML += `<p><strong>Q${i + 1}</strong> attempted <strong>${stats[i]}</strong> time(s)</p>`;
       });
       resultHTML += "</div></div>";
 
       scoreDiv.innerHTML = resultHTML;
+      localStorage.setItem(`quiz_done_${QUIZ_ID}`, "true")
     }
-
-
+    
+    initializePoints();
     renderFlashcard();
   </script>

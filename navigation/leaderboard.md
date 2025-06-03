@@ -4,7 +4,6 @@ title: Leaderboard
 permalink: /leaderboard/
 ---
 
-
 <title>Leaderboard</title>
 <style>
 body {
@@ -91,8 +90,14 @@ li {
             // Sort scores from highest to lowest
             data.sort((a, b) => b.value - a.value);
             data.forEach((player, index) => {
+                let displayName = "Unknown";
+                if (player.player_name) {
+                    displayName = player.player_name;
+                } else if (player.user_id == undefined && player.user_id == null) {
+                    displayName = `Shaurya`;
+                }
                 const listItem = document.createElement('li');
-                listItem.innerHTML = `<strong>#${index + 1}</strong> ${player.player_name} — ${player.value}`;
+                listItem.innerHTML = `<strong>#${index + 1}</strong> ${displayName} — ${player.value}`;
                 leaderboardList.appendChild(listItem);
             });
         } catch (error) {
