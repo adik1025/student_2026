@@ -104,7 +104,7 @@ permalink: /checklist/
   <div id="message"></div>
 
   <script>
-    const API_BASE = 'http://localhost:8887/api/checklist';
+    const API_BASE = 'http://localhost:1234/api/checklist';
     const user = 'student1'; // fixed user for now, can make dynamic later
 
     // Checklist items split by page, 4 items each (20 total)
@@ -137,7 +137,7 @@ permalink: /checklist/
         "Set Git email and username with git config",
         "Clone repo, activate virtual environment, and install packages",
         "Use make commands to run and test the local server",
-        "Commit changes in VS Code and sync to GitHub Pages"
+        "Push changes to GitHub Pages"
       ]
     };
 
