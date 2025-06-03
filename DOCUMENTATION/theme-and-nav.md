@@ -1,6 +1,10 @@
 ---
 layout: base
+<<<<<<< HEAD
 title: Theme and Navigation Documentation
+=======
+title: Home 
+>>>>>>> 1ace1c3 (documentation folder, theme/nav docs addition)
 hide: true
 nav: true
 toc: true
