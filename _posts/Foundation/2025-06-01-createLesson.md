@@ -73,6 +73,8 @@ You’ll customize this file every time you create a new lesson.
 
 ---
 
+<img src="{{site.baseurl}}/images/featureflowchart.jpeg">
+
 ## 🧩 Step 3: Add Interactive Components
 
 Pick the features that fit your lesson. All components are modular and easy to include:
