@@ -5,22 +5,17 @@ permalink: /tools/lessons
 toc: true
 ---
 
-<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f0f2f8;
       margin: 0;
       padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
     }
     .directory-container {
+  /* Center this container instead */
+      margin: 40px auto;
       text-align: center;
       background: white;
       padding: 40px;
@@ -88,57 +83,115 @@ toc: true
       font-size: 12px;
       color: #888;
     }
+    .score-container {
+      background-color: #ffffff;
+      color: #333;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    #submitScoreBtn {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #submitScoreBtn:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
-
   <div class="directory-container">
     <a href="{{ site.baseurl }}/tools/github/workflow" class="button">GitHub Workflow</a>
     <a href="{{ site.baseurl }}/tools/github/pages" class="button">GitHub Pages</a>
     <a href="{{ site.baseurl }}/tools/accounts" class="button">Accounts</a>
     <div class="points-section">
       <div id="pointsDisplay">Current Points: 100</div>
-      <button id="resetPointsBtn">Reset Points</button>
+      <button id="resetPointsBtn">Save & Reset</button>
     </div>
-    <div class="footer">
-      Complete all lessons and lose the least amount of points!
-    </div>
-  </div>
 
-  <script>
-    const POINTS_KEY = 'global_quiz_points';
-    const QUIZ_KEYS = ['quiz_workflow_done', 'quiz_pages_done', 'quiz_accounts_done'];
-    const pointsDisplay = document.getElementById("pointsDisplay");
-    const resetPointsBtn = document.getElementById("resetPointsBtn");
+<div class="footer">
+  Complete all lessons and lose the least amount of points!
+</div>
 
-    function getPoints() {
-      return parseInt(localStorage.getItem(POINTS_KEY) || '100', 10);
+<script type="module">
+  import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+
+  const POINTS_KEY = 'global_quiz_points';
+  const QUIZ_KEYS = ['quiz_workflow_done', 'quiz_pages_done', 'quiz_accounts_done'];
+  const pointsDisplay = document.getElementById("pointsDisplay");
+  const saveResetBtn = document.getElementById("resetPointsBtn");
+  const totalScore = parseInt(localStorage.getItem(POINTS_KEY) || '100', 10);
+  const sectionId = 1;
+
+  function getPoints() {
+    return parseInt(localStorage.getItem(POINTS_KEY) || '100', 10);
+  }
+
+  function setPoints(value) {
+    localStorage.setItem(POINTS_KEY, value.toString());
+    updatePointsDisplay();
+  }
+
+  function updatePointsDisplay() {
+    pointsDisplay.textContent = `Points: ${getPoints()}`;
+  }
+
+  async function saveAndReset() {
+
+    const totalScore = parseInt(localStorage.getItem(POINTS_KEY) || '100');
+    const sectionId = 1;
+
+    const token = localStorage.getItem("jwtToken");
+    if (!token) {
+        alert("You must be logged in to submit your score.");
+            return;
     }
 
-    function setPoints(value) {
-      localStorage.setItem(POINTS_KEY, value.toString());
-      updatePointsDisplay();
+    const incomplete = QUIZ_KEYS.filter(key => localStorage.getItem(key) !== 'true');
+    if (incomplete.length > 0) {
+      alert(`You must complete all quizzes before saving and resetting.\nQuizzes remaining: ${incomplete.length}`);
+      return;
     }
 
-    function updatePointsDisplay() {
-      pointsDisplay.textContent = `Points: ${getPoints()}`;
-    }
+    try {
+        const response = await fetch(`${pythonURI}/api/scores`, {
+            ...fetchOptions,
+            method: "POST",
+            headers: {
+                ...fetchOptions.headers,
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                value: totalScore,
+                section_id: sectionId
+            })
+        });
 
-    resetPointsBtn.addEventListener("click", () => {
-      const incomplete = QUIZ_KEYS.filter(key => localStorage.getItem(key) !== 'true');
-      if (incomplete.length > 0) {
-        alert(`You must complete all quizzes before resetting points.\nQuizzes remaining: ${incomplete.length}`);
-        return;
-      }
+        if (!response.ok) {
+            const result = await response.json();
+            throw new Error(result.message || `Error: ${response.status}`);
+        }
 
       setPoints(100);
-
-      // Reset quiz status
       QUIZ_KEYS.forEach(key => localStorage.setItem(key, 'false'));
-      alert("Points reset to 100 and quiz completion reset.");
-    });
+      alert("Score saved and points reset successfully!");
+    } catch (error) {
+      console.error("Failed to submit score:", error.message || error);
+      alert("Failed to submit score: " + error.message);
+    }
+  }
 
-    updatePointsDisplay();
-  </script>
+  saveResetBtn.addEventListener("click", saveAndReset);
+  updatePointsDisplay();
+</script>
+
 </body>
-</html>
