@@ -1,6 +1,6 @@
 ---
 layout: base
-title: Home 
+title: Theme and Navigation Documentation
 hide: true
 nav: true
 toc: true
