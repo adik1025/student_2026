@@ -18,7 +18,6 @@ minima:
     - navigation/checklist.md
     - navigation/authentication/login.md
     - navigation/authentication/logout.md
-    - navigation/submit-score.md
 
 
   skin: dark
