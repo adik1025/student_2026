@@ -96,8 +96,8 @@ This step involves enabling GitHub Pages Actions for your project. By doing so, 
 You need to modify the `_config.yml` file to reflect your repository's name. This configuration is crucial because it ensures that your project's styling is correctly applied, making your deployed site look as intended rather than unstyled or broken.
 
 ```yaml
-github_repo: "student_2025"
-baseurl: "/student_2025"
+github_repo: "student_2026"
+baseurl: "/student_2026"
 ```
 
 ### Set Repository Name in Makefile
@@ -107,7 +107,7 @@ Adjust the `REPO_NAME` variable in your Makefile to match your GitHub repository
 ```make
 # Configuration, override port with usage: make PORT=4200
 PORT ?= 4100
-REPO_NAME ?= student_2025
+REPO_NAME ?= student_2026
 LOG_FILE = /tmp/jekyll$(PORT).log
 ```
 
@@ -130,8 +130,8 @@ Quick start. A quick start below is a reminder, but is dependent on your knowled
 Run these commands to obtain the project, then locate into the project directory with the terminal, install an extensive set of tools, and make.
 
 ```bash
-git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2025.git
-cd <repo-dir>/scripts # cd student_2025
+git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2026.git
+cd <repo-dir>/scripts # cd student_2026
 ```
 
 #### Windows WSL and/or Ubuntu Users
@@ -176,7 +176,7 @@ Start the preview server in the terminal,
 The terminal output from `make` shows the server address. "Cmd" or "Ctl" click the http location to open the preview server in a browser. Example:
 
 ```text
-http://0.0.0.0:4100/student_2025/
+http://0.0.0.0:4100/student_2026/
 ```
 
 ### Regeneration of Web Application
