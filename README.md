@@ -100,12 +100,17 @@ You need to modify the `_config.yml` file to reflect your repository's name. Thi
 
 ```yaml
 <<<<<<< HEAD
+<<<<<<< HEAD
 github_repo: "student_2026"
 baseurl: "/student_2026"
 =======
 github_repo: "student_2025"
 baseurl: "/student_2025"
 >>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
+=======
+github_repo: "student_2026"
+baseurl: "/student_2026"
+>>>>>>> cdfa7ad (2025 --> 2026 in README)
 ```
 
 ### Set Repository Name in Makefile
@@ -139,12 +144,17 @@ Run these commands to obtain the project, then locate into the project directory
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2026.git
 cd <repo-dir>/scripts # cd student_2026
 =======
 git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2025.git
 cd <repo-dir>/scripts # cd student_2025
 >>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
+=======
+git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2026.git
+cd <repo-dir>/scripts # cd student_2026
+>>>>>>> cdfa7ad (2025 --> 2026 in README)
 ```
 
 #### Windows WSL and/or Ubuntu Users
@@ -190,10 +200,14 @@ The terminal output from `make` shows the server address. "Cmd" or "Ctl" click t
 
 ```text
 <<<<<<< HEAD
+<<<<<<< HEAD
 http://0.0.0.0:4100/student_2026/
 =======
 http://0.0.0.0:4100/student_2025/
 >>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
+=======
+http://0.0.0.0:4100/student_2026/
+>>>>>>> cdfa7ad (2025 --> 2026 in README)
 ```
 
 ### Regeneration of Web Application
