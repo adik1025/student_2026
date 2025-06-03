@@ -1,8 +1,18 @@
 ---
+<<<<<<< HEAD
 layout: page
 title: Accounts
 description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
 permalink: /tools/accounts
+=======
+toc: false
+comments: true
+layout: post
+title: Accounts
+description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
+dcategories: [DevOps]
+permalink: /devops/tools/accounts
+>>>>>>> 137a839 (fix folder structure)
 menu: nav/tools_setup.html
 toc: true
 comments: true
@@ -83,6 +93,12 @@ In this course, you may share or work with PII. Let’s make sure it’s handled
     container.appendChild(list);
   });
 </script>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 137a839 (fix folder structure)
 </div>
 
 <div style="display: flex; align-items: flex-start; gap: 24px; margin-top: 12px;">
@@ -152,11 +168,20 @@ It is in the your interest that you establish and continually refine your PII (P
 
 1. **Categorize Information**: 
    - **Public Information**: Information you are comfortable sharing publicly, such as your name and general interests.
+<<<<<<< HEAD
 
    - **Sensitive Information**: Information that should be shared cautiously, such as your full birth date and phone number.
 
    - **Highly Confidential Information**: Information that should be kept strictly private, like social security number and internet access credentials.
         <br>
+=======
+     <img src="{{site.baseurl}}/images/information.jpg" alt="Multi-Factor-Authentication" style="width:25%; min-width:120px; border-radius: 12px;"/>
+
+   - **Sensitive Information**: Information that should be shared cautiously, such as your full birth date and phone number.
+        <img src="{{site.baseurl}}/images/something.png" alt="Multi-Factor-Authentication" style="width:50%; min-width:120px; border-radius: 24px;"/>
+
+   - **Highly Confidential Information**: Information that should be kept strictly private, like social security number and internet access credentials.
+>>>>>>> 137a839 (fix folder structure)
         <img src="{{site.baseurl}}/images/confidential.jpeg" alt="Multi-Factor-Authentication" style="width:40%; min-width:120px; border-radius: 12px;"/>
 
 
@@ -173,6 +198,7 @@ It is in the your interest that you establish and continually refine your PII (P
 
 Be cautious with the information you share online. Protect your personal data by using separate email accounts, staying aware of security risks, and adapting your practices as the digital world evolves. Taking steps now helps safeguard your digital identity in the future.
 
+<<<<<<< HEAD
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -449,3 +475,14 @@ Be cautious with the information you share online. Protect your personal data by
     initializePoints();
     renderFlashcard();
   </script>
+=======
+<details style="border: 2px solid #006600; border-radius: 12px; padding: 10px; margin-bottom: 16px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.1rem;">
+  <summary style="font-weight: bold; cursor: pointer;"> 🧠 Test Your Knowledge</summary>
+  <div style="margin-top: 10px;">
+    <p>Ready to check your understanding?</p>
+    <a href="{{site.baseurl}}/piiquiz/" style="background-color: #006600; color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      Take the Quiz
+    </a>
+  </div>
+</details>
+>>>>>>> 137a839 (fix folder structure)

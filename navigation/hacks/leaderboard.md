@@ -4,6 +4,10 @@ title: Leaderboard
 permalink: /leaderboard/
 ---
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 137a839 (fix folder structure)
 <title>Leaderboard</title>
 <style>
 body {
@@ -70,6 +74,7 @@ li {
 //         'X-Origin': 'client'
 //     },
 // };
+<<<<<<< HEAD
     import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
     async function fetchLeaderboard() {
         try {
@@ -107,5 +112,39 @@ li {
         }
     }
     window.onload = fetchLeaderboard;
+=======
+import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+async function fetchLeaderboard() {
+    try {
+       const response = await fetch(`${pythonURI}/api/leaderboard`, {
+            ...fetchOptions,
+            method: 'GET'
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch leaderboard: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Leaderboard data:', data);
+        const leaderboardList = document.getElementById('leaderboard-list');
+        leaderboardList.innerHTML = '';  // Clear previous content
+        if (!Array.isArray(data) || data.length === 0) {
+            leaderboardList.innerHTML = '<li>No leaderboard data available.</li>';
+            return;
+        }
+        // Just display the data in order received (no sorting)
+        data.sort((a, b) => parseInt(b.score) - parseInt(a.score));
+        data.forEach((player, index) => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>#${index + 1}</strong> ${player.player_name} — ${player.score}`;
+            leaderboardList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error loading leaderboard:', error.message || error);
+        const leaderboardList = document.getElementById('leaderboard-list');
+        leaderboardList.innerHTML = '<li style="color:red;">Failed to load leaderboard data. See console for details.</li>';
+    }
+}
+window.onload = fetchLeaderboard;
+>>>>>>> 137a839 (fix folder structure)
 
 </script>
