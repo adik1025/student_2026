@@ -724,7 +724,10 @@ Here’s a quick reference when building a new lesson:
 * [ ] Deploy when everything is working
 
 With this layout system, you can build high-quality, interactive lessons that are modular, student-friendly, and easy to maintain. Whether you're teaching loops, functions, or arrays, these templates give you a powerful way to bring your content to life.
+<<<<<<< HEAD
 =======
 
 ---
 >>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
+=======
+>>>>>>> 71fac01 (Update README.md)
