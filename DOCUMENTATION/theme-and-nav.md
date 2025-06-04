@@ -32,7 +32,7 @@ This is an internal system design — you should fully understand how your `_con
 
 ---
 
-![Image]({{ site.baseurl }}/images/theme_switch.drawio.svg)
+<img src="{{ site.baseurl }}/images/theme_switch.drawio.svg">
 
 ---
 

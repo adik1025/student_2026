@@ -146,7 +146,7 @@ The following files were safely removed after being consolidated:
 
 ---
 
-![Image]({{ site.baseurl}}/images/layout-post.drawio.svg)
+<img src="{{site.baseurl}}/images/layout-post.drawio.svg">
 
 ---
 
