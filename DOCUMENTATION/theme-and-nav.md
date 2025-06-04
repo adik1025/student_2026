@@ -1,6 +1,7 @@
 ---
 layout: base
 title: Theme and Navigation Documentation
+permalink: theme_and_nav_docs
 hide: true
 nav: true
 toc: true
