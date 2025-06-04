@@ -2,6 +2,14 @@ import { pythonURI, fetchOptions } from './config.js';
 
 console.log("login.js loaded");
 
+/**
+ * This function is called when the DOM is loaded.
+ * It fetches the credentials from the API and updates the login area, based on the data.
+ * If the user is authenticated, the name of the user is shown as a link.
+ * If the user is not authenticated, a "Login" link is shown.
+ * The authenticated status is stored in the local storage.
+ * @param {string} baseurl - The base URL of the website.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     const baseurl = document.querySelector('.trigger').getAttribute('data-baseurl');
     console.log("Base URL:", baseurl); // Debugging line
@@ -25,6 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 });
 
+/**
+ * This function fetches the credentials of the User from the API.
+ * @param {string} baseurl - The base URL of the website.
+ * @returns {Promise} - The Promise object representing the completion of the function.
+ * @async - This function performs asynchronous operations using .then() and .catch() for handling responses.
+ * @function getCredentials
+ */
 function getCredentials(baseurl) {
     const URL = pythonURI + '/api/id';
     return fetch(URL, fetchOptions)

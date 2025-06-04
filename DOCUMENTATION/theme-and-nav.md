@@ -1,7 +1,8 @@
 ---
 layout: base
-title: Theme and Navigation Documentation
-permalink: /theme_and_nav_docs
+
+title: Home 
+
 hide: true
 nav: true
 toc: true
@@ -32,7 +33,9 @@ This is an internal system design — you should fully understand how your `_con
 
 ---
 
+
 <img src="{{ site.baseurl }}/images/theme_switch.drawio.svg">
+
 
 ---
 

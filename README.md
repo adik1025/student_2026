@@ -99,8 +99,10 @@ This step involves enabling GitHub Pages Actions for your project. By doing so, 
 You need to modify the `_config.yml` file to reflect your repository's name. This configuration is crucial because it ensures that your project's styling is correctly applied, making your deployed site look as intended rather than unstyled or broken.
 
 ```yaml
+
 github_repo: "student_2026"
 baseurl: "/student_2026"
+
 ```
 
 ### Set Repository Name in Makefile
@@ -695,3 +697,6 @@ Here’s a quick reference when building a new lesson:
 * [ ] Deploy when everything is working
 
 With this layout system, you can build high-quality, interactive lessons that are modular, student-friendly, and easy to maintain. Whether you're teaching loops, functions, or arrays, these templates give you a powerful way to bring your content to life.
+
+---
+
