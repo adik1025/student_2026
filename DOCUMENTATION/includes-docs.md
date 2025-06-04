@@ -65,7 +65,6 @@ _includes/
 ### layout/post_meta_block.html
 
 **Consolidated:**
-- `reading_time.html`
 - `toc.html`
 - `utterances.html`
 
@@ -115,7 +114,6 @@ The logic inside the block checks for these flags and conditionally displays the
 
 ### Old meta content:
 ```liquid
-{% include reading_time.html %}
 {% include toc.html html=content %}
 {% include utterances.html %}
 ```
@@ -133,7 +131,6 @@ The logic inside the block checks for these flags and conditionally displays the
 The following files were safely removed after being consolidated:
 
 - `toc.html`
-- `reading_time.html`
 - `utterances.html`
 - `post_list.html` (after verifying no active includes)
 - All individual `notebook_*_link.html` files

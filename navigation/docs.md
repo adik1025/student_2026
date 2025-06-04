@@ -18,7 +18,7 @@ Each document is crucial for understanding the technical setup and best practice
 
 The `_includes` directory was historically a flat, disorganized collection of layout fragments. We performed a large-scale refactor to clean up, consolidate, and modularize these includes.
 
-- Common layout files such as `reading_time.html`, `toc.html`, and `utterances.html` have been consolidated into a single `post_meta_block.html`.
+- Common layout files such as `toc.html`, and `utterances.html` have been consolidated into a single `post_meta_block.html`.
 - Notebook badges for GitHub, Binder, Colab, and Deepnote have been unified into `badge_block.html`.
 - Navigation and post listing files are organized into logical subfolders (`head/`, `layout/`, `nav/`, `notebooks/`, `posts/`).
 - File deletions were performed to remove obsolete, duplicated, or unused includes.
