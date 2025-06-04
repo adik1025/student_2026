@@ -1,14 +1,8 @@
 ---
 layout: base
-<<<<<<< HEAD
-<<<<<<< HEAD
-title: Theme and Navigation Documentation
-=======
+
 title: Home 
->>>>>>> 1ace1c3 (documentation folder, theme/nav docs addition)
-=======
-title: Theme and Navigation Documentation
->>>>>>> a0f3ddf (title update)
+
 hide: true
 nav: true
 toc: true
@@ -39,7 +33,9 @@ This is an internal system design — you should fully understand how your `_con
 
 ---
 
-![Image](https://github.com/user-attachments/assets/b2df7389-9028-4247-a8b9-b0eec3e34510)
+
+<img src="{{ site.baseurl }}/images/theme_switch.drawio.svg">
+
 
 ---
 

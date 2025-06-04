@@ -99,18 +99,10 @@ This step involves enabling GitHub Pages Actions for your project. By doing so, 
 You need to modify the `_config.yml` file to reflect your repository's name. This configuration is crucial because it ensures that your project's styling is correctly applied, making your deployed site look as intended rather than unstyled or broken.
 
 ```yaml
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 github_repo: "student_2026"
 baseurl: "/student_2026"
-=======
-github_repo: "student_2025"
-baseurl: "/student_2025"
->>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
-=======
-github_repo: "student_2026"
-baseurl: "/student_2026"
->>>>>>> cdfa7ad (2025 --> 2026 in README)
+
 ```
 
 ### Set Repository Name in Makefile
@@ -143,18 +135,8 @@ Quick start. A quick start below is a reminder, but is dependent on your knowled
 Run these commands to obtain the project, then locate into the project directory with the terminal, install an extensive set of tools, and make.
 
 ```bash
-<<<<<<< HEAD
-<<<<<<< HEAD
 git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2026.git
 cd <repo-dir>/scripts # cd student_2026
-=======
-git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2025.git
-cd <repo-dir>/scripts # cd student_2025
->>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
-=======
-git clone <this-repo> # git clone https://github.com/opencodingsociety/student_2026.git
-cd <repo-dir>/scripts # cd student_2026
->>>>>>> cdfa7ad (2025 --> 2026 in README)
 ```
 
 #### Windows WSL and/or Ubuntu Users
@@ -199,15 +181,7 @@ Start the preview server in the terminal,
 The terminal output from `make` shows the server address. "Cmd" or "Ctl" click the http location to open the preview server in a browser. Example:
 
 ```text
-<<<<<<< HEAD
-<<<<<<< HEAD
 http://0.0.0.0:4100/student_2026/
-=======
-http://0.0.0.0:4100/student_2025/
->>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
-=======
-http://0.0.0.0:4100/student_2026/
->>>>>>> cdfa7ad (2025 --> 2026 in README)
 ```
 
 ### Regeneration of Web Application
@@ -370,7 +344,6 @@ Templates are located in:
 - **Pull Requests**: Pull requests must fill out the provided PR template before merging.
 
 This ensures all contributions follow a consistent standard.
-<<<<<<< HEAD
 
 ---
 
@@ -724,10 +697,6 @@ Here’s a quick reference when building a new lesson:
 * [ ] Deploy when everything is working
 
 With this layout system, you can build high-quality, interactive lessons that are modular, student-friendly, and easy to maintain. Whether you're teaching loops, functions, or arrays, these templates give you a powerful way to bring your content to life.
-<<<<<<< HEAD
-=======
 
 ---
->>>>>>> f0e72d5 (documentation (README) update (OCS, yml, etc.))
-=======
->>>>>>> 71fac01 (Update README.md)
+

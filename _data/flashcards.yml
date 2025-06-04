@@ -2,6 +2,7 @@ cards:
   - term: Loop
     definition: A programming structure that repeats a block of code.
   - term: Iteration
+
     definition: Repeating a set of instructions (e.g. for/while loops).
   - term: Variable
     definition: A named container that stores data.
@@ -19,3 +20,26 @@ cards:
     definition: A set of tools for building software and interacting with other software.
   - term: Big O
     definition: Describes the performance or complexity of an algorithm.
+# I am not sure why git is asking me to merge these, none of my group changed thes. idk which ones u want so I kept both
+    definition: Each time a loop runs.
+  - term: For Loop
+    definition: A loop that repeats a fixed number of times.
+  - term: While Loop
+    definition: A loop that continues as long as a condition is true.
+  - term: Infinite Loop
+    definition: A loop that never stops because the condition is always true.
+  - term: Break
+    definition: A command that stops the loop before it finishes normally.
+  - term: Continue
+    definition: A command that skips the current loop iteration and moves to the next.
+  - term: Range
+    definition: A function used with for loops to specify how many times to repeat.
+  - term: Nested Loop
+    definition: A loop inside another loop.
+  - term: Condition
+    definition: An expression that evaluates to true or false, used in while loops.
+  - term: Index
+    definition: The position number of an item in a list, often used in loops.
+  - term: Loop Variable
+    definition: A variable that changes value in each iteration of the loop.
+

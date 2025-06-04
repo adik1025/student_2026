@@ -1,5 +1,5 @@
 ---
-<<<<<<< HEAD
+
 layout: page
 title: GitHub Pages
 description: This page will teach you how to set up GitHub Pages on a browser version of Visual Studio Code (VSCode)
@@ -8,21 +8,9 @@ menu: nav/tools_setup.html
 toc: true
 ---
 
-=======
-toc: false
-comments: true
-layout: post
-title: GitHub Pages
-description: This page will teach you how to set up GitHub Pages on a browser version of VSCode
-permalink: /devops/tools/github_pages
-menu: nav/tools_setup.html
-toc: true
-comments: true
----
-
 <h3>This page will teach you how to run GitHub Pages using the browser version of Visual Studio Code (VSCode)</h3>
 
->>>>>>> 137a839 (fix folder structure)
+
 <details style="border: 2px solid #003366; border-radius: 12px; padding: 10px; margin-bottom: 16px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.1rem;">
   <summary style="font-weight: bold; cursor: pointer;"> What is GitHub Pages?</summary>
   <div style="margin-top: 10px;">
@@ -95,7 +83,7 @@ comments: true
   </div>
 </details>
 
-<<<<<<< HEAD
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -373,7 +361,7 @@ comments: true
     initializePoints();
     renderFlashcard();
   </script>
-=======
+
 <details style="border: 2px solid #006600; border-radius: 12px; padding: 10px; margin-bottom: 16px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.1rem;">
   <summary style="font-weight: bold; cursor: pointer;"> 🧠 Test Your Knowledge</summary>
   <div style="margin-top: 10px;">
@@ -383,4 +371,4 @@ comments: true
     </a>
   </div>
 </details>
->>>>>>> 137a839 (fix folder structure)
+
