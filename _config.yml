@@ -18,6 +18,7 @@ minima:
     - navigation/leaderboard.md
     - navigation/checklist.md
     - navigation/resource.md
+    - navigation/docs.md
 
   skin: dark
   social_links:
