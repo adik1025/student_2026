@@ -32,7 +32,7 @@ This is an internal system design — you should fully understand how your `_con
 
 ---
 
-![Image](https://github.com/user-attachments/assets/b2df7389-9028-4247-a8b9-b0eec3e34510)
+![Image]({{ site.baseurl }}/images/theme_switch.drawio.svg)
 
 ---
 

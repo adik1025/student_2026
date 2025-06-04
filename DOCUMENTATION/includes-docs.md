@@ -146,7 +146,7 @@ The following files were safely removed after being consolidated:
 
 ---
 
-![Image](https://github.com/user-attachments/assets/281fd1b7-0e84-419a-be1e-48dc4b044778)
+![Image]({{ site.baseurl}}/images/layout-post.drawio.svg)
 
 ---
 
