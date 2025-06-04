@@ -105,12 +105,7 @@ The logic inside the block checks for these flags and conditionally displays the
 ## Layout & Include Updates
 
 ### Old badge section (now removed from layouts):
-```liquid
-{% include notebook_github_link.html %}
-{% include notebook_binder_link.html %}
-{% include notebook_colab_link.html %}
-{% include notebook_deepnote_link.html %}
-```
+
 
 ### Now replaced with:
 ```liquid
