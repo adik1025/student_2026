@@ -28,5 +28,4 @@ search_exclude: true
             // Handle any errors that occurred during the fetch
             console.error('Error during logout:', error);
         });
-
 </script>
