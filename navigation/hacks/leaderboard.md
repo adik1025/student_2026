@@ -71,6 +71,43 @@ li {
 //         'X-Origin': 'client'
 //     },
 // };
+    import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
+    async function fetchLeaderboard() {
+        try {
+            const response = await fetch(`${pythonURI}/api/scores`, {
+                ...fetchOptions,
+                method: 'GET'
+            });
+            if (!response.ok) {
+                throw new Error(`Failed to fetch leaderboard: ${response.status}`);
+            }
+            const data = await response.json();
+            const leaderboardList = document.getElementById('leaderboard-list');
+            leaderboardList.innerHTML = '';
+            if (!Array.isArray(data) || data.length === 0) {
+                leaderboardList.innerHTML = '<li>No leaderboard data available.</li>';
+                return;
+            }
+            // Sort scores from highest to lowest
+            data.sort((a, b) => b.value - a.value);
+            data.forEach((player, index) => {
+                let displayName = "Unknown";
+                if (player.player_name) {
+                    displayName = player.player_name;
+                } else if (player.user_id == undefined && player.user_id == null) {
+                    displayName = `Shaurya`;
+                }
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>#${index + 1}</strong> ${displayName} — ${player.value}`;
+                leaderboardList.appendChild(listItem);
+            });
+        } catch (error) {
+            console.error('Error loading leaderboard:', error.message || error);
+            const leaderboardList = document.getElementById('leaderboard-list');
+            leaderboardList.innerHTML = '<li style="color:red;">Failed to load leaderboard data. See console for details.</li>';
+        }
+    }
+    window.onload = fetchLeaderboard;
 import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
 async function fetchLeaderboard() {
     try {
@@ -81,25 +118,6 @@ async function fetchLeaderboard() {
         if (!response.ok) {
             throw new Error(`Failed to fetch leaderboard: ${response.status}`);
         }
-        const data = await response.json();
-        console.log('Leaderboard data:', data);
-        const leaderboardList = document.getElementById('leaderboard-list');
-        leaderboardList.innerHTML = '';  // Clear previous content
-        if (!Array.isArray(data) || data.length === 0) {
-            leaderboardList.innerHTML = '<li>No leaderboard data available.</li>';
-            return;
-        }
-        // Just display the data in order received (no sorting)
-        data.sort((a, b) => parseInt(b.score) - parseInt(a.score));
-        data.forEach((player, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>#${index + 1}</strong> ${player.player_name} — ${player.score}`;
-            leaderboardList.appendChild(listItem);
-        });
-    } catch (error) {
-        console.error('Error loading leaderboard:', error.message || error);
-        const leaderboardList = document.getElementById('leaderboard-list');
-        leaderboardList.innerHTML = '<li style="color:red;">Failed to load leaderboard data. See console for details.</li>';
     }
 }
 window.onload = fetchLeaderboard;

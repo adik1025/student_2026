@@ -104,7 +104,7 @@ permalink: /checklist/
   <div id="message"></div>
 
   <script>
-    const API_BASE = 'http://localhost:1234/api/checklist';
+    const API_BASE = 'http://localhost:8587/api/checklist';
     const user = 'student1'; // fixed user for now, can make dynamic later
 
     // Checklist items split by page, 4 items each (20 total)
