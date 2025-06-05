@@ -1,13 +1,11 @@
 ---
 layout: base
-title: _includes Consolidations and Documentation
+title: Refactored: `_includes` Cleanup and Consolidation Documentation
 hide: true
 permalink: /includes_docs
 nav: true
 toc: true
 ---
-
-# Refactored: `_includes` Cleanup and Consolidation Documentation
 
 ## Folder Structure Reorganization
 
@@ -71,11 +69,11 @@ _includes/
 **New unified include:**
 
 ```liquid
-{% include layout/post_meta_block.html html=content %}
+% include layout/post_meta_block.html html=content %
 ```
 
 **Supports front matter flags:**
-```liquid
+```html
 toc: true / false
 comments: true / false
 show_reading_time: true / false
@@ -95,7 +93,7 @@ The logic inside the block checks for these flags and conditionally displays the
 
 **Replaced with single call:**
 ```liquid
-{% include notebooks/badge_block.html %}
+% include notebooks/badge_block.html %
 ```
 
 ---
@@ -103,24 +101,31 @@ The logic inside the block checks for these flags and conditionally displays the
 ## Layout & Include Updates
 
 ### Old badge section (now removed from layouts):
-
+```liquid
+% include notebook_github_link.html %
+% include notebook_binder_link.html %
+% include notebook_colab_link.html %
+% include notebook_deepnote_link.html %
+```
 
 ### Now replaced with:
 ```liquid
-{% include notebooks/badge_block.html %}
+% include notebooks/badge_block.html %
 ```
 
 ---
 
 ### Old meta content:
 ```liquid
+
 {% include toc.html html=content %}
 {% include utterances.html %}
+
 ```
 
 ### Now replaced with:
 ```liquid
-{% include layout/post_meta_block.html html=content %}
+% include layout/post_meta_block.html html=content %
 ```
 ---
 

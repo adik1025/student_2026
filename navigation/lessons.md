@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lessons Directory
+title: Lessons
 permalink: /tools/lessons
 toc: true
 ---

@@ -6,7 +6,7 @@ permalink: /documents/
 nav: true
 ---
 
-# Internal Documentation Overview
+## Internal Documentation Overview
 
 This page provides links and descriptions for internal documentation about the Open Coding Society repository structure and theme/navigation system.
 
@@ -55,6 +55,39 @@ This ensures:
 - Clean, maintainable theme and style management
 
 [View Theme and Navigation Logic Documentation Here]({{ site.baseurl }}/theme_and_nav_docs)
+
+---
+
+## GitHub Workflow Documentation
+
+This guide introduces the different GitHub workflows you will encounter in coursework:
+
+- **Reference Repositories**: Clone for study without making changes.
+- **Owner / Collaborator Repositories**: Create and manage your own projects or collaborate with a team.
+- **Fork → Branch → Pull Request**: Contribute to repositories you don't own by creating PRs.
+- **Team Project Structures**: Scrum Master + Contributors model vs All-Collaborators model.
+- **Best Practices**: Branching, committing, pull requests, collaboration tools.
+
+A must-read to properly work on projects, team collaborations, and coursework submissions.
+
+[View GitHub Workflow Documentation Here]({{ site.baseurl }}/tools/github/workflow)
+
+---
+
+## Repository README Documentation
+
+This README file is your comprehensive guide to setting up and maintaining your GitHub Pages repository:
+
+- Background of Open Coding Society and its evolution from Fastpages.
+- Setup guides for GitHub Pages Actions and `_config.yml`.
+- Theme choices between Minima and Minimal and how to configure them.
+- Development environment setup instructions (Linux shell, macOS, Kasm).
+- Git best practices: branching, pull requests, naming conventions.
+- How to manage Jekyll blogs and pages (posts, notebooks, metadata).
+
+Essential for correctly launching and managing your portfolio or project site.
+
+[View README Documentation Here]({{ site.baseurl }}/readme/)
 
 ---
 
