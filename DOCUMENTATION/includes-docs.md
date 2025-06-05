@@ -72,12 +72,12 @@ _includes/
 
 **New unified include:**
 
-```liquid
+```html
 {% include layout/post_meta_block.html html=content %}
 ```
 
 **Supports front matter flags:**
-```liquid
+```html
 toc: true / false
 comments: true / false
 show_reading_time: true / false
@@ -96,7 +96,7 @@ The logic inside the block checks for these flags and conditionally displays the
 - `notebook_github_link.html`
 
 **Replaced with single call:**
-```liquid
+```html
 {% include notebooks/badge_block.html %}
 ```
 
@@ -106,14 +106,14 @@ The logic inside the block checks for these flags and conditionally displays the
 
 ### Old badge section (now removed from layouts):
 ```liquid
-{% include notebook_github_link.html %}
-{% include notebook_binder_link.html %}
-{% include notebook_colab_link.html %}
-{% include notebook_deepnote_link.html %}
+% include notebook_github_link.html %
+% include notebook_binder_link.html %
+% include notebook_colab_link.html %
+% include notebook_deepnote_link.html %
 ```
 
 ### Now replaced with:
-```liquid
+```html
 {% include notebooks/badge_block.html %}
 ```
 
@@ -121,13 +121,13 @@ The logic inside the block checks for these flags and conditionally displays the
 
 ### Old meta content:
 ```liquid
-{% include reading_time.html %}
-{% include toc.html html=content %}
-{% include utterances.html %}
+% include reading_time.html %
+% include toc.html html=content %
+% include utterances.html %
 ```
 
 ### Now replaced with:
-```liquid
+```html
 {% include layout/post_meta_block.html html=content %}
 ```
 ---
