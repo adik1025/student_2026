@@ -1,8 +1,7 @@
 ---
 layout: base
-title: Snake
+title: Snake Game
 permalink: /snake/
-nav: true
 ---
 
 <style>

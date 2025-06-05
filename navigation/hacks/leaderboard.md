@@ -2,6 +2,7 @@
 layout: page
 title: Leaderboard
 permalink: /leaderboard/
+nav: true
 ---
 
 <title>Leaderboard</title>
@@ -120,5 +121,5 @@ async function fetchLeaderboard() {
     }
 }
 window.onload = fetchLeaderboard;
-    window.onload = fetchLeaderboard;
+
 </script>

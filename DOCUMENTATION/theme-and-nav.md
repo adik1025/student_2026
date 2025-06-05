@@ -3,7 +3,6 @@ layout: base
 title: Theme Switching and Navigation Logic Documentation
 hide: true
 permalink: /theme_and_nav_docs
-nav: true
 toc: true
 ---
 

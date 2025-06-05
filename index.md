@@ -2,7 +2,6 @@
 layout: base
 title: Home 
 hide: true
-nav: true
 ---
 
 <div style="max-width: 800px; margin: auto; padding: 20px; font-family: sans-serif;">
@@ -42,18 +41,3 @@ nav: true
 <p style="color: #2A7DB1;">Email: <a href="mailto:your-email@example.com" style="color: #2A7DB1; text-decoration: underline;">your-email@example.com</a></p>
 
 </div>
-
-
-### Starter games
-
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-    <a href="{{site.baseurl}}/snake" style="text-decoration: none;">
-        <div style="background-color: #00FF00; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-            Snake Game
-        </div>
-    </a>
-<a href="{{site.baseurl}}/rpg/dot3" style="text-decoration: none;">
-    <div style="background-color: #880088; color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
-        Turtle v0.3
-    </div>
-</a>

@@ -1,6 +1,6 @@
 ---
 layout: base 
-title: Resource
+title: Resources
 search_exclude: true
 permalink: /resource/
 nav: true
