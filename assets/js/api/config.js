@@ -2,7 +2,7 @@ export var pythonURI;
 if (location.hostname === "localhost") {
         pythonURI = "http://localhost:8887";
 } else if (location.hostname === "127.0.0.1") {
-        pythonURI = "http://127.0.0.1:1234";
+        pythonURI = "http://127.0.0.1:8587";
 } else {
         pythonURI =  "https://flocker.nighthawkcodingsociety.com";
 }
@@ -59,6 +59,7 @@ export function login(options) {
         .then(data => {
                 if (data.token) {
                 localStorage.setItem('jwtToken', data.token);  // Save token here
+                console.log(data.token)
                 } else {
                 console.warn('No token found in login response.');
                 }

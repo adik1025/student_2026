@@ -7,7 +7,7 @@ layout: post
 title: Accounts
 description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
 dcategories: [DevOps]
-permalink: /devops/tools/accounts
+permalink: /tools/accounts
 ---
 
 ## What Is PII?
@@ -261,7 +261,7 @@ Be cautious with the information you share online. Protect your personal data by
 </head>
 <body>
 
-<h2> Test your knowledge of Github Pages! <h2>
+<h2> Test your knowledge of Github Pages!</h2>
 
   <div class="quiz-container">
     <div id="flashcard" class="flashcard">
@@ -451,8 +451,7 @@ Be cautious with the information you share online. Protect your personal data by
     initializePoints();
     renderFlashcard();
   </script>
-=======
-=======
+
 
 <details style="border: 2px solid #006600; border-radius: 12px; padding: 10px; margin-bottom: 16px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.1rem;">
   <summary style="font-weight: bold; cursor: pointer;"> 🧠 Test Your Knowledge</summary>

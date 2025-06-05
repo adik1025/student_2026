@@ -149,6 +149,7 @@ show_reading_time: false
     .then(response => {
         if (!response.ok) {
             throw new Error(`Signup failed: ${response.status}`);
+            console.log("!response not okay section line 152 in login")
         }
         return response.json();
     })
@@ -159,6 +160,7 @@ show_reading_time: false
     })
     .catch(error => {
         console.error("Signup Error:", error);
+        console.log("random ass catch error that provides not description. login line: 163")
         document.getElementById("signupMessage").textContent = `Signup Error: ${error.message}`;
         // Re-enable the button if there is an error
         signupButton.disabled = false;
@@ -183,6 +185,7 @@ show_reading_time: false
             })
             .catch(error => {
                 console.error("Python Database Error:", error);
+                console.log('random eror')
                 const errorMsg = `Python Database Error: ${error.message}`;
             });
     }
