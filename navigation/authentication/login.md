@@ -183,6 +183,10 @@ show_reading_time: false
             })
             .catch(error => {
                 console.error("Python Database Error:", error);
+<<<<<<< HEAD
+                console.log('random eror')
+=======
+>>>>>>> origin
                 const errorMsg = `Python Database Error: ${error.message}`;
             });
     }

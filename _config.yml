@@ -9,6 +9,7 @@ future: true
 remote_theme: jekyll/minima
 # remote_theme: pages-themes/minimal@v0.2.0
 
+
 minima:
   nav_pages:
     - navigation/lessons.md
@@ -19,6 +20,9 @@ minima:
     - navigation/hacks/leaderboard.md
     - navigation/checklist.md
     - navigation/resource.md
+    - navigation/authentication/login.md
+    - navigation/authentication/logout.md
+
 
   skin: dark
   social_links:
