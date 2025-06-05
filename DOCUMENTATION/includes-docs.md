@@ -118,8 +118,8 @@ The logic inside the block checks for these flags and conditionally displays the
 ### Old meta content:
 ```liquid
 
-{% include toc.html html=content %}
-{% include utterances.html %}
+% include toc.html html=content %
+% include utterances.html %
 
 ```
 
