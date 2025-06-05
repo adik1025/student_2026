@@ -71,8 +71,8 @@ _includes/
 
 **New unified include:**
 
-```html
-{% include layout/post_meta_block.html html=content %}
+```liquid
+% include layout/post_meta_block.html html=content %
 ```
 
 **Supports front matter flags:**
@@ -95,8 +95,8 @@ The logic inside the block checks for these flags and conditionally displays the
 - `notebook_github_link.html`
 
 **Replaced with single call:**
-```html
-{% include notebooks/badge_block.html %}
+```liquid
+% include notebooks/badge_block.html %
 ```
 
 ---
@@ -112,8 +112,8 @@ The logic inside the block checks for these flags and conditionally displays the
 ```
 
 ### Now replaced with:
-```html
-{% include notebooks/badge_block.html %}
+```liquid
+% include notebooks/badge_block.html %
 ```
 
 ---
@@ -126,8 +126,8 @@ The logic inside the block checks for these flags and conditionally displays the
 ```
 
 ### Now replaced with:
-```html
-{% include layout/post_meta_block.html html=content %}
+```liquid
+% include layout/post_meta_block.html html=content %
 ```
 ---
 
