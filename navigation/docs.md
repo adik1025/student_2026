@@ -1,6 +1,6 @@
 ---
 layout: base 
-title: Documentation
+title: Docs
 search_exclude: true
 permalink: /documents/
 nav: true

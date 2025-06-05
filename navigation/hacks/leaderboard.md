@@ -4,10 +4,6 @@ title: Leaderboard
 permalink: /leaderboard/
 ---
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 137a839 (fix folder structure)
 <title>Leaderboard</title>
 <style>
 body {
