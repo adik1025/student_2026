@@ -11,6 +11,11 @@ remote_theme: jekyll/minima
 
 minima:
   nav_pages:
+    - navigation/lessons.md
+    - navigation/blog.md
+    - navigation/github-pages-readme.md
+    - navigation/search.md
+    - navigation/blog.md
     - navigation/about.md
     - navigation/github-pages-readme.md
     - navigation/search.md
@@ -18,7 +23,13 @@ minima:
     - navigation/leaderboard.md
     - navigation/checklist.md
     - navigation/resource.md
-    - navigation/docs.md
+    - navigation/authentication/login.md
+    - navigation/authentication/logout.md
+
+
+
+
+
 
   skin: dark
   social_links:

@@ -27,7 +27,6 @@ _includes/
 ├── post_category_blocks.html
 ├── post_list.html
 ├── post_list_image_card.html
-├── reading_time.html
 ├── toc.html
 ├── utterances.html
 ├── screenshot

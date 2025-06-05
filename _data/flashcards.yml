@@ -2,6 +2,25 @@ cards:
   - term: Loop
     definition: A programming structure that repeats a block of code.
   - term: Iteration
+
+    definition: Repeating a set of instructions (e.g. for/while loops).
+  - term: Variable
+    definition: A named container that stores data.
+  - term: Procedure
+    definition: A reusable block of code designed to perform a task.
+  - term: Modulus
+    definition: Returns the remainder after division.
+  - term: Boolean
+    definition: A data type that is either true or false.
+  - term: List
+    definition: An ordered collection of items.
+  - term: String
+    definition: A sequence of characters.
+  - term: API
+    definition: A set of tools for building software and interacting with other software.
+  - term: Big O
+    definition: Describes the performance or complexity of an algorithm.
+# I am not sure why git is asking me to merge these, none of my group changed thes. idk which ones u want so I kept both
     definition: Each time a loop runs.
   - term: For Loop
     definition: A loop that repeats a fixed number of times.
@@ -23,3 +42,4 @@ cards:
     definition: The position number of an item in a list, often used in loops.
   - term: Loop Variable
     definition: A variable that changes value in each iteration of the loop.
+
