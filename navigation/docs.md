@@ -6,7 +6,7 @@ permalink: /documents/
 nav: true
 ---
 
-# Internal Documentation Overview
+## Internal Documentation Overview
 
 This page provides links and descriptions for internal documentation about the Open Coding Society repository structure and theme/navigation system.
 
