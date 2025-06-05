@@ -107,3 +107,24 @@ li .post-meta-description {
 .search-results-list-item .search-result-title {
     color: cornflowerblue !important;
 }
+
+.site-header {
+    background-color: $dark-grey !important;
+    border-bottom: 1px solid $overlay-light !important;
+  }
+  
+  .site-title, .site-title:visited {
+    color: $high-emph !important;
+  }
+  
+  .site-nav {
+    background-color: $dark-grey !important;
+  }
+  
+  .page-link {
+    color: $high-emph !important;
+  }
+  
+  .page-link:hover {
+    color: rgb(75, 186, 255) !important;
+  }

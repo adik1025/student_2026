@@ -20,7 +20,9 @@ minima:
     - navigation/checklist.md
     - navigation/resource.md
 
-  skin: dark
+  # for partial themes, uncomment the following line and add the theme name, otherwise leave blank/commented and update sass
+  # skin: 
+  
   social_links:
     - { platform: github, user_url: "https://github.com/Open-Coding-Society"}
     - { platform: x, user_url: "https://x.com/Open_Coding" }
