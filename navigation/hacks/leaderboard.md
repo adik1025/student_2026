@@ -2,6 +2,7 @@
 layout: page
 title: Leaderboard
 permalink: /leaderboard/
+nav: true
 ---
 
 <title>Leaderboard</title>
