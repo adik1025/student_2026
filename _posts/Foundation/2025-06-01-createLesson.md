@@ -198,6 +198,6 @@ permalink: /functions
   <p>📝 You can also add your own flashcards about additional features or customization ideas as you experiment with the layout system.</p>
 
   <h2>Extra Practice</h2>
-  {% include ai_comprehension.html %}
+
 
 </div>
