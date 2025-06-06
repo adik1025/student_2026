@@ -3,7 +3,7 @@ layout: lesson
 show_reading_time: false
 permalink: /lessoncreation
 title: How to Create a Lesson
-video_url: "https://youtu.be/4nE7MBTV7nQ"
+video_url: "https://www.youtube.com/watch?v=4nE7MBTV7nQ"
 ---
 
 <div id="lesson-content">
