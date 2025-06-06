@@ -59,10 +59,6 @@ export function login(options) {
         .then(data => {
                 if (data.token) {
                 localStorage.setItem('jwtToken', data.token);  // Save token here
-<<<<<<< HEAD
-                console.log(data.token)
-=======
->>>>>>> origin
                 } else {
                 console.warn('No token found in login response.');
                 }
