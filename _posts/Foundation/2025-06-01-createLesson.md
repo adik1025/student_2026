@@ -10,7 +10,6 @@ video_url: "https://www.youtube.com/watch?v=4nE7MBTV7nQ"
 
   {% include video.html %}
 
-  <h1>How to Build a Coding Lesson with Layouts</h1>
   <p>This guide walks you through how to design, build, and deploy an interactive coding lesson using <code>lesson.html</code> and <code>cover.html</code>. These layout templates are part of a modular system that makes it easy for teachers to assemble consistent, polished, and engaging lessons. The system supports multimedia, code execution, student input, live feedback, and collaborative tools.</p>
 
   <hr>
