@@ -54,7 +54,7 @@ This ensures:
 - Proper navigation logic per theme
 - Clean, maintainable theme and style management
 
-[View Theme and Navigation Logic Documentation Here]({{ site.baseurl }}/theme_and_nav_docs)
+[View Theme and Navigation Logic Documentation Here]({{site.baseurl}}/theme_and_nav_docs)
 
 ---
 
@@ -70,7 +70,7 @@ This guide introduces the different GitHub workflows you will encounter in cours
 
 A must-read to properly work on projects, team collaborations, and coursework submissions.
 
-[View GitHub Workflow Documentation Here]({{ site.baseurl }}/tools/github/workflow)
+[View GitHub Workflow Documentation Here]({{site.baseurl}}/tools/github/workflow)
 
 ---
 

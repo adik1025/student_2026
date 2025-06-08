@@ -1,6 +1,6 @@
 <div class="post-meta-block">
 
-    {%- assign show_reading_time = include.show_reading_time | default: page.reading_time | default: true -%}
+    {%- assign show_reading_time = include.show_reading_time | default: page.reading_time | default: false -%}
     {%- if show_reading_time != false -%}
       {% assign word_count = content | strip_html | number_of_words %}
       {% assign minutes = word_count | divided_by:180 %}
@@ -16,7 +16,7 @@
       </span>
     {%- endif -%}
   
-    {%- assign show_toc = include.show_toc | default: page.toc | default: true -%}
+    {%- assign show_toc = include.show_toc | default: page.toc | default: false -%}
     {%- if show_toc != false and include.html -%}
       {%- assign orderedList = include.ordered | default: false -%}
       {%- assign baseURL = include.base_url | default: '' -%}

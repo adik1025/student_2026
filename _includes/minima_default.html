@@ -21,6 +21,8 @@
         {%- if page.author -%}
           <p class="post-author">Authored by: <em>{{ page.author }}</em></p>
         {%- endif -%}
+
+        {% include layout/post_meta_block.html html=content %}
         
         {{ content }}
 
