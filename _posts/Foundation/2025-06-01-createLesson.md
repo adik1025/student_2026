@@ -198,5 +198,7 @@ permalink: /functions
 
   <h2>Extra Practice</h2>
 
+  {% include ai_comprehension.html %}
+
 
 </div>
