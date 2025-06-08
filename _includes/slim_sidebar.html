@@ -59,7 +59,7 @@
       </div>
   </div>
   
-  <div id="highlight-note-popover" style="position: absolute; background: #2d3748; color: #f1f5f9; padding: 10px 15px; border-radius: 10px; font-size: 13px; max-width: 250px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); z-index: 1002; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease; transform: translateY(10px); pointer-events: none; line-height: 1.4;"></div>
+  <div id="highlight-note-popover" style="position: absolute; background: #2d3748; color: #1e293b; padding: 10px 15px; border-radius: 10px; font-size: 13px; max-width: 250px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); z-index: 1002; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease; transform: translateY(10px); pointer-events: none; line-height: 1.4;"></div>
   <style>
   @keyframes slideIn {
       from {
@@ -263,7 +263,7 @@
   .notes-panel-header {
       /* Reuses .modal-header styles */
       padding: 28px 28px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .notes-panel-body {
@@ -304,7 +304,7 @@
       border-radius: 12px;
       padding: 15px;
       margin-bottom: 12px;
-      color: #f1f5f9;
+      color: #1e293b; /* Changed to black */
       font-size: 14px;
       position: relative;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -319,11 +319,12 @@
   .note-item p {
       margin-bottom: 8px;
       line-height: 1.5;
+      color: #1e293b; /* Changed to black */
   }
 
   .note-item .note-context {
       font-size: 13px;
-      color: #a78bfa; /* Matches highlight text color */
+      color: #1e293b; /* Changed to black */
       font-style: italic;
       margin-top: 5px;
       padding: 5px 8px;
@@ -346,9 +347,9 @@
 
   .note-item .delete-note-btn,
   .note-item .edit-note-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #cbd5e1;
+      background: rgba(0, 0, 0, 0.05); /* Changed to black-ish for consistency */
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Changed to black-ish for consistency */
+      color: #475569; /* Darker text color */
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 8px;
@@ -373,9 +374,9 @@
       flex-direction: column;
       gap: 10px;
       padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(0, 0, 0, 0.08); /* Changed to black-ish for consistency */
       bottom: 0;
-      background: rgba(15, 15, 25, 0.98); /* Match notes panel background */
+      background: rgba(255, 255, 255, 0.95); /* Adjusted for lighter background */
       padding-bottom: 0px;
       margin-top: auto;
   }
@@ -384,10 +385,10 @@
       width: 100%;
       padding: 12px 15px;
       font-size: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.05);
+      border: 2px solid rgba(0, 0, 0, 0.1);
       border-radius: 12px;
-      color: #f1f5f9;
+      color: #1e293b; /* Changed to black */
       resize: vertical;
       min-height: 80px;
       font-weight: 500;
@@ -396,12 +397,12 @@
   #new-note-text:focus {
       outline: none;
       border-color: rgba(102, 126, 234, 0.6);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.08);
       box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
   }
 
   #new-note-text::placeholder {
-      color: rgba(148, 163, 184, 0.7);
+      color: rgba(71, 85, 105, 0.7); /* Darker placeholder */
   }
 
   .note-input-area .search-btn,
@@ -415,14 +416,14 @@
   /* NEW: Popover for notes on highlight hover */
   .note-popover {
       position: absolute;
-      background: #2d3748; /* Darker background */
-      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.95); /* Lighter background for popover */
+      color: #1e293b; /* Changed to black */
       padding: 10px 15px;
       border-radius: 10px;
       font-size: 13px;
       max-width: 250px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Changed to black-ish for consistency */
       z-index: 1002; /* Above sidebar */
       opacity: 0;
       visibility: hidden;
