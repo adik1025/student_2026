@@ -1,477 +1,223 @@
 {% assign cards = include.cards | default: site.data.flashcards.cards %}
 
-<!-- Flashcards Styling -->
-<style>
-  .flashcards-container {
-    max-width: 800px;
-    margin: 2rem auto;
-  }
-  
-  .flashcard {
-    position: relative;
-    width: 100%;
-    height: 350px;
-    perspective: 1500px;
-    margin-bottom: 2rem;
-  }
-  
-  .flashcard-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-style: preserve-3d;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    border-radius: 16px;
-  }
-  
-  .flashcard.flipped .flashcard-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .flashcard-front, .flashcard-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    border-radius: 16px;
-    background: var(--card-bg, #1E293B);
-    color: var(--text-primary, #F8FAFC);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  
-  .flashcard-back {
-    transform: rotateY(180deg);
-  }
-  
-  .card-controls {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 1.5rem;
-  }
-  
-  .btn-flip {
-    background: var(--gradient-primary, linear-gradient(135deg, #6C63FF 0%, #536DFE 100%));
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  
-  .btn-flip:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
-  }
-  
-  .flashcard-status {
-    margin-top: 16px;
-    font-size: 0.9rem;
-    color: var(--text-secondary, #CBD5E1);
-  }
-  
-  .flashcard-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-  }
-  
-  .btn-nav {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: var(--text-primary, #F8FAFC);
-    padding: 8px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .btn-nav:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  
-  .btn-know {
-    background: var(--success, #00E676);
-    color: #111;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  
-  .btn-know:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 230, 118, 0.3);
-  }
-  
-  .btn-review {
-    background: var(--warning, #FFAB00);
-    color: #111;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  
-  .btn-review:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 171, 0, 0.3);
-  }
-  
-  .card-counter {
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 0.9rem;
-  }
-  
-  .progress-container {
-    width: 100%;
-    height: 8px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 4px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-  }
-  
-  .progress-bar {
-    height: 100%;
-    background: var(--gradient-primary, linear-gradient(135deg, #6C63FF 0%, #536DFE 100%));
-    transition: width 0.3s ease;
-  }
-  
-  .flashcard-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .flashcard {
-      height: 300px;
-    }
-    
-    .flashcard-navigation {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .flashcard-buttons {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-</style>
-
-<!-- Parent Flex Container -->
 <div style="display: flex; justify-content: center; align-items: flex-start; gap: 2rem; flex-wrap: wrap;">
 
-  <!-- Flashcards Section -->
-  <div class="flashcards-container">
-    <div class="progress-container">
-
-    <div class="progress-bar" id="flashcard-progress" style="width: 0%"></div>
-  </div>
+  <div style="max-width: 800px; margin: 2rem auto;">
+    <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 1rem; overflow: hidden;">
+      <div style="height: 100%; background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); transition: width 0.3s ease; width: 0%;" id="flashcard-progress"></div>
+    </div>
   
-  <div class="flashcard-deck">
-    {% if cards %}
-      {% for card in cards %}
-        {% assign index = forloop.index %}
-        {% assign total = forloop.length %}
-        
-        {% if card.term and card.definition %}
-          {% assign front = card.term %}
-          {% assign back = card.definition %}
-        {% else %}
-          {% assign front = card | split: "|" | first %}
-          {% assign back = card | split: "|" | last %}
-        {% endif %}
-        
-        <div class="flashcard {% if index > 1 %}d-none{% endif %}" id="card-{{ index }}" data-index="{{ index }}" data-total="{{ total }}">
-          <div class="flashcard-inner">
-            <div class="flashcard-front">
-              <div style="position: absolute; top: 15px; right: 15px;">
-                <span class="card-counter">{{ index }}/{{ total }}</span>
+    <div class="flashcard-deck">
+      {% if cards %}
+        {% for card in cards %}
+          {% assign index = forloop.index %}
+          {% assign total = forloop.length %}
+          
+          {% if card.term and card.definition %}
+            {% assign front = card.term %}
+            {% assign back = card.definition %}
+          {% else %}
+            {% assign front = card | split: "|" | first %}
+            {% assign back = card | split: "|" | last %}
+          {% endif %}
+          
+          <div style="position: relative; width: 100%; height: 350px; perspective: 1500px; margin-bottom: 2rem; {% if index > 1 %}display: none;{% endif %}" id="card-{{ index }}" data-index="{{ index }}" data-total="{{ total }}">
+            <div style="position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border-radius: 16px;" class="flashcard-inner">
+              <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; border-radius: 16px; background: #1E293B; color: #F8FAFC; border: 1px solid rgba(255,255,255,0.1);" class="flashcard-front">
+                <div style="position: absolute; top: 15px; right: 15px;">
+                  <span style="background: rgba(255,255,255,0.1); border-radius: 20px; padding: 6px 14px; font-size: 0.9rem;">{{ index }}/{{ total }}</span>
+                </div>
+                <h3 style="text-align: center; margin-bottom: 1.5rem; color: white;">{{ front }}</h3>
+                <div style="text-align: center;">
+                  <button style="background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="flipCard('card-{{ index }}')">
+                    <i class="fas fa-sync-alt me-2"></i>Flip Card
+                  </button>
+                </div>
               </div>
-              <h3 class="text-center mb-4">{{ front }}</h3>
-              <div class="text-center">
-                <button class="btn-flip" onclick="flipCard('card-{{ index }}')">
-                  <i class="fas fa-sync-alt me-2"></i>Flip Card
-                </button>
+              <div style="position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; border-radius: 16px; background: #1E293B; color: #F8FAFC; border: 1px solid rgba(255,255,255,0.1); transform: rotateY(180deg);" class="flashcard-back">
+                <div style="position: absolute; top: 15px; right: 15px;">
+                  <span style="background: rgba(255,255,255,0.1); border-radius: 20px; padding: 6px 14px; font-size: 0.9rem;">{{ index }}/{{ total }}</span>
+                </div>
+                <h4 style="text-align: center; margin-bottom: 1rem;">Answer:</h4>
+                <p style="text-align: center;">{{ back }}</p>
+                <div style="display: flex; gap: 10px;">
+                  <button style="background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="flipCard('card-{{ index }}')">
+                    <i class="fas fa-sync-alt me-2"></i>Flip Back
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="flashcard-back">
-              <div style="position: absolute; top: 15px; right: 15px;">
-                <span class="card-counter">{{ index }}/{{ total }}</span>
+            <div style="margin-top: 16px; font-size: 0.9rem; color: #CBD5E1; text-align: center;" id="status-{{ index }}">
               </div>
-              <h4 class="text-center mb-3">Answer:</h4>
-              <p class="text-center">{{ back }}</p>
-              <div class="flashcard-buttons">
-                <button class="btn-flip" onclick="flipCard('card-{{ index }}')">
-                  <i class="fas fa-sync-alt me-2"></i>Flip Back
-                </button>
-              </div>
-            </div>
           </div>
-          <div class="flashcard-status text-center" id="status-{{ index }}">
-            <!-- Status will be shown here -->
-          </div>
+        {% endfor %}
+      {% else %}
+        <div style="text-align: center; padding: 3rem;">
+          <h3>No flashcards found.</h3>
+          <p>Please check your flashcards.yml file.</p>
         </div>
-      {% endfor %}
-    {% else %}
-      <div class="text-center p-5">
-        <h3>No flashcards found.</h3>
-        <p>Please check your flashcards.yml file.</p>
+      {% endif %}
+    </div>
+    
+    {% if cards %}
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <button style="background: #7B68EE; border: 1px solid #7B68EE; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: none; opacity: 1;" id="prev-btn" onclick="navigateCards('prev')" disabled>
+          <i class="fas fa-chevron-left me-2"></i>Previous
+        </button>
+        
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+          <button style="background: #00E676; color: #111; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="markCard('know')" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0, 230, 118, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            <i class="fas fa-check me-2"></i>I Know This
+          </button>
+          <button style="background: #FFAB00; color: #111; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="markCard('review')" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(255, 171, 0, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            <i class="fas fa-redo me-2"></i>Review Again
+          </button>
+        </div>
+        
+        <button style="background: #7B68EE; border: 1px solid #7B68EE; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: none; opacity: 1;" id="next-btn" onclick="navigateCards('next')">
+          Next<i class="fas fa-chevron-right ms-2"></i>
+        </button>
       </div>
     {% endif %}
   </div>
-  
-  {% if cards %}
-    <div class="flashcard-navigation">
-      <button class="btn-nav" id="prev-btn" onclick="navigateCards('prev')" disabled>
-        <i class="fas fa-chevron-left me-2"></i>Previous
-      </button>
-      
-      <div class="flashcard-buttons">
-        <button class="btn-know" onclick="markCard('know')">
-          <i class="fas fa-check me-2"></i>I Know This
-        </button>
-        <button class="btn-review" onclick="markCard('review')">
-          <i class="fas fa-redo me-2"></i>Review Again
-        </button>
-      </div>
-      
-      <button class="btn-nav" id="next-btn" onclick="navigateCards('next')">
-        Next<i class="fas fa-chevron-right ms-2"></i>
-      </button>
-    </div>
-  {% endif %}
-</div>
 
-<!-- Review Sidebar -->
-<div id="review-sidebar" style="width: 300px; max-height: 600px; overflow-y: auto; background: #1e293b; color: white; padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-  <h4 style="margin-top: 0;">🔁 Marked for Review</h4>
-  <ul id="review-list" style="list-style: none; padding-left: 0;"></ul>
-</div>
+  <div id="review-sidebar" style="width: 300px; max-height: 600px; overflow-y: auto; background: #1e293b; color: white; padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+    <h4 style="margin-top: 0; color: white;">🔁 Marked for Review</h4>
+    <ul id="review-list" style="list-style: none; padding-left: 0;"></ul>
+  </div>
 
-</div> <!-- CLOSES THE FLEX CONTAINER -->
-
-
-<!-- Flashcards Script -->
-<script>
+</div> <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize flashcards data in localStorage if not exists
-    if (!localStorage.getItem('flashcardsData')) {
-      const totalCards = document.querySelectorAll('.flashcard').length;
-      const initialData = {
+    // Initialize flashcards data in memory if not exists
+    if (!window.flashcardsData) {
+      const totalCards = document.querySelectorAll('[id^="card-"]').length;
+      window.flashcardsData = {
         knownCards: [],
         reviewCards: [],
         currentIndex: 1,
         totalCards: totalCards,
         lastVisited: new Date().toISOString()
       };
-      localStorage.setItem('flashcardsData', JSON.stringify(initialData));
-    } else {
-      // Load existing data
-      const data = JSON.parse(localStorage.getItem('flashcardsData'));
-      
-      // Update status indicators
-      data.knownCards.forEach(index => {
-        const statusEl = document.getElementById(`status-${index}`);
-        if (statusEl) {
-          statusEl.innerHTML = '<span style="color: var(--success, #00E676);"><i class="fas fa-check-circle me-1"></i>You know this card</span>';
-        }
-      });
-      
-      data.reviewCards.forEach(index => {
-        const statusEl = document.getElementById(`status-${index}`);
-        if (statusEl) {
-          statusEl.innerHTML = '<span style="color: var(--warning, #FFAB00);"><i class="fas fa-sync me-1"></i>Marked for review</span>';
-        }
-      });
-      
-      // Update progress bar
-      updateProgressBar();
-      
-      // Show the last viewed card
-      showCard(data.currentIndex);
     }
+    
+    // Update progress bar
+    updateProgressBar();
+    
+    // Show the first card
+    showCard(window.flashcardsData.currentIndex);
+    
+    // Populate review sidebar
+    populateReviewSidebar();
+
+    // The updateNavButtons function will now only handle the `disabled` attribute,
+    // not style changes, as styles are now fixed inline.
+    updateNavButtons(); 
   });
   
   function flipCard(cardId) {
     const card = document.getElementById(cardId);
-    card.classList.toggle('flipped');
+    const inner = card.querySelector('.flashcard-inner');
+    const isFlipped = inner.style.transform === 'rotateY(180deg)';
+    inner.style.transform = isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)';
   }
   
   function navigateCards(direction) {
-    const data = JSON.parse(localStorage.getItem('flashcardsData'));
-    let newIndex = data.currentIndex;
+    let newIndex = window.flashcardsData.currentIndex;
     
-    if (direction === 'next' && data.currentIndex < data.totalCards) {
-      newIndex = data.currentIndex + 1;
-    } else if (direction === 'prev' && data.currentIndex > 1) {
-      newIndex = data.currentIndex - 1;
+    if (direction === 'next' && window.flashcardsData.currentIndex < window.flashcardsData.totalCards) {
+      newIndex = window.flashcardsData.currentIndex + 1;
+    } else if (direction === 'prev' && window.flashcardsData.currentIndex > 1) {
+      newIndex = window.flashcardsData.currentIndex - 1;
     }
     
-    if (newIndex !== data.currentIndex) {
-      data.currentIndex = newIndex;
-      localStorage.setItem('flashcardsData', JSON.stringify(data));
+    if (newIndex !== window.flashcardsData.currentIndex) {
+      window.flashcardsData.currentIndex = newIndex;
       showCard(newIndex);
-      updateNavButtons();
+      updateNavButtons(); // Call this to update disabled state
     }
   }
   
   function showCard(index) {
     // Hide all cards
-    document.querySelectorAll('.flashcard').forEach(card => {
-      card.classList.add('d-none');
+    document.querySelectorAll('[id^="card-"]').forEach(card => {
+      card.style.display = 'none';
       // Reset flip status
-      card.classList.remove('flipped');
+      const inner = card.querySelector('.flashcard-inner');
+      if (inner) inner.style.transform = 'rotateY(0deg)';
     });
     
     // Show the requested card
     const card = document.getElementById(`card-${index}`);
     if (card) {
-      card.classList.remove('d-none');
+      card.style.display = 'block';
     }
     
-    // Update navigation buttons
+    // Update navigation buttons (only the disabled attribute)
     updateNavButtons();
   }
   
   function updateNavButtons() {
-    const data = JSON.parse(localStorage.getItem('flashcardsData'));
-    
-    // Update prev button
     const prevBtn = document.getElementById('prev-btn');
-    if (data.currentIndex <= 1) {
+    if (window.flashcardsData.currentIndex <= 1) {
       prevBtn.disabled = true;
-      prevBtn.classList.add('opacity-50');
+      // No inline style changes needed here, as the fixed style is applied
     } else {
       prevBtn.disabled = false;
-      prevBtn.classList.remove('opacity-50');
     }
     
-    // Update next button
     const nextBtn = document.getElementById('next-btn');
-    if (data.currentIndex >= data.totalCards) {
+    if (window.flashcardsData.currentIndex >= window.flashcardsData.totalCards) {
       nextBtn.disabled = true;
-      nextBtn.classList.add('opacity-50');
+      // No inline style changes needed here, as the fixed style is applied
     } else {
       nextBtn.disabled = false;
-      nextBtn.classList.remove('opacity-50');
     }
   }
   
   function markCard(status) {
-    const data = JSON.parse(localStorage.getItem('flashcardsData'));
-    const currentCard = document.querySelector('.flashcard:not(.d-none)');
+    const currentCard = document.querySelector('[id^="card-"]:not([style*="display: none"])');
     const cardIndex = parseInt(currentCard.dataset.index);
     const statusEl = document.getElementById(`status-${cardIndex}`);
     
     // Remove card from both arrays
-    data.knownCards = data.knownCards.filter(idx => idx !== cardIndex);
-    data.reviewCards = data.reviewCards.filter(idx => idx !== cardIndex);
+    window.flashcardsData.knownCards = window.flashcardsData.knownCards.filter(idx => idx !== cardIndex);
+    window.flashcardsData.reviewCards = window.flashcardsData.reviewCards.filter(idx => idx !== cardIndex);
     
     // Add to appropriate array
     if (status === 'know') {
-      data.knownCards.push(cardIndex);
-      statusEl.innerHTML = '<span style="color: var(--success, #00E676);"><i class="fas fa-check-circle me-1"></i>You know this card</span>';
+      window.flashcardsData.knownCards.push(cardIndex);
+      statusEl.innerHTML = '<span style="color: #00E676;"><i class="fas fa-check-circle me-1"></i>You know this card</span>';
     } else if (status === 'review') {
-      data.reviewCards.push(cardIndex);
-      statusEl.innerHTML = '<span style="color: var(--warning, #FFAB00);"><i class="fas fa-sync me-1"></i>Marked for review</span>';
+      window.flashcardsData.reviewCards.push(cardIndex);
+      statusEl.innerHTML = '<span style="color: #FFAB00;"><i class="fas fa-sync me-1"></i>Marked for review</span>';
     }
-    
-    // Save updated data
-    localStorage.setItem('flashcardsData', JSON.stringify(data));
     
     // Update progress
     updateProgressBar();
     
+    // Update review sidebar
+    populateReviewSidebar();
+    
     // Automatically go to next card if not the last one
-    if (cardIndex < data.totalCards) {
+    if (cardIndex < window.flashcardsData.totalCards) {
       setTimeout(() => navigateCards('next'), 500);
     }
   }
   
   function updateProgressBar() {
-    const data = JSON.parse(localStorage.getItem('flashcardsData'));
-    const totalCards = document.querySelectorAll('.flashcard').length;
-    const uniqueKnown = new Set(data.knownCards);
+    const totalCards = document.querySelectorAll('[id^="card-"]').length;
+    const uniqueKnown = new Set(window.flashcardsData.knownCards);
     const knownPercentage = (uniqueKnown.size / totalCards) * 100;
 
     const progressBar = document.getElementById('flashcard-progress');
     progressBar.style.width = `${knownPercentage}%`;
   }
-
   
-  // Helper function to implement spaced repetition algorithm
-  function initializeSpacedRepetition() {
-    // Get existing data
-    const data = JSON.parse(localStorage.getItem('flashcardsData')) || { 
-      knownCards: [], 
-      reviewCards: [],
-      cardIntervals: {},  // Store intervals for each card
-      lastVisited: new Date().toISOString()
-    };
-    
-    // Check if this is a new day
-    const lastVisit = new Date(data.lastVisited);
-    const today = new Date();
-    const isNewDay = lastVisit.toDateString() !== today.toDateString();
-    
-    if (isNewDay) {
-      // Update intervals and move some known cards back to review
-      data.knownCards.forEach(cardIdx => {
-        // Initialize interval if not exists
-        if (!data.cardIntervals[cardIdx]) {
-          data.cardIntervals[cardIdx] = 1; // 1 day interval initially
-        }
-        
-        // Check if this card is due for review
-        const daysSinceAdded = Math.floor((today - new Date(data.lastVisited)) / (1000 * 60 * 60 * 24));
-        
-        if (daysSinceAdded >= data.cardIntervals[cardIdx]) {
-          // Move back to review queue
-          data.knownCards = data.knownCards.filter(c => c !== cardIdx);
-          if (!data.reviewCards.includes(cardIdx)) {
-            data.reviewCards.push(cardIdx);
-          }
-        } else {
-          // Increase interval using a spaced repetition formula
-          data.cardIntervals[cardIdx] = Math.floor(data.cardIntervals[cardIdx] * 1.5);
-        }
-      });
-      
-      // Update last visited date
-      data.lastVisited = today.toISOString();
-      localStorage.setItem('flashcardsData', JSON.stringify(data));
-    }
-    
-    // Return optimized order of cards based on learning needs
-    return [...data.reviewCards, ...data.knownCards];
-  }
-</script>
-
-<script>
   function populateReviewSidebar() {
-    const data = JSON.parse(localStorage.getItem('flashcardsData'));
     const reviewList = document.getElementById('review-list');
     reviewList.innerHTML = "";
 
-    data.reviewCards.forEach(cardIdx => {
+    window.flashcardsData.reviewCards.forEach(cardIdx => {
       const cardEl = document.getElementById(`card-${cardIdx}`);
       if (!cardEl) return;
 
@@ -479,7 +225,7 @@
       const li = document.createElement('li');
 
       li.innerHTML = `
-        <button onclick="jumpToCard(${cardIdx})" style="width: 100%; background: #334155; border: none; color: white; padding: 10px; border-radius: 8px; margin-bottom: 10px; text-align: left; cursor: pointer;">
+        <button onclick="jumpToCard(${cardIdx})" style="width: 100%; background: #334155; border: none; color: white; padding: 10px; border-radius: 8px; margin-bottom: 10px; text-align: left; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#475569'" onmouseout="this.style.background='#334155'">
           ${frontText}
         </button>
       `;
@@ -489,19 +235,51 @@
   }
 
   function jumpToCard(index) {
-    const data = JSON.parse(localStorage.getItem('flashcardsData'));
-    data.currentIndex = index;
-    localStorage.setItem('flashcardsData', JSON.stringify(data));
+    window.flashcardsData.currentIndex = index;
     showCard(index);
     updateNavButtons();
   }
-
-  // Hook into existing markCard to refresh sidebar
-  const originalMarkCard = markCard;
-  markCard = function(status) {
-    originalMarkCard(status);
-    populateReviewSidebar();
-  };
-
-  document.addEventListener('DOMContentLoaded', populateReviewSidebar);
+  
+  // Helper function to implement spaced repetition algorithm
+  function initializeSpacedRepetition() {
+    // Check if this is a new day
+    const lastVisit = new Date(window.flashcardsData.lastVisited);
+    const today = new Date();
+    const isNewDay = lastVisit.toDateString() !== today.toDateString();
+    
+    if (isNewDay) {
+      // Initialize intervals if not exists
+      if (!window.flashcardsData.cardIntervals) {
+        window.flashcardsData.cardIntervals = {};
+      }
+      
+      // Update intervals and move some known cards back to review
+      window.flashcardsData.knownCards.forEach(cardIdx => {
+        // Initialize interval if not exists
+        if (!window.flashcardsData.cardIntervals[cardIdx]) {
+          window.flashcardsData.cardIntervals[cardIdx] = 1; // 1 day interval initially
+        }
+        
+        // Check if this card is due for review
+        const daysSinceAdded = Math.floor((today - new Date(window.flashcardsData.lastVisited)) / (1000 * 60 * 60 * 24));
+        
+        if (daysSinceAdded >= window.flashcardsData.cardIntervals[cardIdx]) {
+          // Move back to review queue
+          window.flashcardsData.knownCards = window.flashcardsData.knownCards.filter(c => c !== cardIdx);
+          if (!window.flashcardsData.reviewCards.includes(cardIdx)) {
+            window.flashcardsData.reviewCards.push(cardIdx);
+          }
+        } else {
+          // Increase interval using a spaced repetition formula
+          window.flashcardsData.cardIntervals[cardIdx] = Math.floor(window.flashcardsData.cardIntervals[cardIdx] * 1.5);
+        }
+      });
+      
+      // Update last visited date
+      window.flashcardsData.lastVisited = today.toISOString();
+    }
+    
+    // Return optimized order of cards based on learning needs
+    return [...window.flashcardsData.reviewCards, ...window.flashcardsData.knownCards];
+  }
 </script>

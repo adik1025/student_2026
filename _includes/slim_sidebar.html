@@ -1,216 +1,100 @@
-<div id="sidebar">
-  <div class="sidebar-button" id="dictionary-button" data-tooltip="Dictionary">
-      <span class="icon">📚</span>
-      <span class="label">Dictionary</span>
-  </div>
-
-  <div class="sidebar-separator"></div>
-
-  <div class="sidebar-button" id="notes-button" data-tooltip="Notes">
-      <span class="icon">📝</span>
-      <span class="label">Notes</span>
-  </div>
-  <div class="sidebar-separator"></div>
-  <div class="sidebar-button" id="tts-button" data-tooltip="Read Selected Text">
-      <span class="icon">🔊</span>
-      <span class="label">Read Text</span>
-  </div>
-  <div class="sidebar-separator"></div>
-  <div class="sidebar-separator"></div>
-  <div class="sidebar-button" id="highlight-button" data-tooltip="Highlight">
-      <span class="icon">🎨</span>
-      <span class="label">Highlight</span>
-  </div>
-  <input type="color" id="highlight-color" value="#FFFF00" style="margin: 8px auto; width: 40px; height: 30px; border: none; border-radius: 5px; cursor: pointer; opacity: 0; transition: opacity 0.3s ease;">
-</div>
-
-<div id="dictionary-modal" class="modal-overlay">
-  <div class="modal-content">
-      <div class="modal-header">
-          <h3>Dictionary Lookup</h3>
-          <button id="close-dict" class="close-btn">✖</button>
-      </div>
-      <div class="modal-body">
-          <div class="search-container">
-              <input type="text" id="dict-input" placeholder="Enter a word..." />
-              <button id="search-dict" class="search-btn">Search</button>
-          </div>
-          <div id="dict-result" class="result-container"></div>
-      </div>
-  </div>
-</div>
-
-<div id="notes-sidebar" class="notes-panel">
-    <div class="notes-panel-header">
-        <h3>Your Notes</h3>
-        <button id="close-notes-sidebar" class="close-btn">✖</button>
+<div id="sidebar" style="position: fixed; top: 50%; left: 24px; transform: translateY(-50%); width: 68px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 20px; display: flex; flex-direction: column; padding: 16px 0; gap: 6px; z-index: 1000; box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15), 0 12px 24px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;" onmouseenter="this.style.width='200px'; this.style.padding='16px 12px'; this.style.background='rgba(255, 255, 255, 0.98)';" onmouseleave="this.style.width='68px'; this.style.padding='16px 0'; this.style.background='rgba(255, 255, 255, 0.95)';">
+    <div class="sidebar-button" id="dictionary-button" data-tooltip="Dictionary" style="display: flex; align-items: center; width: 52px; height: 52px; margin: 0 auto; background: rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 14px; cursor: pointer; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; overflow: hidden;" onmouseenter="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 12px 28px rgba(102, 126, 234, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)'; this.style.borderColor='rgba(102, 126, 234, 0.6)'; this.querySelector('.icon').style.transform='scale(1.15)'; this.querySelector('.icon').style.filter='brightness(1.4) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'; this.querySelector('.label').style.color='#ffffff'; this.querySelector('.label').style.textShadow='0 0 8px rgba(255, 255, 255, 0.3)'; this.style.background='linear-gradient(135deg, #667eea, #764ba2)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='rgba(0, 0, 0, 0.08)'; this.querySelector('.icon').style.transform=''; this.querySelector('.icon').style.filter='brightness(1.2) contrast(1.1)'; this.querySelector('.label').style.color='#1e293b'; this.querySelector('.label').style.textShadow=''; this.style.background='rgba(0, 0, 0, 0.04)';">
+        <span class="icon" style="font-size: 20px; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; flex-shrink: 0; transition: all 0.35s ease; user-select: none; position: relative; z-index: 2; filter: brightness(1.2) contrast(1.1);">📚</span>
+        <span class="label" style="font-size: 14px; font-weight: 600; color: #1e293b; white-space: nowrap; opacity: 0; transform: translateX(-15px); transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; z-index: 2;">Dictionary</span>
     </div>
-    <div class="notes-panel-body">
-        <div class="notes-list" id="notes-list-container">
+  
+    <div class="sidebar-separator" style="width: 60%; height: 2px; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent); margin: 6px auto; border-radius: 1px; transition: all 0.3s ease;"></div>
+  
+    <div class="sidebar-button" id="notes-button" data-tooltip="Notes" style="display: flex; align-items: center; width: 52px; height: 52px; margin: 0 auto; background: rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 14px; cursor: pointer; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; overflow: hidden;" onmouseenter="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 12px 28px rgba(102, 126, 234, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)'; this.style.borderColor='rgba(102, 126, 234, 0.6)'; this.querySelector('.icon').style.transform='scale(1.15)'; this.querySelector('.icon').style.filter='brightness(1.4) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'; this.querySelector('.label').style.color='#ffffff'; this.querySelector('.label').style.textShadow='0 0 8px rgba(255, 255, 255, 0.3)'; this.style.background='linear-gradient(135deg, #667eea, #764ba2)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='rgba(0, 0, 0, 0.08)'; this.querySelector('.icon').style.transform=''; this.querySelector('.icon').style.filter='brightness(1.2) contrast(1.1)'; this.querySelector('.label').style.color='#1e293b'; this.querySelector('.label').style.textShadow=''; this.style.background='rgba(0, 0, 0, 0.04)';">
+        <span class="icon" style="font-size: 20px; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; flex-shrink: 0; transition: all 0.35s ease; user-select: none; position: relative; z-index: 2; filter: brightness(1.2) contrast(1.1);">📝</span>
+        <span class="label" style="font-size: 14px; font-weight: 600; color: #1e293b; white-space: nowrap; opacity: 0; transform: translateX(-15px); transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; z-index: 2;">Notes</span>
+    </div>
+    <div class="sidebar-separator" style="width: 60%; height: 2px; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent); margin: 6px auto; border-radius: 1px; transition: all 0.3s ease;"></div>
+    <div class="sidebar-button" id="tts-button" data-tooltip="Read Selected Text" style="display: flex; align-items: center; width: 52px; height: 52px; margin: 0 auto; background: rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 14px; cursor: pointer; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; overflow: hidden;" onmouseenter="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 12px 28px rgba(102, 126, 234, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)'; this.style.borderColor='rgba(102, 126, 234, 0.6)'; this.querySelector('.icon').style.transform='scale(1.15)'; this.querySelector('.icon').style.filter='brightness(1.4) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'; this.querySelector('.label').style.color='#ffffff'; this.querySelector('.label').style.textShadow='0 0 8px rgba(255, 255, 255, 0.3)'; this.style.background='linear-gradient(135deg, #667eea, #764ba2)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='rgba(0, 0, 0, 0.08)'; this.querySelector('.icon').style.transform=''; this.querySelector('.icon').style.filter='brightness(1.2) contrast(1.1)'; this.querySelector('.label').style.color='#1e293b'; this.querySelector('.label').style.textShadow=''; this.style.background='rgba(0, 0, 0, 0.04)';">
+        <span class="icon" style="font-size: 20px; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; flex-shrink: 0; transition: all 0.35s ease; user-select: none; position: relative; z-index: 2; filter: brightness(1.2) contrast(1.1);">🔊</span>
+        <span class="label" style="font-size: 14px; font-weight: 600; color: #1e293b; white-space: nowrap; opacity: 0; transform: translateX(-15px); transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; z-index: 2;">Read Text</span>
+    </div>
+    <div class="sidebar-separator" style="width: 60%; height: 2px; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent); margin: 6px auto; border-radius: 1px; transition: all 0.3s ease;"></div>
+    <div class="sidebar-separator" style="width: 60%; height: 2px; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent); margin: 6px auto; border-radius: 1px; transition: all 0.3s ease;"></div>
+    <div class="sidebar-button" id="highlight-button" data-tooltip="Highlight" style="display: flex; align-items: center; width: 52px; height: 52px; margin: 0 auto; background: rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 14px; cursor: pointer; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; overflow: hidden;" onmouseenter="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 12px 28px rgba(102, 126, 234, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3)'; this.style.borderColor='rgba(102, 126, 234, 0.6)'; this.querySelector('.icon').style.transform='scale(1.15)'; this.querySelector('.icon').style.filter='brightness(1.4) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'; this.querySelector('.label').style.color='#ffffff'; this.querySelector('.label').style.textShadow='0 0 8px rgba(255, 255, 255, 0.3)'; this.style.background='linear-gradient(135deg, #667eea, #764ba2)';" onmouseleave="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='rgba(0, 0, 0, 0.08)'; this.querySelector('.icon').style.transform=''; this.querySelector('.icon').style.filter='brightness(1.2) contrast(1.1)'; this.querySelector('.label').style.color='#1e293b'; this.querySelector('.label').style.textShadow=''; this.style.background='rgba(0, 0, 0, 0.04)';">
+        <span class="icon" style="font-size: 20px; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; flex-shrink: 0; transition: all 0.35s ease; user-select: none; position: relative; z-index: 2; filter: brightness(1.2) contrast(1.1);">🎨</span>
+        <span class="label" style="font-size: 14px; font-weight: 600; color: #1e293b; white-space: nowrap; opacity: 0; transform: translateX(-15px); transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); position: relative; z-index: 2;">Highlight</span>
+    </div>
+    <input type="color" id="highlight-color" value="#FFFF00" style="margin: 8px auto; width: 40px; height: 30px; border: none; border-radius: 5px; cursor: pointer; opacity: 0; transition: opacity 0.3s ease;">
+  </div>
+  
+  <div id="dictionary-modal" style="display: none; position: fixed; right: 0; top: 0; height: 100vh; width: 420px; background: rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(0, 0, 0, 0.1); box-shadow: -12px 0 40px rgba(0, 0, 0, 0.2), -4px 0 20px rgba(0, 0, 0, 0.1); z-index: 1100; animation: slideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);">
+    <div style="height: 100%; display: flex; flex-direction: column; position: relative;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 28px 28px 20px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
+            <h3 style="color: #1e293b; font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #667eea, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">Dictionary Lookup</h3>
+            <button id="close-dict" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #475569; font-size: 16px; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;" onmouseenter="this.style.background='rgba(239, 68, 68, 0.15)'; this.style.borderColor='rgba(239, 68, 68, 0.3)'; this.style.color='#f87171'; this.style.transform='scale(1.05)';" onmouseleave="this.style.background='rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(0, 0, 0, 0.1)'; this.style.color='#475569'; this.style.transform='';">✖</button>
+        </div>
+        <div style="flex: 1; padding: 28px; overflow-y: auto;">
+            <div style="display: flex; gap: 12px; margin-bottom: 32px; position: relative;">
+                <input type="text" id="dict-input" placeholder="Enter a word..." style="flex: 1; padding: 16px 20px; font-size: 16px; background: rgba(0, 0, 0, 0.05); border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 16px; color: #1e293b; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); font-weight: 500;" onfocus="this.style.borderColor='rgba(102, 126, 234, 0.6)'; this.style.background='rgba(0, 0, 0, 0.08)'; this.style.boxShadow='0 0 0 4px rgba(102, 126, 234, 0.15), 0 8px 25px rgba(102, 126, 234, 0.2)'; this.style.transform='translateY(-2px)';" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'; this.style.background='rgba(0, 0, 0, 0.05)'; this.style.boxShadow=''; this.style.transform='';" />
+                <button id="search-dict" style="padding: 16px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 16px; color: white; font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); position: relative; overflow: hidden; white-space: nowrap;" onmouseenter="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 30px rgba(102, 126, 234, 0.4)'; this.style.background='linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)';" onmouseleave="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'; this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';" onmousedown="this.style.transform='translateY(-1px) scale(1.01)';">Search</button>
             </div>
-        <div class="note-input-area">
-            <textarea id="new-note-text" placeholder="Add a new note..." rows="3"></textarea>
-            <button id="add-note-btn" class="search-btn">Add Note</button>
-            <button id="update-note-btn" class="search-btn" style="display: none;">Update Note</button>
-            <button id="cancel-edit-note-btn" class="close-btn" style="display: none;">Cancel</button>
+            <div id="dict-result" style="color: #1e293b; line-height: 1.7; font-size: 15px; background: rgba(0, 0, 0, 0.02); border-radius: 16px; padding: 24px; border: 1px solid rgba(0, 0, 0, 0.05); min-height: 120px;"></div>
         </div>
     </div>
-</div>
-
-<div id="highlight-note-popover" class="note-popover"></div>
-
-
-<style>
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  </div>
+  
+  <div id="notes-sidebar" style="display: none; position: fixed; right: 0; top: 0; height: 100vh; width: 380px; background: rgba(255, 255, 255, 0.9); border-left: 1px solid rgba(0, 0, 0, 0.1); box-shadow: -12px 0 40px rgba(0, 0, 0, 0.2), -4px 0 20px rgba(0, 0, 0, 0.1); z-index: 1100; animation: slideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);">
+      <div style="height: 100%; display: flex; flex-direction: column; position: relative;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 28px 28px 20px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);">
+              <h3 style="color: #1e293b; font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #667eea, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">Your Notes</h3>
+              <button id="close-notes-sidebar" style="background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); color: #475569; font-size: 16px; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;" onmouseenter="this.style.background='rgba(239, 68, 68, 0.15)'; this.style.borderColor='rgba(239, 68, 68, 0.3)'; this.style.color='#f87171'; this.style.transform='scale(1.05)';" onmouseleave="this.style.background='rgba(0, 0, 0, 0.05)'; this.style.borderColor='rgba(0, 0, 0, 0.1)'; this.style.color='#475569'; this.style.transform='';">✖</button>
+          </div>
+          <div style="flex: 1; padding: 28px; overflow-y: auto; display: flex; flex-direction: column;">
+              <div class="notes-list" id="notes-list-container" style="flex-grow: 1; margin-bottom: 20px; overflow-y: auto; padding-right: 10px;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid rgba(0, 0, 0, 0.08); background: rgba(255, 255, 255, 0.95); padding-bottom: 0px; margin-top: auto;">
+                  <textarea id="new-note-text" placeholder="Add a new note..." rows="3" style="width: 100%; padding: 12px 15px; font-size: 15px; background: rgba(0, 0, 0, 0.05); border: 2px solid rgba(0, 0, 0, 0.1); border-radius: 12px; color: #1e293b; resize: vertical; min-height: 80px; font-weight: 500; font-family: inherit;" onfocus="this.style.borderColor='rgba(102, 126, 234, 0.6)'; this.style.background='rgba(0, 0, 0, 0.08)'; this.style.boxShadow='0 0 0 4px rgba(102, 126, 234, 0.15)';" onblur="this.style.borderColor='rgba(0, 0, 0, 0.1)'; this.style.background='rgba(0, 0, 0, 0.05)'; this.style.boxShadow='';"></textarea>
+                  <button id="add-note-btn" style="width: 100%; padding: 12px 20px; font-size: 15px; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);" onmouseenter="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 30px rgba(102, 126, 234, 0.4)'; this.style.background='linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)';" onmouseleave="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'; this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">Add Note</button>
+                  <button id="update-note-btn" style="display: none; width: 100%; padding: 12px 20px; font-size: 15px; border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);" onmouseenter="this.style.transform='translateY(-3px) scale(1.02)'; this.style.boxShadow='0 12px 30px rgba(102, 126, 234, 0.4)'; this.style.background='linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)';" onmouseleave="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'; this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';">Update Note</button>
+                  <button id="cancel-edit-note-btn" style="display: none; width: 100%; padding: 12px 20px; font-size: 15px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #475569; cursor: pointer; transition: all 0.3s ease;" onmouseenter="this.style.background='rgba(239, 68, 68, 0.15)'; this.style.borderColor='rgba(239, 68, 68, 0.3)'; this.style.color='#f87171';" onmouseleave="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.1)'; this.style.color='#475569';">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <div id="highlight-note-popover" style="position: absolute; background: #2d3748; color: #1e293b; padding: 10px 15px; border-radius: 10px; font-size: 13px; max-width: 250px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); z-index: 1002; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease; transform: translateY(10px); pointer-events: none; line-height: 1.4;"></div>
+  <style>
+  @keyframes slideIn {
+      from {
+          transform: translateX(100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateX(0);
+          opacity: 1;
+      }
   }
-
   body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-image: none !important;
   }
-
-  #sidebar {
-      position: fixed;
-      top: 50%;
-      left: 24px;
-      transform: translateY(-50%);
-      width: 68px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      padding: 16px 0;
-      gap: 6px;
-      z-index: 1000;
-      box-shadow:
-          0 24px 48px rgba(0, 0, 0, 0.15),
-          0 12px 24px rgba(0, 0, 0, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  #sidebar:hover {
-      width: 200px;
-      padding: 16px 12px;
-      background: rgba(255, 255, 255, 0.98);
-  }
-
-  .sidebar-button {
-      display: flex;
-      align-items: center;
-      width: 52px;
-      height: 52px;
-      margin: 0 auto;
-      background: rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 14px;
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      overflow: hidden;
-  }
-
-  .sidebar-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: inherit;
-  }
-
   #sidebar:hover .sidebar-button {
-      width: 100%;
+      width: 100% !important;
       gap: 12px;
   }
-
-  .icon {
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
-      flex-shrink: 0;
-      transition: all 0.35s ease;
-      user-select: none;
-      position: relative;
-      z-index: 2;
-      filter: brightness(1.2) contrast(1.1);
-  }
-
+  
   #sidebar:hover .icon {
-      width: 20px;
-      height: 20px;
-      margin-left: 16px;
+      width: 20px !important;
+      height: 20px !important;
+      margin-left: 16px !important;
   }
-
-  .sidebar-button:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow:
-          0 12px 28px rgba(102, 126, 234, 0.4),
-          0 6px 16px rgba(0, 0, 0, 0.3);
-      border-color: rgba(102, 126, 234, 0.6);
-  }
-
-  .sidebar-button:hover::before {
-      opacity: 1;
-  }
-
-  .sidebar-button:hover .icon {
-      transform: scale(1.15);
-      filter: brightness(1.4) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-  }
-
-  .sidebar-button:active {
-      transform: translateY(-1px) scale(1.02);
-  }
-
-  .label {
-      font-size: 14px;
-      font-weight: 600;
-      color: #1e293b;
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateX(-15px);
-      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      z-index: 2;
-  }
-
+  
   #sidebar:hover .label {
-      opacity: 1;
-      transform: translateX(0);
+      opacity: 1 !important;
+      transform: translateX(0) !important;
   }
-
-  .sidebar-button:hover .label {
-      color: #ffffff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-  }
-
-  .sidebar-separator {
-      width: 60%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.15), transparent);
-      margin: 6px auto;
-      border-radius: 1px;
-      transition: all 0.3s ease;
-  }
-
+  
   #sidebar:hover .sidebar-separator {
-      width: 80%;
-      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.6), transparent);
+      width: 80% !important;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.6), transparent) !important;
   }
-
-  /* Tooltips */
+  
   .sidebar-button::after {
       content: attr(data-tooltip);
       position: absolute;
@@ -231,250 +115,50 @@
       z-index: 1001;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
-
+  
   #sidebar:not(:hover) .sidebar-button:hover::after {
       opacity: 1;
       visibility: visible;
   }
-
+  
   #sidebar:hover .sidebar-button::after {
       opacity: 0 !important;
       visibility: hidden !important;
   }
-
-  /* Shared modal/panel styles */
-  .modal-overlay, .notes-panel {
-      display: none;
-      position: fixed;
-      right: 0;
-      top: 0;
-      height: 100vh;
-      width: 380px;
-      background: rgba(15, 15, 25, 0.98);
-      backdrop-filter: blur(25px) saturate(120%);
-      border-left: 1px solid rgba(102, 126, 234, 0.3);
-      box-shadow:
-          -12px 0 40px rgba(0, 0, 0, 0.4),
-          -4px 0 20px rgba(102, 126, 234, 0.1);
-      z-index: 1100;
-      animation: slideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  @keyframes slideIn {
-      from {
-          transform: translateX(100%);
-          opacity: 0;
-      }
-      to {
-          transform: translateX(0);
-          opacity: 1;
-      }
-  }
-
-  .modal-content, .notes-panel-content {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-  }
-
-  .modal-content::before, .notes-panel::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.6), transparent);
-  }
-
-  .modal-header, .notes-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 28px 28px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .modal-header h3, .notes-panel-header h3 {
-      color: #f8fafc;
-      font-size: 22px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-  }
-
-  .close-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #cbd5e1;
-      font-size: 16px;
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .close-btn:hover {
-      background: rgba(239, 68, 68, 0.15);
-      border-color: rgba(239, 68, 68, 0.3);
-      color: #f87171;
-      transform: scale(1.05);
-  }
-
-  .modal-body, .notes-panel-body {
-      flex: 1;
-      padding: 28px;
-      overflow-y: auto;
-  }
-
-  .search-container {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 32px;
-      position: relative;
-  }
-
-  .search-container::before {
-      content: '';
-      position: absolute;
-      bottom: -16px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
-  }
-
-  #dict-input {
-      flex: 1;
-      padding: 16px 20px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      color: #f1f5f9;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-      font-weight: 500;
-  }
-
-  #dict-input:focus {
-      outline: none;
-      border-color: rgba(102, 126, 234, 0.6);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow:
-          0 0 0 4px rgba(102, 126, 234, 0.15),
-          0 8px 25px rgba(102, 126, 234, 0.2);
-      transform: translateY(-2px);
-  }
-
-  #dict-input::placeholder {
-      color: rgba(148, 163, 184, 0.7);
-      font-weight: 400;
-  }
-
-  .search-btn {
-      padding: 16px 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border: none;
-      border-radius: 16px;
-      color: white;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-      position: relative;
-      overflow: hidden;
-  }
-
-  .search-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s ease;
-  }
-
-  .search-btn:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
-      background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
-  }
-
-  .search-btn:active {
-      transform: translateY(-1px) scale(1.01);
-  }
-
-  .result-container {
-      color: #1f2937;
-      line-height: 1.7;
-      font-size: 15px;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 16px;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      min-height: 120px;
-  }
-
-  .result-container:empty {
-      display: none;
-  }
-
-  .result-container h4 {
-      color: #f8fafc;
-      font-size: 28px;
-      margin-bottom: 20px;
-      font-weight: 800;
+  
+  #dict-result h4 {
+      color: #f8fafc !important;
+      font-size: 28px !important;
+      margin-bottom: 20px !important;
+      font-weight: 800 !important;
       background: linear-gradient(135deg, #667eea, #a78bfa, #ec4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-transform: capitalize;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      text-transform: capitalize !important;
   }
-
-  .result-container b {
-      color: #a78bfa;
-      font-size: 17px;
-      font-weight: 700;
-      display: inline-block;
-      margin: 16px 0 8px 0;
-      padding: 6px 12px;
-      background: rgba(167, 139, 250, 0.1);
-      border-radius: 8px;
-      border-left: 3px solid #a78bfa;
+  
+  #dict-result b {
+      color: #a78bfa !important;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      display: inline-block !important;
+      margin: 16px 0 8px 0 !important;
+      padding: 6px 12px !important;
+      background: rgba(167, 139, 250, 0.1) !important;
+      border-radius: 8px !important;
+      border-left: 3px solid #a78bfa !important;
   }
-
-  .result-container br + br {
-      display: block;
-      margin: 12px 0;
-      content: "";
-  }
-
-  .result-container i {
+  
+  #dict-result i {
       color: #374151 !important;
-      font-style: italic;
-      margin-left: 8px;
-      padding: 4px 8px;
-      background: rgba(55, 65, 81, 0.05);
-      border-radius: 6px;
-      font-size: 14px;
+      font-style: italic !important;
+      margin-left: 8px !important;
+      padding: 4px 8px !important;
+      background: rgba(55, 65, 81, 0.05) !important;
+      border-radius: 6px !important;
+      font-size: 14px !important;
   }
-
-  .result-container em {
-      color: #fbbf24;
-      font-style: normal;
-      font-weight: 600;
-  }
-
   /* --- Highlight Specific Styles --- */
   .user-highlight {
       position: relative;
@@ -579,7 +263,7 @@
   .notes-panel-header {
       /* Reuses .modal-header styles */
       padding: 28px 28px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .notes-panel-body {
@@ -620,7 +304,7 @@
       border-radius: 12px;
       padding: 15px;
       margin-bottom: 12px;
-      color: #f1f5f9;
+      color: #1e293b; /* Changed to black */
       font-size: 14px;
       position: relative;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -635,11 +319,12 @@
   .note-item p {
       margin-bottom: 8px;
       line-height: 1.5;
+      color: #1e293b; /* Changed to black */
   }
 
   .note-item .note-context {
       font-size: 13px;
-      color: #a78bfa; /* Matches highlight text color */
+      color: #1e293b; /* Changed to black */
       font-style: italic;
       margin-top: 5px;
       padding: 5px 8px;
@@ -662,9 +347,9 @@
 
   .note-item .delete-note-btn,
   .note-item .edit-note-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #cbd5e1;
+      background: rgba(0, 0, 0, 0.05); /* Changed to black-ish for consistency */
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Changed to black-ish for consistency */
+      color: #475569; /* Darker text color */
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 8px;
@@ -689,9 +374,9 @@
       flex-direction: column;
       gap: 10px;
       padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(0, 0, 0, 0.08); /* Changed to black-ish for consistency */
       bottom: 0;
-      background: rgba(15, 15, 25, 0.98); /* Match notes panel background */
+      background: rgba(255, 255, 255, 0.95); /* Adjusted for lighter background */
       padding-bottom: 0px;
       margin-top: auto;
   }
@@ -700,10 +385,10 @@
       width: 100%;
       padding: 12px 15px;
       font-size: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.05);
+      border: 2px solid rgba(0, 0, 0, 0.1);
       border-radius: 12px;
-      color: #f1f5f9;
+      color: #1e293b; /* Changed to black */
       resize: vertical;
       min-height: 80px;
       font-weight: 500;
@@ -712,12 +397,12 @@
   #new-note-text:focus {
       outline: none;
       border-color: rgba(102, 126, 234, 0.6);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.08);
       box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
   }
 
   #new-note-text::placeholder {
-      color: rgba(148, 163, 184, 0.7);
+      color: rgba(71, 85, 105, 0.7); /* Darker placeholder */
   }
 
   .note-input-area .search-btn,
@@ -731,14 +416,14 @@
   /* NEW: Popover for notes on highlight hover */
   .note-popover {
       position: absolute;
-      background: #2d3748; /* Darker background */
-      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.95); /* Lighter background for popover */
+      color: #1e293b; /* Changed to black */
       padding: 10px 15px;
       border-radius: 10px;
       font-size: 13px;
       max-width: 250px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Changed to black-ish for consistency */
       z-index: 1002; /* Above sidebar */
       opacity: 0;
       visibility: hidden;
@@ -753,7 +438,6 @@
       visibility: visible;
       transform: translateY(0);
   }
-
 </style>
 
 <script>

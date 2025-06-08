@@ -1,45 +1,33 @@
 cards:
-  - term: Loop
-    definition: A programming structure that repeats a block of code.
-  - term: Iteration
-
-    definition: Repeating a set of instructions (e.g. for/while loops).
-  - term: Variable
-    definition: A named container that stores data.
-  - term: Procedure
-    definition: A reusable block of code designed to perform a task.
-  - term: Modulus
-    definition: Returns the remainder after division.
-  - term: Boolean
-    definition: A data type that is either true or false.
-  - term: List
-    definition: An ordered collection of items.
-  - term: String
-    definition: A sequence of characters.
-  - term: API
-    definition: A set of tools for building software and interacting with other software.
-  - term: Big O
-    definition: Describes the performance or complexity of an algorithm.
-# I am not sure why git is asking me to merge these, none of my group changed thes. idk which ones u want so I kept both
-    definition: Each time a loop runs.
-  - term: For Loop
-    definition: A loop that repeats a fixed number of times.
-  - term: While Loop
-    definition: A loop that continues as long as a condition is true.
-  - term: Infinite Loop
-    definition: A loop that never stops because the condition is always true.
-  - term: Break
-    definition: A command that stops the loop before it finishes normally.
-  - term: Continue
-    definition: A command that skips the current loop iteration and moves to the next.
-  - term: Range
-    definition: A function used with for loops to specify how many times to repeat.
-  - term: Nested Loop
-    definition: A loop inside another loop.
-  - term: Condition
-    definition: An expression that evaluates to true or false, used in while loops.
-  - term: Index
-    definition: The position number of an item in a list, often used in loops.
-  - term: Loop Variable
-    definition: A variable that changes value in each iteration of the loop.
-
+  - term: Flashcards (Static)
+    definition: Displays pre-loaded flashcards with definitions for review.
+  - term: Flashcards (Student)
+    definition: Allows students to create and study their own flashcards, with CRUD functionality.
+  - term: Video Player
+    definition: Embeds YouTube videos responsively and provides playback controls.
+  - term: Code Prompt (Popcorn Hack)
+    definition: Lets students write and run Python/JavaScript code in real-time with instant feedback.
+  - term: AI Comprehension Checker
+    definition: Generates practice questions from lesson content with multiple difficulty levels and provides feedback.
+  - term: Feedback Poll
+    definition: Collects thumbs-up/thumbs-down feedback and allows students to leave comments.
+  - term: Live Whiteboard
+    definition: Enables a shared whiteboard session for live collaboration and drawing with board code entry.
+  - term: Multiplayer Quiz Game
+    definition: A real-time competitive quiz game with a live leaderboard and time-based challenges.
+  - term: Interactive Sidebar
+    definition: Provides tools for dictionary lookups, notes, highlighting, and text-to-speech within the lesson content.
+  - term: Text-to-Speech
+    definition: Reads selected text aloud using an external API, supporting auditory learning.
+  - term: Highlighting
+    definition: Enables students to highlight text and associate notes with it for better study organization.
+  - term: Feedback Data Visualization
+    definition: Displays real-time feedback collected through the poll system, integrated with Google Sheets.
+  - term: Multiplayer Quiz Backend
+    definition: Uses Flask and Socket.IO to handle real-time multiplayer quiz interactions and store quiz data.
+  - term: Spaced Repetition
+    definition: A technique used in the flashcard system to optimize review intervals based on retention.
+  - term: Dynamic Content Loading
+    definition: Loads interactive features dynamically through `include` statements based on lesson requirements.
+  - term: Responsive Design
+    definition: The system ensures that all interactive components (video, quizzes, code prompts) adapt to screen size.

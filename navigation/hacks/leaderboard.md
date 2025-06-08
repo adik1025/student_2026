@@ -108,18 +108,5 @@ li {
         }
     }
     window.onload = fetchLeaderboard;
-import { pythonURI, fetchOptions } from '{{ site.baseurl }}/assets/js/api/config.js';
-async function fetchLeaderboard() {
-    try {
-       const response = await fetch(`${pythonURI}/api/leaderboard`, {
-            ...fetchOptions,
-            method: 'GET'
-        });
-        if (!response.ok) {
-            throw new Error(`Failed to fetch leaderboard: ${response.status}`);
-        }
-    }
-}
-window.onload = fetchLeaderboard;
 
 </script>
