@@ -1,9 +1,7 @@
 {% assign cards = include.cards | default: site.data.flashcards.cards %}
 
-<!-- Parent Flex Container -->
 <div style="display: flex; justify-content: center; align-items: flex-start; gap: 2rem; flex-wrap: wrap;">
 
-  <!-- Flashcards Section -->
   <div style="max-width: 800px; margin: 2rem auto;">
     <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 1rem; overflow: hidden;">
       <div style="height: 100%; background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); transition: width 0.3s ease; width: 0%;" id="flashcard-progress"></div>
@@ -31,7 +29,7 @@
                 </div>
                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: white;">{{ front }}</h3>
                 <div style="text-align: center;">
-                  <button style="background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="flipCard('card-{{ index }}')" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(108, 99, 255, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <button style="background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="flipCard('card-{{ index }}')">
                     <i class="fas fa-sync-alt me-2"></i>Flip Card
                   </button>
                 </div>
@@ -43,15 +41,14 @@
                 <h4 style="text-align: center; margin-bottom: 1rem;">Answer:</h4>
                 <p style="text-align: center;">{{ back }}</p>
                 <div style="display: flex; gap: 10px;">
-                  <button style="background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="flipCard('card-{{ index }}')" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(108, 99, 255, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <button style="background: linear-gradient(135deg, #6C63FF 0%, #536DFE 100%); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onclick="flipCard('card-{{ index }}')">
                     <i class="fas fa-sync-alt me-2"></i>Flip Back
                   </button>
                 </div>
               </div>
             </div>
             <div style="margin-top: 16px; font-size: 0.9rem; color: #CBD5E1; text-align: center;" id="status-{{ index }}">
-              <!-- Status will be shown here -->
-            </div>
+              </div>
           </div>
         {% endfor %}
       {% else %}
@@ -64,7 +61,7 @@
     
     {% if cards %}
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
-        <button style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #F8FAFC; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;" id="prev-btn" onclick="navigateCards('prev')" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'" disabled>
+        <button style="background: #7B68EE; border: 1px solid #7B68EE; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: none; opacity: 1;" id="prev-btn" onclick="navigateCards('prev')" disabled>
           <i class="fas fa-chevron-left me-2"></i>Previous
         </button>
         
@@ -77,22 +74,19 @@
           </button>
         </div>
         
-        <button style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #F8FAFC; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;" id="next-btn" onclick="navigateCards('next')" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+        <button style="background: #7B68EE; border: 1px solid #7B68EE; color: white; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: none; opacity: 1;" id="next-btn" onclick="navigateCards('next')">
           Next<i class="fas fa-chevron-right ms-2"></i>
         </button>
       </div>
     {% endif %}
   </div>
 
-  <!-- Review Sidebar -->
   <div id="review-sidebar" style="width: 300px; max-height: 600px; overflow-y: auto; background: #1e293b; color: white; padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 10px rgba(0,0,0,0.2);">
     <h4 style="margin-top: 0; color: white;">🔁 Marked for Review</h4>
     <ul id="review-list" style="list-style: none; padding-left: 0;"></ul>
   </div>
 
-</div> <!-- CLOSES THE FLEX CONTAINER -->
-
-<script>
+</div> <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Initialize flashcards data in memory if not exists
     if (!window.flashcardsData) {
@@ -114,6 +108,10 @@
     
     // Populate review sidebar
     populateReviewSidebar();
+
+    // The updateNavButtons function will now only handle the `disabled` attribute,
+    // not style changes, as styles are now fixed inline.
+    updateNavButtons(); 
   });
   
   function flipCard(cardId) {
@@ -135,7 +133,7 @@
     if (newIndex !== window.flashcardsData.currentIndex) {
       window.flashcardsData.currentIndex = newIndex;
       showCard(newIndex);
-      updateNavButtons();
+      updateNavButtons(); // Call this to update disabled state
     }
   }
   
@@ -154,33 +152,25 @@
       card.style.display = 'block';
     }
     
-    // Update navigation buttons
+    // Update navigation buttons (only the disabled attribute)
     updateNavButtons();
   }
   
   function updateNavButtons() {
-    // Update prev button
     const prevBtn = document.getElementById('prev-btn');
     if (window.flashcardsData.currentIndex <= 1) {
       prevBtn.disabled = true;
-      prevBtn.style.opacity = '0.5';
-      prevBtn.style.cursor = 'not-allowed';
+      // No inline style changes needed here, as the fixed style is applied
     } else {
       prevBtn.disabled = false;
-      prevBtn.style.opacity = '1';
-      prevBtn.style.cursor = 'pointer';
     }
     
-    // Update next button
     const nextBtn = document.getElementById('next-btn');
     if (window.flashcardsData.currentIndex >= window.flashcardsData.totalCards) {
       nextBtn.disabled = true;
-      nextBtn.style.opacity = '0.5';
-      nextBtn.style.cursor = 'not-allowed';
+      // No inline style changes needed here, as the fixed style is applied
     } else {
       nextBtn.disabled = false;
-      nextBtn.style.opacity = '1';
-      nextBtn.style.cursor = 'pointer';
     }
   }
   
