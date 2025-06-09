@@ -4,6 +4,7 @@ title: Loops and Iteration
 video_url: "https://www.youtube.com/watch?v=94UHCEmprCY"
 hack_prompt: "What is the difference between a while loop and a for loop?"
 permalink: /loops
+toc: true
 ---
 
 <div id="lesson-content">

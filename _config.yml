@@ -6,8 +6,8 @@ github_repo: "student_2026"
 baseurl: "/student_2026"
 future: true
 
-remote_theme: jekyll/minima
-# remote_theme: pages-themes/minimal@v0.2.0
+# remote_theme: jekyll/minima
+remote_theme: pages-themes/minimal@v0.2.0
 
 
 minima:
@@ -26,7 +26,7 @@ minima:
 
   # for partial themes, uncomment the following line and add the theme name, otherwise leave blank/commented and update sass
   # skin: 
-
+  
   social_links:
     - { platform: github, user_url: "https://github.com/Open-Coding-Society"}
     - { platform: x, user_url: "https://x.com/Open_Coding" }
