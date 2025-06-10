@@ -1,11 +1,10 @@
 ---
-
-
 toc: false
 comments: true
 layout: post
 title: Accounts
 description: This class will require you to make a Portfolio 2026 Web Site, a GitHub Account, a Slack Account, and as part of final exam will require you update your LinkedIn account.
+author: Kush Kharia
 dcategories: [DevOps]
 permalink: /tools/accounts
 ---
