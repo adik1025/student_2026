@@ -2,6 +2,7 @@
 layout: page
 title: Checklist
 permalink: /checklist/
+author: Kush Kharia, Nikith Muralikrishnan
 ---
 
 <html lang="en">

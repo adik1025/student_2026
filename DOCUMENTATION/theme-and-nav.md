@@ -4,6 +4,7 @@ title: Theme Switching and Navigation Logic Documentation
 hide: true
 permalink: /theme_and_nav_docs
 toc: true
+search_exclude: false
 ---
 
 This is an internal system design — you should fully understand how your `_config.yml`, front matter, layout files, and navigation interact depending on the theme you choose.

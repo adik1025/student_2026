@@ -5,6 +5,7 @@ hide: true
 permalink: /includes_docs
 nav: true
 toc: true
+search_exclude: false
 ---
 
 ## Folder Structure Reorganization

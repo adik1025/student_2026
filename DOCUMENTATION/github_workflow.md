@@ -5,6 +5,7 @@ description: This guide introduces the main ways you'll use GitHub in your cours
 permalink: /tools/github/workflow
 menu: nav/tools_setup.html
 toc: true
+search_exclude: false
 ---
 
 ## Reference Repository

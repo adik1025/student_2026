@@ -7,6 +7,7 @@ author: Adi Katre, Gyutae Kim, Ansh Kumar
 permalink: /readme/
 nav: true
 toc: true
+search_exclude: false
 ---
 
 # Introduction
